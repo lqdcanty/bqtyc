@@ -1,0 +1,55 @@
+
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="版权动态"
+></navigation>
+<wxs src="../../../wxs/subsring.wxs" module="tool" />
+<button class='btn-share' open-type="share" size='mini'><i-icon type="share" size="18" color="#80848f"/></button>
+<view class="container">
+  <block wx:if="{{dynamics.length>0}}" wx:for="{{dynamics}}" wx:for-item="item" wx:key="index">
+    
+      <!-- <i-panel title="{{list.date}}" hide-top >
+        <view wx:for="{{list.dynamics}}" wx:for-item="item" wx:key="index"> -->
+          <view>
+            <i-card-x full title="{{item.title}}" subtitle='{{item.images.length>1 ? "" : item.describe}}' thumb="{{item.images.length>1?'':item.cover}}" slot="content" hidebody='{{item.images.length>1?false:true}}' url="{{item.url}}" webTitle="{{work.name}}({{work.category}})版权动态" type="{{item.type?item.type:'转发'}}">
+              <view slot="content"  wx:if="{{item.images.length>1}}" class="card-thumbs">
+                <block wx:for="{{item.images}}" wx:for-item="thumbiy" wx:key="index" wx:for-index="indexImg" wx:if="{{indexImg<3}}">
+                  <image mode='aspectFill' style="width:32;" src="https://p.banquanbaike.com.cn/http?link={{thumbiy}}" lazy-load='true' class="thumb"/>
+                </block>
+              </view>
+              <view slot="footer">
+                <view  class='card-footer' style="{{index==list.dynamics.length-1?'border-bottom:0px;':''}};padding-bottom:15px">
+                  <view class='head' bindtap='linkClick' data-url="{{item.authorReferer}}" data-title="{{'版权动态'}}" data-type="{{news.type?news.type:''}}">
+                    <block wx:if="{{item.avatar&&item.avatar!=''}}">
+                      <image mode='aspectFill' src="{{item.avatar}}" lazy-load='true' class="logoImg"/>
+                    </block>
+                    <block wx:if="{{item.avatar==''}}">
+                      <block wx:if="{{item.plateform=='百度'}}">
+                        <image mode='aspectFill' src="http://fdfs.banquanjia.com.cn/group2/M00/1C/7F/CgoKC1yHV02AI-jUAAAB-0OWh4k922.png" lazy-load='true' class="logoImg"/>
+                      </block>
+                      <block wx:if="{{item.plateform=='版权百科'}}">
+                        <image mode='aspectFill' src="https://mp.weixin.qq.com/wxopen/basicprofile?action=get_headimg&token=872746322&t=20190312145051" lazy-load='true' class="logoImg"/>
+                      </block>
+                    </block>
+                    <view class='text'>{{item.author!=""?item.author:'暂无来源'}}</view>
+                    <view class='text' wx:if="{{item.dategroup=='置顶' || item.dategroup=='今天' || item.dategroup=='昨天' || item.dategroup=='前天'}}">{{item.time}}</view>
+                    <view class='text'>{{item.dategroup}}</view>
+                    <view class='subsring'>{{tool.insteadSting.sub(item.url)}}</view>
+                  </view>
+                </view>
+              </view>
+            </i-card-x>
+          </view>
+        <!-- </view>
+      </i-panel> -->
+  </block>
+  <view class=""  style="font-size：12px;text-align:center;color:#999;margin-top:10px">
+    <image wx:if="{{!loadAll}}" src='http://cbd.efida.com.cn/images/icons/loading.gif'  style='width:13px;height:13px;display:inline-block;position:relative;top:2px'/>
+    <text style='font-size:12px;margin-left:8rpx'>{{loadAll?'已加载全部':'加载中'}}</text>
+  </view>
+</view>
+<view class="blank-bar" wx:if="{{dynamics.length==0&&!loading}}">作品《{{work.name}}》暂无版权动态</view>
+ <view class='loading' wx:if="{{dynamics.length==0&&loading}}" style="position: fixed; top:{{fixedTop}}px;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif' />
+</view>

@@ -1,0 +1,100 @@
+
+.icon_i {
+  width: 50px!important;
+  height: 50px!important;
+}
+.i_center {
+  text-align: center;
+}
+.clearfix:after{
+    display: block;
+    content:'';
+    clear: both;
+    height:0;
+}
+.logoname {
+  font-size: 12px;
+  color: #333;
+}
+.no_s {
+  display:inline-block;
+  height:18px;
+  line-height:18px;
+  padding:0 4px;
+  border-radius:2px;
+  background:#fff;
+  font-size:11px;
+  vertical-align:middle;
+  border:1rpx solid #dddee1;
+  visibility:visible;
+
+}
+.i-tag-disabled{
+    background:#e9eaec;
+    color: lightgray;
+    border-color:#e9eaec;
+}
+.i-tag-disabled-border {
+  color:lightgray;
+  border-color:#e9eaec;
+}
+
+.i-tag-yellow{
+    background:#f90;
+    color:#fff;
+    border-color:#f90;
+}
+.i-tag-yellow-border{
+    color:#f90;
+    background:#fff;
+    border-color:#f90;
+}
+.i-tag-yellow-checked{
+    background:#f90;
+    color:#fff;
+    border-color:#f90;
+}
+.i-tag-red{
+    background:#ed3f14;
+    color:#fff
+}
+.i-tag-red-border{
+    color:#ed3f14;
+    background:#fff;
+    border-color:#ed3f14
+}
+.i-tag-red-checked{
+    background:#ed3f14;
+    color:#fff;
+    border-color:#ed3f14
+}
+.i-tag-green{
+    background:#4db798;
+    color:#fff;
+    border-color:#4db798
+}
+.i-tag-green-border{
+    color:#4db798;
+    background:#fff;
+    border-color:#4db798
+}
+.i-tag-green-checked{
+    background:#4db798;
+    color:#fff;
+    border-color:#4db798
+}
+.i-tag-blue{
+    background:#2d8cf0;
+    color:#fff;
+    border-color:#2d8cf0
+}
+.i-tag-blue-border{
+    color:#2d8cf0;
+    background:#fff;
+    border-color:#2d8cf0
+}
+.i-tag-blue-checked{
+    background:#2d8cf0;
+    color:#fff;
+    border-color:#2d8cf0
+}

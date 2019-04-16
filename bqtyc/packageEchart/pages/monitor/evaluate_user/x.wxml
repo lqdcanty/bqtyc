@@ -1,0 +1,75 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="用户评价"
+>
+</navigation>
+<button class='btn-share' open-type="share" size='mini'><i-icon type="share" size="18" color="#80848f"/></button>
+<view class="container clearfix" >
+  <navigator  hover-class="navigator-hover">
+  <view class="work">
+    <view class="title">
+      <zan-capsule color="#4db798" leftText="{{mointor.category}}" rightText="{{mointor.type}}" />
+     {{mointor.name}}
+    </view>
+    <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{mointor.workTitle}}</view> 
+  </view>
+  </navigator>
+  <view class="dashboard clearfix"  wx:if="{{mointor.category=='影视'&& mointor.type!='体育赛事'}}">
+    <view wx:for="{{movielogo}}" style='width:50%;float:left;'>
+    <i-grid class="flex-item" border_top='0' >
+      <i-row >
+        <navigator url="" hover-class="navigator-hover">
+        <i-grid-item border_bottom='0'width="100%">
+          <i-grid-label>
+            <view>
+              <image src="{{item.url}}" style="border:0px solid red;width:50px;height:50px;"/>
+            </view>
+            <view class="icon_color">{{item.name}}</view>
+            <i-rate disabled="true" value="0" size="12">-分</i-rate>
+          </i-grid-label>
+        </i-grid-item>
+        </navigator>
+      </i-row>
+
+      <i-row >
+        <i-grid-item border_bottom='1' width="50%"  scale="short">
+            <i-grid-label size='40' weight="bold">-<view class="amount">评论</view></i-grid-label>
+        </i-grid-item>
+        <i-grid-item border_bottom='1' width="50%" scale="short">
+            <i-grid-label size='40' weight="bold">-<view class="amount">点赞比</view></i-grid-label>
+        </i-grid-item>
+      </i-row> 
+    </i-grid>
+    </view>
+  </view>
+
+  <view class="dashboard clearfix"  wx:if="{{mointor.category=='音乐'}}">
+    <view wx:for="{{musiclogo}}" style='width:50%;float:left;'>
+    <i-grid class="flex-item" border_top='0' >
+      <i-row >
+        <navigator url="" hover-class="navigator-hover">
+        <i-grid-item border_bottom='0'width="100%">
+          <i-grid-label>
+            <view>
+              <image src="{{item.url}}" style="border:0px solid red;width:50px;height:50px;"/>
+            </view>
+            <view class="icon_color">{{item.name}}</view>
+            <i-rate disabled="true" value="0" size="12">-分</i-rate>
+          </i-grid-label>
+        </i-grid-item>
+        </navigator>
+      </i-row>
+
+      <i-row >
+        <i-grid-item border_bottom='1' width="50%"  scale="short">
+            <i-grid-label size='40' weight="bold">-<view class="amount">评论</view></i-grid-label>
+        </i-grid-item>
+        <i-grid-item border_bottom='1' width="50%" scale="short">
+            <i-grid-label size='40' weight="bold">-<view class="amount">点赞比</view></i-grid-label>
+        </i-grid-item>
+      </i-row> 
+    </i-grid>
+    </view>
+  </view>
+</view>

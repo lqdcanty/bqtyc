@@ -1,0 +1,47 @@
+.tags{
+  display: flex;
+  flex-direction: row;
+  padding: 10px 10px;
+}
+
+.tags .tag {
+  margin-right: 3px;
+}
+.hidden{display: none}
+.form-item{
+  padding:7px 15px;
+  color:#495060;
+   position:relative;
+  display:flex;
+  background:#fff;
+  align-items:center;
+  line-height:1.4;
+  font-size:14px;
+  overflow:hidden;
+}
+.form-item-left{
+  color:#495060;
+  min-width:65px;
+  padding-right:10px;
+  font-size:14px;
+}
+.form-item-right{
+flex:1;
+line-height:1.6;
+padding:0px 0;
+min-height:26.25px;
+height:auto;
+font-size:14px;
+}
+.pic-1,.pic-2{
+   width: 198rpx;
+   text-align: center;
+   display: inline-block
+}
+.pic-2{
+  margin-left: 60rpx;
+}
+.pic-2 image,.pic-1 image{
+  width: 198rpx;
+  height: 139rpx
+}

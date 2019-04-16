@@ -1,0 +1,25 @@
+<view bindtap="handleTap" class="i-class i-cell {{ isLastCell ? 'i-cell-last' : '' }} {{ isLink ? 'i-cell-access' : '' }}">
+    <view class="i-cell-icon">
+        <slot name="icon"></slot>
+    </view>
+    <view class="i-cell-bd">
+        <view  wx:if="{{ title }}" class="i-cell-text lg-cell" style="font-size:{{fontSize}}px;">{{ title }}</view>
+        <view wx:if="{{ label }}" class="i-cell-desc">{{ label }} 
+            <view wx:if="{{ date }}" class="i-cell-desc" style="float:right">{{ date }}</view>
+        </view>
+        <slot></slot>
+    </view>
+    <view catchtap="navigateTo" class="i-cell-ft" style="font-size:{{fontSize}}px;">
+        <block wx:if="{{value}}">
+          <view wx:if="{{optype == 'dot'}}">
+              <i-badge dot>
+                  <view class="demo-badge">{{ value }}</view>
+              </i-badge>
+          </view>
+          <view wx:else>{{ value }}</view>
+        </block>
+        <block wx:else>
+            <slot name="footer"></slot>
+        </block>
+    </view>
+</view>

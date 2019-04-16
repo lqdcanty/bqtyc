@@ -1,0 +1,80 @@
+/* pages/copyright/related/x.wxss */
+.add_copyright {
+  padding-right: 8px;
+  font-size:28rpx;
+  text-decoration: underline;
+}
+.bigtitle {
+  justify-content: center;
+  color: #1c2438;
+  font-weight: bold;
+  font-size:16px;
+}
+.copyright_info .tags {
+  margin-left:4px;
+  margin-bottom: 7px;
+  display: flex;
+  flex-direction: row;
+}
+
+.copyright {
+  margin-top: 7px;
+  margin-left:3px;
+  margin-bottom: 7px;
+}
+.copyright .title{
+  float: left;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1c2438;
+  font-size: 24rpx;
+  border: 1rpx solid #bbbec4;
+  background-color: #dddee1;
+  padding: 0 10rpx;
+}
+.copyright_info .subTitle{
+  font-size: 24rpx;
+  color: #999;
+}
+.copyright .name{
+  height: 28px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 3px;
+  border: 1rpx solid #bbbec4;
+  background-color: #F8F8F8;
+  border-left: 0rpx solid #bbbec4;
+}
+
+.copyright .name input {
+  height: 28px;
+  color: #1c2438;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 28rpx;
+  border: 0rpx solid #bbbec4;
+  background-color: #F8F8F8;
+}
+.copyright .name .right{
+  float:right;
+  background-color: #F8F8F8;
+}
+.copyright .name .right .status{
+  float:left;
+  text-align: center;
+  height: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #F8F8F8;
+}
+.copyright .name .right .more{
+  float:right;
+  text-align: center;
+  height: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #19be6b;
+}

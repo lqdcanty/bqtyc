@@ -1,0 +1,13 @@
+<view style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px">
+  <view class="header" style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px;background:{{color}}">
+    <view wx:if="{{showIcon}}" class="title-bar" style='background:{{navColor}}'>
+      <view class="back" bindtap="headerBack">
+        <i-icon type="return" color="{{iconColor?iconColor:'#fff'}}" size="20"/>
+      </view>
+      <view class="line" style='border-left:1rpx solid {{lineColor?lineColor:"#fff"}};'></view>
+      <view class="home" bindtap="headerHome"><i-icon type="homepage_fill" color="{{iconColor?iconColor:'#fff'}}" size="20"/></view>
+    </view>
+    <view class="header-title" style='color:{{fontColor}}'>{{title}}</view>
+  </view>
+  <view class="loading-wrap">刷新中...</view>
+</view>

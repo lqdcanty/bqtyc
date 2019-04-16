@@ -1,0 +1,243 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{navTitle}}"
+></navigation>
+<view class="container" >
+  <view class="top-bar" style='top:{{statusBarHeight+titleBarHeight}}px'>
+    <navigator url='../work/x?workSeqNo={{work.workSeqNo}}' hover-class="navigator-hover">
+    <view class="work">
+      <view class="head">
+        <view class="title">
+          <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+          <view class='nameOver'>{{work.name}}</view>
+        </view>
+        <zan-capsule color="#4db798" leftText="词条类型" rightText="{{powerType}}" />
+      </view>
+      <view class="remark overLine"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+    </view>
+    </navigator>
+    <scroll-view class="tabs"  scroll-x="true">
+      <view  class="tab">
+        <view class="{{tabIndx==0 ? 'on' : ''}}" bindtap="switchNavigate" data-current="0">版权详情</view>
+      </view>
+      <view  class="tab">
+        <view class="{{tabIndx==1 ? 'on' : ''}}" bindtap="switchNavigate" data-current="1">区块详情</view>
+      </view>
+      <view  class="tab">
+        <view class="{{tabIndx==2 ? 'on' : ''}}" bindtap="switchNavigate" data-current="2">词条凭证</view>
+      </view>
+      <view  class="tab">
+        <view class="{{tabIndx==3 ? 'on' : ''}}" bindtap="switchNavigate" data-current="3">编录详情</view>
+      </view>
+    </scroll-view>
+  </view>
+  <view >
+    <view class="content" wx:if="{{tabIndx==0}}">
+      <view class='dividing-line'/>
+      <view class='dividing-line'/>
+      <view class='panel'>
+        <view class='head'><view class="title">版权信息</view></view>
+        <view class='flex' wx:if="{{rightType=='人身权'}}">
+          <i-tag wx:for="{{personRight}}" wx:for-item="item" wx:key="type" class='tag' color="{{item.isflage?'green':''}}"  type='border'>{{item.value}}</i-tag>
+        </view>
+        <view class='flex' wx:if="{{rightType=='财产权'}}">
+          <i-tag wx:for="{{propertyRight}}" wx:for-item="item" wx:key="type" class='tag' color="{{item.isflage?'green':''}}"  type='border'>{{item.value}}</i-tag>
+        </view>
+        <view class='copyright' style='margin-bottom:-9px;margin-top:8px' wx:for="{{detailObj.copyrightVo.contents}}" wx:for-item="content" wx:key="index">
+          <block wx:if="{{content.keyWord.key=='备注'}}">
+            <view class="remark" wx:if="{{content.keyValue.value}}"><i-icon size="16" type="prompt" color="gray"/>{{content.keyValue.value}}</view> 
+          </block>
+          <block wx:if="{{content.keyWord.key=='描述'}}">
+            <view class="remark" wx:if="{{content.keyValue.value}}"><i-icon size="16" type="prompt" color="gray"/>{{content.keyValue.value}}</view> 
+          </block>
+        </view>
+        <view class='body'>
+          <view class='copyright'  wx:for="{{detailObj.copyrightVo.contents}}" wx:for-item="content" wx:key="index">
+            <block wx:if="{{!(content.keyWord.key=='备注'||content.keyWord.key=='描述'||content.keyWord.key=='别名')}}">
+            <!-- wx:if="{{content.keyWord.key=='别名'&&content.keyValue.value}}" -->
+              <view class='title' style='width:84px!important;' >{{content.keyWord.key}}</view>
+              <view class="name" style='width:100%;'>
+                <input value='{{content.keyValue.value}}'/>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class='dividing-line'/>
+      <view class='panel'>
+        <view class='head'><view class="title">参考资料</view></view>
+        <view class='body'>
+          <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{detailObj.copyrightVo.attachRemark?detailObj.copyrightVo.attachRemark:'暂无描述数据'}}</view> 
+          <block wx:for="{{detailObj.copyrightVo.attchs}}" wx:for-item="url" wx:key="index" >
+            <view bindtap='blockClick' data-fileType="{{url.fileType}}" data-url="{{url.url}}" >
+              <i-cell-group>
+                <i-cell wx:if="{{url.fileType==0}}"  title="[{{index+1}}]{{url.fileName?url.fileName:'参考链接'}}" isLink label="{{url.description?url.description:'暂无备注信息'}}">
+                  <view class="refer_img" slot="icon"><i-icon size='22' type="accessory" color="#4db798"/></view>
+                </i-cell>
+                <i-cell wx:if="{{url.fileType==1}}" title="[{{index+1}}]{{url.fileName?url.fileName:'参考图片'}}" isLink  label="{{url.description}}">
+                  <image  mode='scaleToFill' src="{{url.url}}" lazy-load='true' class="refer_img" slot="icon"/>  
+                </i-cell>
+                <i-cell wx:if="{{url.fileType==2}}" title="[{{index+1}}]{{url.fileName?url.fileName:'参考文档'}}" is-link  label="{{url.description}}">
+                  <view class="refer_img" slot="icon"><i-icon size='22' type="document" color="#4db798"/></view>   
+                </i-cell>
+              </i-cell-group>
+            </view>
+          </block>
+          <view class="blank-bar" wx:if="{{detailObj.copyrightVo.attchs.length==0}}">作品《{{work.name}}》暂无参考资料</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="content" wx:if="{{tabIndx==1}}">
+      <view class='dividing-line'/>
+      <view class='dividing-line'/>
+      <view class='panel'>
+        <view class='head'><view class="title">词条信息</view></view>
+        <view class='body'>
+          <block >
+            <view class='copyright'>
+              <view class='title' style='width:80px;'>词条编号</view>
+              <view class="name" style='width:100%;'>
+                <input value='{{detailObj.chainVo.blockNumber}} '/>
+              </view>
+            </view>
+          </block>
+          <block >
+            <view class='copyright'>
+              <view class='title' style='width:80px;'>词条大小</view>
+              <view class="name" style='width:100%;'>
+                <input value='{{detailObj.chainVo.blockSize}} '/>
+              </view>
+            </view>
+          </block>
+          <block >
+            <view class='copyright'>
+              <view class='title' style='width:80px;'>词条使用</view>
+              <view class="name" style='width:100%;'>
+                <input value='{{detailObj.chainVo.blockUsed}} '/>
+              </view>
+            </view>
+          </block>
+          <block >
+            <view class='copyright'>
+              <view class='title' style='width:80px;'>哈希值</view>
+              <view class="name" style='width:100%;'>
+                <input value='{{detailObj.chainVo.hash}} '/>
+              </view>
+            </view>
+          </block>
+          <block >
+            <view class='copyright'>
+              <view class='title' style='width:80px;'>打包数据</view>
+              <view class="name" style='width:100%;'>
+                <input value='{{detailObj.chainVo.packageSzie}} '/>
+              </view>
+            </view>
+          </block>
+          <block >
+            <view class='copyright'>
+              <view class='title' >时间戳</view>
+              <view class="name" style='width:100%;'>
+                <input value='{{detailObj.chainVo.time}} '/>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class='dividing-line'/>
+      <view class='panel'>
+        <view class='head'><view class="title">版权力</view></view>
+        <view class='body'>
+          <view class='copyright' wx:for="{{detailObj.chainVo.powers}}" wx:for-item="list" wx:key="index">
+            <view class='icon'><i-icon size='16' type="transaction_fill" color="#4db798"/></view>
+            <view class="name" style="width:64px;">
+              <input value='{{list.powerAmount}}'/>
+            </view>
+            <image mode='scaleToFill' src="{{list.pic}}" lazy-load='true'/>
+            <view class="name">
+              <input value='{{list.userName}}'/>
+            </view>
+            <view class='title' style='margin-left:-8px;'>{{list.identfiy}}</view>
+          </view>
+          <!-- <view class="remark"><i-icon size="16" type="prompt" color="gray"/>本词条一共有3个用户获得版权力</view>  -->
+        </view>
+      </view>
+    </view>
+    
+    <view class="content" wx:if="{{tabIndx==2}}">
+      <!-- <view class='dividing-line'/>
+      <view class='dividing-line'/> -->
+      <view style="padding:40px 0 20px;text-align:center;">
+             <image style="width:250px;height:353px;"        src="http://fdfs.banquanjia.com.cn/group2/M01/0B/97/CgoKDFxAOpGADhzmAAXlEPG9wnQ038.jpg"/>
+      </view>
+      <view> 
+        <navigator url='../../welcome/x?word=申请词条凭证' >
+              <Button  class="custom_btn">申请词条凭证</Button>
+        </navigator>
+      </view>
+
+    </view>
+
+    <view class="content" wx:if="{{tabIndx==3}}">
+      <view class='dividing-line'/>
+      <view class='dividing-line'/>
+      <view class='panel'>
+        <view class='head'><view class="title">编辑者</view></view>
+        <view class='body'>
+          <view class='copyright'>
+            <image mode='scaleToFill' src="{{detailObj.chainEditVo.chainEditDetailVo.pic}}" lazy-load='true'/>
+            <view class="name">
+              <input value='{{detailObj.chainEditVo.chainEditDetailVo.userName}}'/>
+            </view>
+            <view class='title'>编辑时间</view>
+            <view class="name" style="width:96px;">
+              <input value='{{detailObj.chainEditVo.chainEditDetailVo.time}}'/>
+            </view>
+          </view>
+          <view class="remark"><i-icon size="16" type="prompt" color="gray"/>编辑该词条的用户</view> 
+        </view>
+      </view>
+      <view class='dividing-line'/>
+      <view class='panel'>
+        <view class='head'><view class="title">审核者</view></view>
+        <view class='body'>
+          <view class='copyright' wx:for="{{detailObj.chainEditVo.applyVos}}" wx:for-item="list" wx:key="index">
+            <image mode='scaleToFill' src="{{list.pic}}" lazy-load='true'/>
+            <view class="name">
+              <input value='{{list.userName}}'/>
+            </view>
+            <view class='title'>审核时间</view>
+            <view class="name" style="width:96px;">
+              <input value='{{list.time}}'/>
+            </view>
+          </view>
+          <view class="blank-bar" style='padding:20px 0;background:#fff;' wx:if="{{detailObj.chainEditVo.applyVos.length==0}}">作品《{{work.name}}》暂无审核者</view>
+          <view class="remark"><i-icon size="16" type="prompt" color="gray"/>审核收录该词条的用户</view> 
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-bar">
+    <swiper class="banner" bind:change="changeProperty" cuurent="{{listIndex}}"
+      indicator-dots="true" autoplay="{{autoplay}}" circular="true" vertical="{{vertical}}"
+      interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px"
+      indicator-color="#a0a0a0" indicator-active-color="#80848f">  
+      <block wx:for="{{detailAll}}" wx:for-item="data" wx:key="index">
+        <swiper-item class="swiper-item">  
+            <zan-capsule color="#4db798" leftText="当前区块" rightText="{{data.currentNo}}" /> 
+            <zan-capsule color="#4db798" wx:if="{{data.status=='update'}}" leftText="词条状态" rightText="更新" />  
+            <zan-capsule color="#4db798" wx:if="{{data.status=='add'}}" leftText="词条状态" rightText="新建" />   
+            <zan-capsule color="#4db798" wx:if="{{data.status=='delete'}}" leftText="词条状态" rightText="撤销" />   
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</view>
+
+<view class='loading' wx:if="{{work==null||detailAll==null}}" style="position: fixed; top:0px;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>
+<view class="weui-footer">
+    <view style='width:100%;height:55px;'></view>
+</view>

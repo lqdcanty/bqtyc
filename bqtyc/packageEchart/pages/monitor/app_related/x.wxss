@@ -1,0 +1,45 @@
+.dashboard{
+  padding-top:20px;
+  background-color: #fff;
+}
+.dashboard .status {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 0px solid red;
+  margin-bottom: -30px;
+}
+.dashboard-notexist {
+  padding:64px 0px;
+  text-align:center;
+  color: lightgray;
+  font-size: 28rpx;
+}
+.work {
+  padding-top: 4px;
+  background-color: #fff;
+}
+.work .title {
+  color: #1c2438;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.work .remark {
+  color: gray;
+  font-size: 24rpx;
+  padding-left:3px;
+  padding-right:3px;
+}
+.amount{
+  color: lightgray;
+  font-size: 28rpx;
+}
+.databy {
+  text-align: center;
+  color: #a0a0a0;
+  font-size: 22rpx;
+  padding: 5px 15px; 
+}
+.f_c {
+  color: #333;
+}

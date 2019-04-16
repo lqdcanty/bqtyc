@@ -1,0 +1,16 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{title}}"
+></navigation>
+<view class='containner'>
+  <image src="http://fdfs.banquanjia.com.cn/group2/M01/1C/4D/CgoKDVyS9t2AI0MiAABu1JQY9jg109.png"></image>
+</view>
+<view class="blank-barin">
+  <view>该服务即将上线</view>
+  <view>敬请期待</view>
+</view>
+<view class="weui-footer">
+    <view class="weui-footer__text">Copyright © 2004-2019 banquanbaike.com</view>
+    <view class="weui-footer__text">北京畅元国讯科技有限公司 版权所有</view>
+</view>

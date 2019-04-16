@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "i-panel": "../../../dist/panel/index",
+    "i-radio-group": "../../../dist/radio-group/index",
+    "i-radio": "../../../dist/radio/index",
+    "i-tag": "../../../dist/tag/index",
+    "navigation": "../../../components/navbar/index",
+    "i-message": "../../../dist/message/index",
+    "i-icon": "../../../dist/icon/index"
+  }
+}

@@ -1,0 +1,25 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="我的浏览记录"
+></navigation>
+<view class='container'>
+  <block>
+    <i-cell-group>
+      <block wx:for="{{scaneList}}" wx:for-item="list" wx:key="index">
+        <view class="borderBottom">
+        <!-- wx:for="{{category.items}}" wx:for-item="row" wx:key="indx" -->
+          <i-cell title="{{list.workName}}" label='{{list.browseTime}}' value="" is-link url="../../work/x?workSeqNo={{list.workSeqNo}}">
+            <view class='time'>{{list.workCategory}}-{{list.workType}}</view>
+            <image mode='aspectFill' src="{{list.cover}}" lazy-load='true' style="width:48px;height:48px;position:relative;top:3px" slot="icon"/>
+          </i-cell>
+        </view>
+      </block>
+    </i-cell-group>
+    <view class='toip' wx:if="{{pageNumber==totalPage}}">加载完成</view>
+  </block>
+  
+</view>
+<view class='loading' wx:if="{{scaneList.length==0}}" style="position: fixed; top:{{fixedTop}}px;left:0;bottom:0;">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

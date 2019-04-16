@@ -1,0 +1,8 @@
+
+<i-toast id="toast" />
+<i-message id="message" />
+<view class="page-body" style='margin-top:{{searchBarTop}}px'>
+  <view class="page-section page-section-gap">
+    <web-view bindload="onLoadView" binderror="onLoadError" src="{{url}}"></web-view>
+  </view>
+</view>

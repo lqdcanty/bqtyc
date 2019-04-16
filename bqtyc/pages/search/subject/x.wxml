@@ -1,0 +1,244 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{navTitle}}"
+>
+</navigation>
+<wxs src="../../../wxs/subsring.wxs" module="tools" />
+<view class='search-bar' style="top:{{searchBarTop}}px">
+  <view class='search'>
+    <input type='text' value='{{searchKeyWord}}' placeholder='请输入版权的关键词，例如 {{hotWords}}' confirm-type='search' bindinput='inputBind' bindblur="inputBlur" bindfocus="inputFocus"  bindconfirm='query'/>
+    <image class="" src='http://cbd.efida.com.cn/images/icons/search.png' bindtap='query'/>
+  </view>
+  
+  <view class='search-tips-wrap' wx:if='{{searchKeyWord.length>0&&searchTipsList.length>0}}'>
+    <block wx:for="{{searchTipsList}}" wx:for-item="searchW" wx:key="searchwork">
+          <navigator url= "../../work/x?workSeqNo={{searchW.code}}">
+              <view>{{searchW.title}}<text>({{searchW.workType}} {{searchW.subTitle}})</text></view>
+          </navigator>
+          <!-- <view bindtap='tipSearch' data-word="{{searchW.title}}">{{searchW.title}}<text>({{searchW.subTitle}})</text></view> -->
+    </block>
+  </view> 
+</view>
+<swiper class="swiper-css" wx:if="{{banners.length>0}}" style="width:100%;height:290rpx;" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{banners}}" wx:for-item="item" wx:key="index">
+      <swiper-item>
+        
+          <view class='banner-img'>
+            <image mode='aspectFill' src='{{item}}'></image>
+          </view>
+        
+      </swiper-item>
+    </block>
+  </swiper>
+<!-- <view style="margin-top:45px;border-bottom: 1px solid #e8e8e8;">
+  <i-cell title="版权作品" label='' value="创建词条" is-link url="../../work/add/x">
+    <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+  </i-cell>
+</view> -->
+<i-panel  title="版权人" hide-top wx:if="{{obligeeArry}}">
+<view style="background-color:#fff;padding-top:20px" >
+  <i-cell title="{{obligeeArry.title}}" label='{{obligeeArry.subTitle}}' value="" is-link url="../../owner/x?code={{obligeeArry.code}}">
+    <image mode='aspectFill' src="{{obligeeArry.cover[0]?obligeeArry.cover[0]:''}}"
+      lazy-load='true' style="width:48px;height:48px;" slot="icon"/>
+  </i-cell>
+  <!-- <i-panel title="主题匹配了{{obligee.total}}个版权人" hide-top wx:if="{{obligee.total>1}}">
+    <view style="overflow:hidden;white-space:nowrap;padding:0 10px 0 15px">      
+      <scroll-view class="scroll-view_H" scroll-x style="height:286rpx;padding: 15rpx 0;" bindscrolltolower="scroll">
+        <view class="scroll-view-item" wx:for="{{obligeeArry}}" wx:key="obligee" wx:if="{{index>0}}">
+          <i-card-o title="{{item.title}}" subt="{{item.identityTags[0]?item.identityTags[0].tagName:item.subTitle}}"  thumb="{{item.cover[0]?item.cover[0]:''}}" turl="../../owner/x?code={{item.code}}"  textLeft='true'>
+          </i-card-o>
+        </view>
+      </scroll-view>
+    </view>
+  </i-panel> -->
+  <i-panel title="主题匹配了{{newObligee.total}}个版权人" hide-top wx:if="{{newObligee.total>1}}">
+    <block wx:if="{{newObligee.total>6}}">
+      <view style='overflow:hidden;white-space:nowrap;padding:0 10px;'>
+      <scroll-view class="scroll-view_H" scroll-x style="height:622rpx;padding: 15rpx 0;"   bindscrolltolower="scroll1">
+      <view style='display:inline-block;width:85px;' wx:for="{{newObligee.items}}" wx:for-item="row" wx:key="indxR" wx:for-index="rowIndex">
+          <block wx:for="{{row.cols}}" wx:for-item="col" wx:for-index="colIndex" wx:key="indx">
+          <navigator url="../../owner/x?code={{col.code}}" hover-class="navigator-hover" wx:if="{{col.code}}">
+          <i-grid-item border_bottom='0' border_right='0' scale="short" margin_t='{{colIndex==0?15:0}}' margin_b='{{colIndex==1?10:5}}' padding_l='5' width='100%'>
+            <i-grid-icon scale="short">
+              <image mode='aspectFill' src="{{col.cover[0]}}" lazy-load='true'
+                style="height:75px;"/>
+            </i-grid-icon>
+            <i-grid-label height="47px;" isIndex='true' textLeft='true'>{{col.title}}
+                <view style='position:absolute;left:0;right:0;bottom:5px;background:#fff;color:#969696;font-size:26rpx;height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 5px;text-align:left'>
+                {{col.identityTags[0]?col.identityTags[0].tagName:col.subTitle}}
+                </view>
+            </i-grid-label>
+          </i-grid-item>
+          </navigator>
+          <i-grid-item border_bottom='0' border_right='0' scale="short" margin_t='{{colIndex==0?15:0}}' margin_b='{{colIndex==1?10:5}}' padding_l='5' width='100%' wx:if="{{!col.code}}">
+            <i-grid-icon scale="short">
+              <image mode='aspectFill' src="{{col.cover[0]}}" lazy-load='true'
+                style="height:75px;"/>
+            </i-grid-icon>
+            <i-grid-label height="47px;" isIndex='true' textLeft='true'>{{col.title}}
+                <view style='position:absolute;left:0;right:0;bottom:5px;background:#fff;color:#969696;font-size:26rpx;height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 5px;text-align:left'>
+                {{col.subTitle}}
+                </view>
+            </i-grid-label>
+          </i-grid-item>
+          </block>
+      </view>
+      </scroll-view>
+      </view>
+    </block>
+    <block wx:if="{{newObligee.total>1 && newObligee.total<7}}">
+           <view style='padding:0 10px'>
+       <i-grid>
+            <block wx:for="{{newObligee.items}}" wx:for-item="row" wx:key="indxR" wx:for-index="rowIndex" wx:if="{{rowIndex<2}}">
+              <i-row>
+                <block wx:for="{{row.cols}}" wx:for-item="col" wx:for-index="colIndex" wx:key="indx">
+                <navigator url="../../work/x?workSeqNo={{col.code}}" hover-class="navigator-hover">
+                <i-grid-item border_bottom='0' width="85px" border_right='0' scale="short" margin_t='{{rowIndex==0?15:0}}' margin_b='{{rowIndex==1?10:5}}' padding_l='5' >
+                  <i-grid-icon scale="short">
+                    <image mode='aspectFill' src="{{col.cover[0]}}" lazy-load='true'
+                      style="height:105px;"/>
+                  </i-grid-icon>
+                  <i-grid-label height="47px;" isIndex='true' textLeft='true'>{{col.title}}
+                     <view style='position:absolute;left:0;right:0;bottom:5px;background:#fff;color:#969696;font-size:26rpx;height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 5px;text-align:left'>
+                      {{col.identityTags[0]?col.identityTags[0].tagName:col.subTitle}}
+                      </view>
+                  </i-grid-label>
+                </i-grid-item>
+                </navigator>
+                </block>
+              </i-row>
+            </block>
+        </i-grid>
+      </view>
+    </block>
+  </i-panel>
+</view>
+
+</i-panel>
+
+<view>
+  <block wx:for="{{works}}" wx:for-item="category" wx:key="indx" wx:for-index="categoryIndex">
+  <i-panel title="{{category.category}}{{category.type}}({{category.total}})" hide-top>
+    <block wx:if="{{category.total>6}}">
+      <view style='overflow:hidden;white-space:nowrap;padding:0 10px;'>
+      <scroll-view class="scroll-view_H" scroll-x style="height:782rpx;padding: 15rpx 0;" data-page='{{categoryIndex}}' data-gory="{{category.category}}" data-type="{{category.type}}" bindscrolltolower="scroll">
+      <view style='display:inline-block;width:115px;' wx:for="{{category.items}}" wx:for-item="row" wx:key="indxR" wx:for-index="rowIndex">
+          <block wx:for="{{row.cols}}" wx:for-item="col" wx:for-index="colIndex" wx:key="indx">
+          <navigator url="../../work/x?workSeqNo={{col.code}}" hover-class="navigator-hover" wx:if="{{col.code}}">
+          <i-grid-item border_bottom='0' border_right='0' scale="short" margin_t='{{colIndex==0?15:0}}' margin_b='{{colIndex==1?10:5}}' padding_l='5' width='100%'>
+            <i-grid-icon scale="short">
+              <image mode='aspectFill' src="{{col.cover[0]}}" lazy-load='true'
+                style="height:129px;"/>
+            </i-grid-icon>
+            <i-grid-label height="47px;" isIndex='true' textLeft='true'>{{col.title}}
+                <view style='position:absolute;left:0;right:0;bottom:5px;background:#fff;color:#969696;font-size:26rpx;height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 5px;text-align:left'>
+                {{col.subTitle}}
+                </view>
+            </i-grid-label>
+          </i-grid-item>
+          </navigator>
+          <i-grid-item border_bottom='0' border_right='0' scale="short" margin_t='{{colIndex==0?15:0}}' margin_b='{{colIndex==1?10:5}}' padding_l='5' width='100%' wx:if="{{!col.code}}">
+            <i-grid-icon scale="short">
+              <image mode='aspectFill' src="{{col.cover[0]}}" lazy-load='true'
+                style="height:129px;"/>
+            </i-grid-icon>
+            <i-grid-label height="47px;" isIndex='true' textLeft='true'>{{col.title}}
+                <view style='position:absolute;left:0;right:0;bottom:5px;background:#fff;color:#969696;font-size:26rpx;height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 5px;text-align:left'>
+                {{col.subTitle}}
+                </view>
+            </i-grid-label>
+          </i-grid-item>
+          </block>
+      </view>
+      </scroll-view>
+      </view>
+    </block>
+    <block wx:if="{{category.total>2 && category.total<7}}">
+           <view style='padding:0 10px'>
+       <i-grid>
+            <block wx:for="{{category.items}}" wx:for-item="row" wx:key="indxR" wx:for-index="rowIndex" wx:if="{{rowIndex<2}}">
+              <i-row>
+                <block wx:for="{{row.cols}}" wx:for-item="col" wx:for-index="colIndex" wx:key="indx">
+                <navigator url="../../work/x?workSeqNo={{col.code}}" hover-class="navigator-hover">
+                <i-grid-item border_bottom='0' border_right='0' scale="short" margin_t='{{rowIndex==0?15:0}}' margin_b='{{rowIndex==1?10:5}}' padding_l='5' >
+                  <i-grid-icon scale="short">
+                    <image mode='aspectFill' src="{{col.cover[0]}}" lazy-load='true'
+                      style="height:129px;"/>
+                  </i-grid-icon>
+                  <i-grid-label height="47px;" isIndex='true' textLeft='true'>{{col.title}}
+                     <view style='position:absolute;left:0;right:0;bottom:5px;background:#fff;color:#969696;font-size:26rpx;height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 5px;text-align:left'>
+                      {{col.subTitle}}
+                      </view>
+                  </i-grid-label>
+                </i-grid-item>
+                </navigator>
+                </block>
+              </i-row>
+            </block>
+        </i-grid>
+      </view>
+    </block>
+    <block wx:if="{{category.total<3}}">
+      <i-cell-group>
+      <block wx:for="{{category.items}}" wx:for-item="row" wx:key="indx">
+      <i-cell title="{{row.title}}" label='{{row.subTitle}}' value="" is-link url="../../work/x?workSeqNo={{row.code}}">
+        <image mode='aspectFill' src="{{row.cover[0]}}" lazy-load='true' style="width:48px;height:48px;position:relative;top:3px" slot="icon"/>
+      </i-cell>
+      </block>
+      </i-cell-group>
+    </block>
+  </i-panel>
+  </block>
+</view>
+<view class='head'>
+<i-panel title="版权动态">
+    <block wx:for="{{dynamics}}" wx:for-item="news" wx:key="date" wx:if="{{dynamics.length>0}}">   
+      <view class='titleImage ' wx:if="{{tools.insteadSting.httpString(news.url)}}">
+          <view class='left'>
+              <image mode='aspectFill' src="{{news.avatar}}" lazy-load='true' class="logoImg1"/>
+              <view class='middle'>
+                  <view class='textS'>{{news.author!=""?news.author:'暂无来源'}}</view>
+                  <view class='textX'  wx:if="{{news.dategroup=='置顶' || news.dategroup=='今天' || news.dategroup=='昨天' || news.dategroup=='前天'}}">{{news.time}}</view>
+              </view>
+          </view>
+          <view class='text'>{{news.dategroup}}</view> 
+        </view>      
+        <i-card-x full title="{{news.title}}" subtitle='{{news.images.length>1 ?"":news.describe}}' thumb="{{news.images.length>1?'':news.cover}}" url="{{news.url}}" webTitle="版权动态" type="{{news.type?news.type:'转发'}}"
+          headStyle="padding-bottom:0px;margin-bottom:0px;border-bottom: 0px;" hidebody='{{news.images.length>1?false:true}}'>
+          <view slot="content" wx:if="news.images.length>1" class="card-thumbs">
+            <block wx:for="{{news.images}}" wx:for-item="thumb" wx:key="url" wx:for-index="indexImg" wx:if="{{indexImg<3}}">
+            <image mode='aspectFill' src="https://p.banquanbaike.com.cn/http?link={{thumb}}" lazy-load='true' class="thumb"/>
+            </block>
+          </view>
+          <view slot="footer">
+            <view class='card-footer' style="{{idx==day.dynamics.length-1?'border-bottom:0px;':''}}">
+              <view class='head' wx:if="{{!tools.insteadSting.httpString(news.url)}}" bindtap='linkClick' data-url="{{news.authorReferer}}" data-title="{{'版权动态'}}" data-type="{{news.type?news.type:''}}">
+                <block wx:if="{{news.avatar&&news.avatar!=''}}">
+                  <image mode='aspectFill' src="{{news.avatar}}" lazy-load='true' class="logoImg"/>
+                </block>
+                <block wx:if="{{news.avatar==''}}">
+                  <block wx:if="{{news.plateform=='百度'}}">
+                    <image mode='aspectFill' src="https://p.banquanbaike.com.cn/http?link=http://fdfs.banquanjia.com.cn/group2/M00/1C/7F/CgoKC1yHV02AI-jUAAAB-0OWh4k922.png" lazy-load='true' class="logoImg"/>
+                  </block>
+                  <block wx:if="{{news.plateform=='版权百科'}}">
+                    <image mode='aspectFill' src="https://p.banquanbaike.com.cn/http?link=https://mp.weixin.qq.com/wxopen/basicprofile?action=get_headimg&token=872746322&t=20190312145051" lazy-load='true' class="logoImg"/>
+                  </block>
+                </block>
+                <view class='text'>{{news.author!=""?news.author:'暂无来源'}}</view>
+                <view class='text'  wx:if="{{news.dategroup=='置顶' || news.dategroup=='今天' || news.dategroup=='昨天' || news.dategroup=='前天'}}">{{news.time}}</view>
+                <view class='text'>{{news.dategroup}}</view>
+                <view class='subsring'>{{tools.insteadSting.sub(news.url)}}</view>
+                </view>
+            </view>
+          </view>
+        </i-card-x>
+    </block>
+      <view class="" wx:if='{{loadding}}'  style="font-size：12px;text-align:center;color:#999;margin-top:10px">
+      <image wx:if="{{!loadAll}}" src='http://cbd.efida.com.cn/images/icons/loading.gif'  style='width:13px;height:13px;display:inline-block;position:relative;top:2px'/>
+      <text style='font-size:12px;margin-left:8rpx'>{{loadAll?'已加载全部':'加载中'}}</text>
+    </view>
+</i-panel>
+</view>
+<button class='btn-share'  size='mini' style='color:#fff;width:46px;padding:5px 5px;line-height:1.5;' bindtap='addWord'>创建词条</button>
+

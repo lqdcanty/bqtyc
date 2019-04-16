@@ -1,0 +1,17 @@
+/**index.wxss**/
+/* 搜索框提示文字样式 */ 
+.search-bar {
+  position: fixed;
+  top: 0px;
+  background-color: #000;
+  width: 100%;
+  padding-bottom:5px;
+  z-index: 9999999999999;
+}
+page{
+background-color:#F8F8F8;
+font-family:-apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+}
+.search-tips-wrap{
+  top:40px; position: absolute
+}

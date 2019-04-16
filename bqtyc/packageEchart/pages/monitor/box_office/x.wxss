@@ -1,0 +1,105 @@
+.dashboard{
+  background-color: #fff;
+}
+.dashboard .status {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 0px solid red;
+  margin-bottom: -30px;
+}
+.dashboard-notexist {
+  padding:64px 0px;
+  text-align:center;
+  color: lightgray;
+  font-size: 28rpx;
+}
+
+.work {
+  padding-top: 4px;
+  background-color: #fff;
+}
+.work .title {
+  color: #1c2438;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.work .remark {
+  color: gray;
+  font-size: 24rpx;
+  padding-left:3px;
+  padding-right:3px;
+}
+.amount{
+  color: lightgray;
+  font-size: 28rpx;
+}
+.databy {
+  text-align: center;
+  color: #a0a0a0;
+  font-size: 22rpx;
+  padding: 5px 15px; 
+}
+.canvas {
+    width: 100%;
+    height: 150px;
+}
+ec-canvas {
+  width: 420px;
+  height: 250px;
+}
+.echart_container {
+  position:relative;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  box-sizing:border-box;
+}
+.tody_data_table{
+  width: 100%;
+  height: 100%;
+}
+.tody_data_table_head{
+  margin-left: 5px; 
+  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  font-size: 0.7rem;
+}
+.table_item{
+  width: 80rpx;
+}
+.table_data_font{
+  font-size: 0.6rem;
+}
+.tody_data_table_head view{
+  border-top:1px solid #e9e9e9;
+  border-left:  1px solid #e9e9e9;
+  text-align: center;
+  line-height:50rpx;
+
+}
+.tody_data_table_head:last-child{
+  border-bottom:  1px solid #e9e9e9;
+}
+.tody_data_table_head view:nth-child(4){
+   border-right: 1px solid #e9e9e9;
+}
+
+.share {
+position:fixed;
+top:170rpx;
+right:10rpx;
+opacity:0.7;
+z-index:999999999999;
+}
+.button-hover {
+color:rgba(0, 0, 0, 0.6);
+background-color:#DEDEDE;
+
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "计算机软件著作权办理查询结果",
+  "usingComponents": {
+    "i-card": "../../../../dist/card/index",
+    "i-icon": "../../../../dist/icon/index",
+    "navigation": "../../../../components/navbar/index"
+  }
+}

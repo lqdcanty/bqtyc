@@ -1,0 +1,104 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="编辑版权作品词条"
+></navigation>
+ <block wx:if="{{!authIsShow}}">
+    <authorize  sysType='bqbk' sysTitle="{{sysTitle}}" sysLogo="{{sysLogo}}" bind:authorizeEvent="onauthorizeEvent"></authorize> 
+  </block>
+ <view class="container">
+  <i-panel title="作品类别" hideBorder='true'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd" style="width: 50%">
+          <picker bindchange="bindCategoryChange" value="{{category}}" range="{{categories}}">
+            <view class="weui-select">{{categories[category]}}</view>
+          </picker>
+        </view>
+        <view class="weui-cell__bd weui-cell__bd_in-select-before">
+          <picker bindchange="bindTypeChange" value="{{type}}" range="{{types}}">
+            <view class="weui-select">{{types[type]}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+  </i-panel>
+  <i-panel title="作品信息">
+  <i-input value="{{ name }}"  bind:change="nameBindtap" type="textarea" title="标题" placeholder="填写作品完整标题" />
+  <i-input value="{{ title }}"  bind:change="titleBindtap" type="textarea" title="副标题" placeholder="填写作品副标题用以描述作品是什么" />
+  </i-panel>
+  <i-panel title="作品简介" hideBorder='true'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+                 <view id="textareawrap" class='textareawrap'>{{introduction}}</view>
+              <textarea class="weui-textarea"   style="height:{{height}}" bindinput='introBindtap' maxlength="1024" placeholder="填写作品简介" value="{{introduction}}" >
+              </textarea>
+
+              <view class="weui-textarea-counter">{{introLen}}/1024</view>
+          </view>
+      </view>
+    </view>
+  </i-panel>
+  <!-- <i-panel title="初始著作权人" hideTop>
+    <block wx:for="{{origins}}" wx:for-item="origin" wx:key="title">
+      <i-input value="{{origin.name}}"  bindinput="originBindtap" type="textarea" title="{{origin.title}}" placeholder="请输入{{origin.title}}" />
+      <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{origin.remark}}</view>
+    </block>
+  </i-panel> -->
+  <i-panel title="作品标签" hideBorder='true'>
+      <view style='display:flex'>
+        <view style='flex:1;'>
+          <i-input value="{{tag}}"  bind:change="tagInputEvent" type="text"  placeholder="输入标签不超过6个字" />
+        </view>`
+        <view style='line-height:40px;margin-right:15px'>
+            <i-icon size="26" bindtap="addTags" type="add" color="#4db798"/>
+        </view>
+      </view>
+
+        <view class="tags">
+            <block wx:for="{{tags}}" wx:key="{{item}}" wx:for-item="tag">
+              <view class="tag" bindtap="deleteTag" data-index="{{tag}}" ><i-tag color="green" type='border'>{{tag}}</i-tag></view>
+            </block>
+        </view>
+
+  </i-panel>
+  <i-panel title="作品图片" style="display:{{imageView}}">
+        <view class="weui-cells" style="margin-top:0px;">
+          <view class="weui-cell">
+            <view class="weui-cell__bd">
+              <view class="weui-uploader">
+                <view class="weui-uploader__hd">
+                    <view class="weui-uploader__title">添加图片文件</view>
+                    <!-- <view class="weui-uploader__info">{{files.length}}/1024</view> -->
+                </view>
+                <view class="weui-uploader__bd">
+                    <view class="weui-uploader__files" id="uploaderFiles">
+                        <block wx:for="{{files}}" wx:key="*this" wx:if="{{!isDefalImg}}">
+                            <view class="weui-uploader__file"  id="{{item}}"> <!--bindtap="previewImage"-->
+                                <image class="weui-uploader__img" data-index="{{index}}" data-image="{{item}}" src="{{item}}" mode="aspectFill" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick"/>
+                            </view>
+                        </block>
+                    </view>
+                    <view class="weui-uploader__input-box">
+                        <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                    </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+    
+  </i-panel>
+  <i-button style="display:{{buttonView}}" bind:click="handleSave" type="primary" size="large">保存</i-button>
+</view>
+    <i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onActionCancel" bind:click="handleAction">
+      <view slot="header" style="padding: 16px">
+          <view style="color: #444;font-size: 16px">删除标签‘{{theTagDeleting}}’</view>
+      </view>
+    </i-action-sheet>
+        <i-action-sheet visible="{{imageActionsOpened}}" data-imageIndex="{{imageIndex}}" actions="{{imageActions}}" show-cancel bind:cancel="imageActionCancel" bind:click="imageHandleAction">
+      <view slot="header" style="padding: 16px">
+          <view style="color: #444;font-size: 16px">确定删除图片</view>
+      </view>
+    </i-action-sheet>

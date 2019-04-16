@@ -1,0 +1,16 @@
+.i-grid-label{
+  border: 0px solid blue;
+  display: webkit-box;
+  text-align:center;
+  color:#3F3E3C;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2;  
+  overflow: hidden;
+  text-overflow:ellipsis;
+  font-size:12px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+}
+

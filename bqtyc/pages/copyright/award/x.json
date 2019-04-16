@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "获奖情况",
+  "usingComponents": {
+    "zan-capsule": "../../../dist/capsule/index",
+    "i-steps": "../../../dist/steps/index",
+    "i-step": "../../../dist/step/index",
+    "i-button": "../../../dist/button/index",
+    "navigation": "../../../components/navbar/index"
+  }
+}

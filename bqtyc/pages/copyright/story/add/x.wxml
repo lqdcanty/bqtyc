@@ -1,0 +1,88 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="创建版权故事词条"
+></navigation> 
+<view class="container">
+  <view class="workinfo" style="background-color:#f8f8f8;">
+    <view class="head">
+      <view class="title"> <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+      <view class='nameOver'>{{work.name}}</view>
+      </view>
+      <zan-capsule color="#4db798" leftText="版权类型" rightText="{{powerType}}" />
+    </view>
+    <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+  </view>
+  <i-panel title="版权故事" hideBorder='true'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd" style="width: 96px;">
+          <picker bindchange="bindAuthortypeChange" value="{{creative}}" range="{{creatives}}">
+            <view class="weui-select">{{creatives[creative]}}</view>
+          </picker>
+        </view>
+        <view class="weui-cell__bd weui-cell__bd_in-select-before">
+            <input class="weui-input" value="{{postObj.story.author}}" bindinput='onInput'  placeholder="请填写作者名称" />
+        </view>
+      </view>
+      <view style='padding-left:15px;'>
+        <view style='border-top:1px solid #efefef'></view>
+      </view>
+      <i-input value="{{postObj.story.title}}" type="textarea" bind:change="titleInputI" title="标题" placeholder="请输入标题(最多50字)" maxlength="50" />
+      <i-input value="{{postObj.story.soureFrom}}" type="text" bind:change="titleSourceFrom" title="来源" placeholder="请输入来源" maxlength="50" />
+    </view>
+    <i-card-x wx:if="{{postObj.story.attachType==1||postObj.story.attachType==3}}" full subtitle='{{postObj.story.attachType==1||postObj.story.attachType==3?postObj.story.longDesc:""}}' thumb='{{postObj.story.pic.length==1?postObj.story.pic[0]:""}}' 
+      headStyle="padding-bottom:0px;margin-bottom:0px;border-bottom: 0px;" hidebody='{{postObj.story.pic.length>0?false:true}}'>
+      <view slot="content" wx:if="{{postObj.story.pic.length>1}}" class="card-thumbs">
+        <block wx:for="{{postObj.story.pic}}" wx:item-for="item" wx:key="*this">
+          <block wx:if="{{index<4}}">
+            <image mode='aspectFill' src="{{item}}" lazy-load='true' class="thumb"/>
+          </block>
+        </block>
+      </view>
+    </i-card-x>
+    <view class='imageBox' wx:if='{{imagesArr.length>0}}'>
+      <image class='upImage' wx:for="{{imagesArr}}" wx:for-item="item" wx:key="index" mode='aspectFill'  src="{{item}}" lazy-load='true' />
+      <view class='weui-cell weui-cell_select'>
+        <i-input value="{{postObj.story.longDesc}}" type="textarea" bind:change="longDescTnput" title="描述" placeholder="请输入描述信息(最多300字)" maxlength="300" />
+      </view>
+    </view>
+    <i-button bind:click="addReferer" size="small">导入版权故事</i-button>
+  </i-panel>
+  <i-panel title="编辑者联系方式" hideBorder='true'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">联系人</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{postObj.contactName}}" bindinput='contactInput'  placeholder="请填写联系人姓名"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">联系电话</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{postObj.contactPhone}}" bindinput='contact_phoneInput' placeholder="请填写联系人电话"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">联系邮箱</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{postObj.contactEmail}}" bindinput='contact_emailInput' placeholder="请填写联系人邮箱"/>
+        </view>
+      </view>
+    </view>
+  </i-panel>
+  <i-button bind:click="handleSave" type="primary" size="large">保存</i-button>
+  <i-button bind:click="handleDelete" type="primary" size="large" wx:if="{{deleteButton}}">撤销新增或修改的版权词条</i-button>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onActionCancel" bind:click="handleAction">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">{{actionsTitle}}</view>
+    </view>
+</i-action-sheet>
+<i-message id="message" />

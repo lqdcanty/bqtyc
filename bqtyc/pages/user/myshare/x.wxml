@@ -1,0 +1,43 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="我的版权词条分享"
+></navigation>
+<view class="container" wx:if="{{myshare!=nul}}">
+  <view class="dashboard">
+    <i-grid class="flex-item" border_top='0'>
+      <i-row>
+        <i-grid-item border_bottom='1'>
+          <i-grid-icon>
+            <i-icon size="20" type="share" color="#4db798"/>
+          </i-grid-icon>
+          <i-grid-label>{{myshare.count_share}}<view class="amount">我的分享</view></i-grid-label>
+        </i-grid-item>
+        <i-grid-item border_bottom='1'>
+          <i-grid-icon>
+            <i-icon size="20" type="browse" color="#4db798"/>
+          </i-grid-icon>
+          <i-grid-label>{{myshare.count_open}}<view class="amount">分享阅读</view></i-grid-label>
+        </i-grid-item>
+        <i-grid-item border_bottom='1'>
+          <i-grid-icon>
+            <i-icon size="20" type="transaction_fill" color="#4db798"/>
+          </i-grid-icon>
+          <i-grid-label>{{myshare.devote}}<view class="amount">累计版权力</view></i-grid-label>
+        </i-grid-item>
+      </i-row>
+    </i-grid>
+  </view>
+  <i-button bind:click="gotoBalance" type="success" shape="circle" size="small">查看分享版权力详情</i-button>
+  <i-panel title="我的分享" hide-top>
+      <i-cell title="权利的游戏第一季" label="影视电影 首次分享时间:2018-01-01" value="10万+" is-link url="detail/x">
+        <image mode='aspectFill' src="http://www.chinafilm.org.cn/images2015/filmPic/2018-12/%E8%9C%98%E8%9B%9B%E4%BE%A0%EF%BC%9A%E5%B9%B3%E8%A1%8C%E5%AE%87%E5%AE%99.jpg" lazy-load='true' class="work_img" slot="icon"/>
+      </i-cell>
+      <i-cell title="权利的游戏第一季" label="影视电影 首次分享时间:2018-01-01" value="344" is-link url="detail/x">
+        <image mode='aspectFill' src="http://www.chinafilm.org.cn/images2015/filmPic/2018-12/%E8%9C%98%E8%9B%9B%E4%BE%A0%EF%BC%9A%E5%B9%B3%E8%A1%8C%E5%AE%87%E5%AE%99.jpg" lazy-load='true' class="work_img" slot="icon"/>
+      </i-cell>
+  </i-panel>
+</view>
+<view class='loading' wx:if="{{myshare==nul}}" style="position: fixed; top:{{searchBarTop}}px;left:0;bottom:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

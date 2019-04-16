@@ -1,0 +1,20 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="用户画像"
+>
+</navigation>
+<view class="container">
+     <navigator url='' hover-class="navigator-hover">
+      <view class="work">
+        <view class="title">
+          <zan-capsule color="#4db798" leftText="{{workDetailObj.category}}" rightText="{{workDetailObj.type}}" />
+         {{workDetailObj.name}}
+        </view>
+        <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{workDetailObj.workTitle}}</view> 
+      </view>
+      </navigator>
+    
+</view>
+
+

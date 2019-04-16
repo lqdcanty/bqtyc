@@ -1,0 +1,19 @@
+<!--components/authorize/authorize.wxml-->
+<view class='wrap'>
+      <view class='logo'>
+        <image src="{{sysLogo}}" style='width:492rpx;height:395rpx'></image>
+      </view>
+        <view class='title'>欢迎使用{{sysTitle}}</view>
+        <view wx:if="{{sysType=='bqbk'}}" >
+          <!-- <image src="http://fdfs.banquanjia.com.cn/group2/M00/1C/47/CgoKDFxzx2GADIdnAAINmbDGWiI869.png" style="width:90%"></image>  -->
+          <view class='text'>
+            <text>版权百科</text> 是一个为互联网用户提供【专业版权数据搜索服务】的【网络百科全书平台】。致力于积极推动版权相关事务的交流与分享。通过区块链技术促进版权权益流转，实现信息驱动的版权价值变现体系的建立。
+          </view>
+            <view class='text'>
+            <text>版权力</text> 是一种对版权百科用户成功编录版权链词条所作的贡献给予的积分奖励。版权力代表用户对版权生态体系的贡献，是用户付出了时间实现数据信息共享的结果产生的激励。版权力积分数值越大，代表用户贡献越大。
+          </view>
+        <button class="unlogin" type="primary" open-type="getUserInfo" bindgetuserinfo="doLogin">
+              确定登录
+        </button>
+      </view>
+</view>

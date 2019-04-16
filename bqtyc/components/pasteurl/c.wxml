@@ -1,0 +1,62 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="链接提取"
+>
+</navigation>
+<view class="container">
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+              <textarea class="weui-textarea" value="{{url}}" maxlength='1024' placeholder="请复制粘贴URL地址。支持百家号、今日头条结构化引用，今日头条引用打开可能由问题" style="height: {{textareaHeight}}px" bindinput='onInput'/>
+              <view class="weui-textarea-counter">{{textNumber}}/1024</view>
+          </view>
+      </view>
+  </view>
+  <view wx:if='{{checked}}' class='preview'>
+    <i-card-x full title="{{title}}" subtitle='{{description}}' thumb='{{images.length<=1?cover:""}}' 
+      headStyle="padding-bottom:0px;margin-bottom:0px;border-bottom: 0px;" hidebody='{{images.length>0?false:true}}'>
+      <view slot="content" wx:if="{{images.length>1}}" class="card-thumbs">
+        <block wx:for="{{images}}" wx:key="*this">
+          <block wx:if="{{index<4}}">
+            <image mode='aspectFill' src="{{item}}" lazy-load='true' class="thumb"/>
+          </block>
+        </block>
+      </view>
+      <view slot="footer">
+        <view class='card-footer' style='margin-top:3px;{{type!="link"?"border-bottom:0px;":""}}'>
+          <view class="row" wx:if='{{author!=""}}' style='width:100%;'>
+            <view><image mode='aspectFill' src="{{avatar}}" lazy-load='true' class="logo" wx:if='{{avatar!=""}}'/>{{author}}</view>
+            <view class="remark" wx:if="{{images.length>0}}">一共有{{images.length}}张图片</view>
+          </view>
+          <view class="row" wx:if='{{time!=""||plateform!=""}}' style='width:100%;'>
+            <view wx:if='{{time!=""}}' style="margin-left: 0px">
+              <zan-capsule color="#4db798" leftText="时间" rightText="{{time}}" />
+            </view>
+            <view wx:if='{{plateform!=""}}' style="margin-left: 0px">
+              <zan-capsule color="#4db798" leftText="来源" rightText="{{plateform}}" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </i-card-x>
+    <view class="weui-cells weui-cells_after-title" wx:if='{{type!="link"}}'>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{work.subtitle}}" placeholder="请输入文件或图片的备注信息"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="weui-footer">
+    <view class="weui-footer__text">Copyright © 2008-2016 banquanbaike.com</view>
+    <view class="weui-footer__text">北京畅元国讯科技有限公司 版权所有</view>
+</view>
+<button wx:if="{{!checked}}" bindtap="onPaste" type="warn" class="btn-bottom">链接检测</button>
+<view wx:if="{{checked}}">
+  <button bindtap="onPaste" type="default" class="btn-bottom-left">重置</button>
+  <button bindtap="onOk" type="primary" class="btn-bottom-right">确定</button>
+</view>
+<i-toast id="toast" />
+<i-message id="message" />

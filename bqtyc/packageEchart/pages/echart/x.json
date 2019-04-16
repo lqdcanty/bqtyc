@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "ec-canvas": "../ec-canvas/ec-canvas",
+    "i-spin": "../../../dist/spin/index",
+    "navigation": "../../../components/navbar/index"
+  },
+  "enablePullDownRefresh": false,
+  "disableScroll": true
+}

@@ -1,0 +1,29 @@
+.refer_img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:36px;
+  height:36px;
+  border-radius: 10rpx;
+  border: 1px solid #f8f8f8;
+}
+
+.i-swipeout-item{
+  border-bottom:#dddee1 solid 0px;
+}
+.workinfo {
+  background:#f8f8f8!important;
+}
+
+.weui-label{
+  font-size: 14px;
+}
+.weui-input{
+  font-size: 14px;
+}
+.weui-select{
+  font-size: 14px;
+}
+.i-swipeout-demo-button-group{
+  
+}

@@ -1,0 +1,401 @@
+
+   <!--登录弹出-->
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{navTitle}}"
+fontColor="#000"
+iconColor="#000"
+navColor='#fff'
+lineColor='rgba(0,0,0,.2);'
+color='linear-gradient(360deg,rgba(225,224,223,1) 0%,rgba(209,207,207,1) 100%);'
+></navigation>
+
+  <block wx:if="{{!authIsShow}}">
+<authorize  sysType='bqbk' sysTitle="{{sysTitle}}" sysLogo="{{sysLogo}}" bind:authorizeEvent="onauthorizeEvent"></authorize> 
+</block>
+  <!--登录弹出END-->
+<!-- <nav-bar navbar-data='{{nvabarData}}'  canvas_delay="{{_canvas_delay}}" title="" id='nav_bar'></nav-bar> -->
+<button class='btn-usernav' bindtap="showUserbar" size='mini' wx:if='{{userbarZindex!=1}}'>
+  <i-icon type="mine" size="20" color="#80848f" />
+</button>
+
+<!-- <button class='btn-funcnav' bindtap="showNavigate" size='mini' wx:if='{{navigateZindex!=1}}'>
+  <i-icon type="other" size="20" color="#80848f" />
+</button> -->
+<button class='btn-share' open-type="share" size='mini'>
+  <i-icon type="share" size="18" color="#80848f" />
+</button>
+ <!-- wx:if='{{display_navigate_tag=="block"}}' -->
+<button class='btn-funcnav' bindtap="showNavigate" size='mini' wx:if='{{navigateZindex!=1}}'> 
+<image src='http://fdfs.banquanjia.com.cn/group2/M02/10/D2/CgoKDVxIDu2ATZFnAAAJQPkJBZM839.png' style='width:14px;height:14px'></image>
+</button>
+<view class="container"  style="top:{{fixedTop}}px;">
+<!-- wx:if="{{work!=nul}}" -->
+  <view class="mask {{mask_display_userbar}}{{mask_display_navigate}}" bindtap='hideNavigate'></view>
+  <!-- 左侧导航 -->
+  <view class="navigate" style="z-index:{{navigateZindex}};visibility:{{navigateZindex==1?'visible':'hidden'}}" catchtouchmove='stopPageScroll'>
+    <view class='loading'  wx:if="{{workNlist==null}}"  style="position: fixed; top:0;left:0;width:70%;height: {{workHeight}}">
+      <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+    </view>
+    <view class='panel'>
+      <view class='body' style='border: 0px solid red;'>
+        <i-grid class="flex-item" border_top='0'>
+          <i-row>
+            <navigator url="../devote/x?work_id={{work.id}}" hover-class="navigator-hover">
+              <i-grid-item border_bottom='0' width='100%' scale="short">
+                <i-grid-label size='40' weight="bold">{{worktotoalScore}}
+                  <view class="amount">版权力</view>
+                </i-grid-label>
+              </i-grid-item>
+            </navigator>
+          </i-row>
+          <i-row>
+            <i-grid-item border_bottom='0' scale="short">
+              <i-grid-icon scale="short">
+                <i-icon size="16" type="editor" color="#4db798" />
+              </i-grid-icon>
+              <i-grid-label>{{workeditCount}}
+                <view class="remark">编辑数</view>
+              </i-grid-label>
+            </i-grid-item>
+            <i-grid-item border_bottom='0' scale="short">
+              <i-grid-icon scale="short">
+                <i-icon size="16" type="group" color="#4db798" />
+              </i-grid-icon>
+              <i-grid-label>{{workpeopleCount}}
+                <view class="remark">编录者</view>
+              </i-grid-label>
+            </i-grid-item>
+            <i-grid-item border_bottom='0' scale="short">
+              <i-grid-icon scale="short">
+                <i-icon size="16" type="share" color="#4db798" /> 
+              </i-grid-icon>
+              <i-grid-label>{{workshareCount}}
+                <view class="remark">分享数</view>
+              </i-grid-label>
+            </i-grid-item>
+          </i-row>
+        </i-grid>
+      </view>
+    </view>
+    <scroll-view scroll-y style="height: {{windowHeight}}px;">
+      <i-panel title="作品相关链接" zIndex='{{navigateZindex+2}}' hideTop>
+        <i-cell-group>
+          <block>
+            <i-cell i-class="lg-ceel" title="百度百科" is-link titleSize='12' data-url="https://baike.baidu.com/item/{{workDetailObj.name}}" bind:click='linkClick'/>
+            <i-cell i-class="lg-ceel" title="豆瓣" wx:if="{{workDetailObj.category=='影视' || workDetailObj.category=='动漫' || workDetailObj.category=='图书'}}" is-link titleSize='12' data-url="https://m.douban.com/search/?query={{workDetailObj.name}}" bind:click='linkClick'/>
+          </block>
+        </i-cell-group>
+      </i-panel>
+      <i-panel title="贡献排行榜" zIndex='{{navigateZindex+2}}' hideTop>
+        <block wx:if="{{workNlist.length>0}}" wx:for="{{workNlist}}" wx:for-item="contributor" wx:key="nickName">
+          <i-card-x full title="{{contributor.name}}" hidebody extra="{{contributor.totalScore}}" 
+            thumb="{{contributor.pic}}" iconStyle="width:64rpx;height:64rpx;">
+          </i-card-x>
+        </block>
+      </i-panel>
+      <view style='height:60px'></view>
+      <view wx:if="{{workNlist.length==0}}" style='font-size:12px;padding:10px;'>贡献排行榜暂无数据</view>
+    </scroll-view>
+  </view>
+  <!-- 右侧导航 -->
+ <!--用户中心-->
+<view class="userbar" style="z-index:{{userbarZindex}};visibility:{{userbarZindex==1?'visible':'hidden'}}"  catchtouchmove='stopPageScroll'>
+    <view class="userinfo">
+        <block wx:if="{{authIsShow==false}}">
+          <button class="login_button unlogin" open-type="getUserInfo" bindgetuserinfo="doLogin">
+             <i-icon type="mine" size="64" color="#e0e0e0"/>
+         </button>
+          <view class='nickname'>未登录</view>
+        </block>
+        <block wx:else>
+          <view class="avatar">
+            <image src='{{userInfo.avatarUrl}}' />
+          </view>
+          <view class='nickname'>{{userInfo.nickName}}</view>
+        </block>
+        <view class="tags">
+          <view class="keyval">
+            <i-tag class='tag' color="{{userDashboard.character.sharer}}" mode='border'>
+              <i-icon type="mine_fill" size="18" color="#80848f" /></i-tag>
+            <i-tag class='tag tag-tag' color="{{userDashboard.character.sharer}}">分享者</i-tag>
+          </view>
+          <view class="keyval">
+            <i-tag class='tag' color="{{userDashboard.character.editor}}" mode='border'>
+              <i-icon type="mine_fill" size="18" color="#80848f" /></i-tag>
+            <i-tag class='tag tag-tag' color="{{userDashboard.character.editor}}">编辑者</i-tag>
+          </view>
+          <view class="keyval">
+            <i-tag class='tag' color="{{userDashboard.character.auditor}}" mode='border'>
+              <i-icon type="mine_fill" size="18" color="#80848f" /></i-tag>
+            <i-tag class='tag tag-tag' color="{{userDashboard.character.auditor}}">审核者</i-tag>
+          </view>
+        </view>
+      </view>
+    <scroll-view scroll-y style="height: {{windowHeight}}px;">
+      <block wx:if="{{userDashboard.count_audit}}">
+      <view class='panel'>
+        <view class='body' style='border: 0px solid red;'>
+          <i-grid class="flex-item" border_top='0'>
+            <i-row>
+              <i-grid-item border_bottom='0' width='100%' scale="short">
+                <navigator url='../user/x' hover-class="navigator-hover">
+                <i-grid-label size='64'>
+                <i-badge count="{{userDashboard.recentPower}}" overflow-count="100">
+                  <view class='dashboard-number'>{{userDashboard.bql_size}}</view>
+                </i-badge>
+                <view class="amount">版权力</view></i-grid-label>
+                </navigator>
+              </i-grid-item>
+            </i-row>
+            <i-row>
+              <i-grid-item border_bottom='0' scale="short">
+                <i-grid-icon scale="short">
+                  <i-icon size="16" type="editor" color="#4db798" />
+                </i-grid-icon>
+                <i-grid-label>{{userDashboard.count_edit}}
+                  <view class="remark">编辑数</view>
+                </i-grid-label>
+              </i-grid-item>
+              <i-grid-item border_bottom='0' scale="short">
+                <i-grid-icon scale="short">
+                  <i-icon size="16" type="barrage" color="#4db798" />
+                </i-grid-icon>
+                <i-grid-label>{{userDashboard.count_audit}}
+                  <view class="remark">审核数</view>
+                </i-grid-label>
+              </i-grid-item>
+              <i-grid-item border_bottom='0' scale="short">
+                <i-grid-icon scale="short">
+                  <i-icon size="16" type="share" color="#4db798" />
+                </i-grid-icon>
+                <i-grid-label>{{userDashboard.count_share}}
+                  <view class="remark">分享数</view>
+                </i-grid-label>
+              </i-grid-item>
+            </i-row>
+          </i-grid>
+        </view>
+      </view>
+     <i-panel title="">
+        <i-cell-group>
+          <i-cell i-class="lg-ceel" title="我的词条编辑" is-link url="../user/myedit/x" value="{{userDashboard.count_edit}}"></i-cell>
+          <i-cell i-class="lg-ceel" title="我的词条审核" is-link url="../user/myaudit/x" value="{{userDashboard.count_audit}}"></i-cell>
+          <i-cell i-class="lg-ceel" title="我的分享记录" is-link url="../user/myshare/x" value="{{userDashboard.count_share}}"></i-cell>
+        </i-cell-group>
+      </i-panel>
+      </block>
+      <block wx:else>
+        <view style='margin:50px 0;text-align:center;font-size:12px;color:gray;'>请稍后，正在获取我的版权力...</view>
+       </block>
+      <i-panel title="">
+        <i-cell-group>
+          <i-cell i-class="lg-ceel" title="审核者管理" is-link  bind:click='queryAuditor' value="申请成为"></i-cell>
+          <i-cell i-class="lg-ceel" title="编辑者管理" is-link  bind:click='queryEditor' value="申请成为"></i-cell>
+          <i-cell i-class="lg-ceel" title="实名认证管理" is-link bind:click='queryRegister' value="未实名"></i-cell>
+        </i-cell-group>
+        <!-- url="../certificate/x" -->
+      </i-panel>
+      <i-panel title="">
+        <i-cell-group>
+          <i-cell i-class="lg-ceel" title="版本更新" bind:click='checkNewVersion' is-link  value="当前版本{{version}}"></i-cell>
+        </i-cell-group>
+      </i-panel>
+      <view style='height:60px'></view>
+    </scroll-view>
+  </view>
+
+
+  <!-- 头部图片详情 -->
+  <view class="page" style="{{translateX}}">
+    <view class="work">
+      <!-- <view class="tag-category" style="top:{{fixedTop}}px;">
+        <i-tag class='tag' color="green" type='border'>{{workDetailObj.category}}</i-tag>
+        <i-tag class='tag' color="green" style='margin-left:-1px;'>{{workDetailObj.type}}</i-tag>
+      </view> -->
+      <view class="flex-item avatar">
+        <image mode='aspectFill' src="{{workDetailObj.covers[0]?workDetailObj.covers[0]:'../../img/detail/default.png'}}" />
+      </view>
+      <view class='flex-item info'>
+        <view class="categoryWrap">
+            <view>{{workDetailObj.category}}/{{workDetailObj.type}}</view>
+            <view>浏览：10万+</view>
+        </view>
+        <view class='flex-item title'>{{workDetailObj.name}}</view>
+        <view class='flex-item subtitle'>{{workDetailObj.workTitle}}</view>
+        <view class='flex-item tags top-tags'>
+          <scroll-view class="scroll-view_H" scroll-x style="height:60rpx;position:relative;top:6px;">
+            <i-tag wx:for="{{workDetailObj.tags}}"  wx:for-item="item" wx:key="{{index}}" wx:if="{{index<10}}" class='tag tag-margin'>{{item}}              </i-tag>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+    <!-- 作品简介 -->
+    <view class="caption-wrap">
+      <i-collapse name="{{workDetailObj.name}}">
+        <i-collapse-item title="作品简介" name="name1">
+          <view slot="content">{{workDetailObj.introduction}}</view>
+        </i-collapse-item>
+      </i-collapse>
+      <!-- <navigator url="../work/edit/x?workSeqNo={{workDetailObj.workSeqNo}}" hover-class="navigator-hover">
+        <view class='edit_work'>
+          <i-icon type="editor" size="18" color="#80848f" /></view>
+      </navigator> -->
+      <view class='edit_work' data-workSeqNo="{{workDetailObj.workSeqNo}}" bindtap="handleAction">
+          <i-icon type="editor" size="18" color="#80848f" />编辑词条
+      </view>
+    </view>
+    <!-- 版权概览 -->
+    <view wx:if="{{workObj}}">
+      <view class='dividing-line' />
+      <view class='section'>
+        <view class='flex-item panel'>
+          <view class='head' style='border:none'>
+            <view class='title' style='font-weight:bold;display:flex'>版权概览
+              <view class='powerTypeWrap'>
+                <view class='powerType' wx:if="{{workObj.powerType}}">{{workObj.powerType}}</view> 
+                <view class="copyrightType" wx:if="{{workObj.copyrightType}}">{{workObj.copyrightType}}作品</view> 
+              </view>
+            </view>
+          </view>
+          <view class='body copyright_info'>
+            <view class="flex-item tags" style='display:flex'>
+              <scroll-view class="scroll-view_H tagsList" scroll-x>
+              <view wx:for="{{workObj.copyrightTags}}" wx:if="{{status.choose&&index<3}}" style="color:#000;background:rgba(255,216,0,1);border:1px solid rgba(255,206,0,1)" wx:for-item="status" wx:key="typeDesc" class='tagsList-item' type="border">{{status.typeDesc}}</view>
+              <view wx:for="{{workObj.copyrightTags}}" wx:if="{{status.choose&&index>2}}" style="color:#FB5656;background:#FFFFFF;border:1px solid #FB5656" wx:for-item="status" wx:key="typeDesc" class='tagsList-item' type="border">{{status.typeDesc}}</view>
+               <view wx:for="{{workObj.copyrightTags}}" wx:if="{{!status.choose}}" style="color:#999;background:rgba(241,241,241,1);border:1px solid rgba(231,231,231,1);" wx:for-item="status" wx:key="typeDesc" class='tagsList-item' type="border">{{status.typeDesc}}</view>
+               </scroll-view>
+            </view>
+            <view class="flex-item tags" style='margin-top:10px'>
+              <block wx:if="workObj.copyright" wx:for="{{workObj.copyright}}" wx:for-item="origin" wx:key="index">
+                <view class="keyval" style="float:left;" bindtap='showOrigins' data-index="{{index}}">
+                  <i-tag class='tag' color="yellow">{{origin.keyWord.key}}</i-tag>
+                  <i-tag class='tag' style="margin-left:-2px;"  color="yellow" type='border' wx:if="origin.keyValue.value.length>0">{{origin.keyValue.value[0].keyWord.name}}</i-tag>
+                  <!-- <view class='inputShowSpace' wx:if="origin.keyValue.value.length>0">{{origin.keyValue.value[0].keyWord.name}}</view> -->
+                  <i-tag class='tag tag-right' style="margin-left:-2px;" color="yellow" wx:if="{{origin.keyValue.value.length>1}}">{{origin.keyValue.value.length}}</i-tag>
+                </view>
+              </block>
+            </view>
+            <view class="flex-item remark" wx:if="{{workObj.copyrightDesc}}">
+              <i-icon size="16" type="prompt" color="gray " />{{workObj.copyrightDesc}}</view>
+          </view>
+        </view>
+
+        <!-- 中间的图标 -->
+        <block  wx:for="{{navigates}}" wx:for-item="obj" wx:key="index">
+          <view class='dividing-line' />
+          <view class='flex-item panel'>
+            <view class='head'>
+              <view class='title'>{{obj.title}} </view>
+            </view>
+            <view class='body'>
+              <i-grid>
+                <block wx:for="{{obj.rows}}" wx:for-item="rows" wx:key="index">
+                  <i-row>
+                    <block wx:for="{{obj.rows[index].cols}}" wx:for-item="list" wx:key="index">
+                      <view hover-class="navigator-hover" bindtap='imageClick' data-list="{{list}}">
+                        <i-grid-item border_bottom='{{list.borderBottom}}' padding_l='0' width="{{list.width}}" >
+                          <i-grid-icon scale="short">
+                            <!-- <image class="image_frame" src="{{list.visable=='true'?list.cover:list.cover_disable}}" /> -->
+                            <image class="image_frame" wx:if="{{versionString=='develop'||versionString=='trial'||versionString=='undefined'}}" src="{{list.exper=='true'?list.cover:list.cover_disable}}" />
+                            <image class="image_frame" wx:if="{{versionString=='release'}}"  src="{{list.visable=='true'?list.cover:list.cover_disable}}" />
+                          </i-grid-icon>
+                          <i-grid-label>
+                            {{list.name}}
+                            <view class="amount {{list.amount==null?'white':''}}"> ({{list.amount?list.amount:0}})</view>
+                          </i-grid-label>
+                        </i-grid-item>
+                      </view>
+                    </block>
+                  </i-row>
+                </block>
+              </i-grid>
+            </view>
+          </view>
+        </block>
+        <block wx:if="{{bqjtObj[0].rows.length>0}}">
+          <view class='dividing-line' />
+          <view class='flex-item panel'>
+            <view class='head'>
+              <view class='title'>版权监听</view>
+            </view>
+            <view class='body'>
+              <i-grid>
+                <block wx:for="{{bqjtObj[0].rows}}" wx:for-item="row" wx:key="index">
+                  <i-row>
+                    <view>
+                      <block wx:for="{{row.cols}}" wx:for-item="list" wx:key="title">
+                      <view  hover-class="navigator-hover" bindtap='imageClick' data-list="{{list}}">
+                      <!-- url="{{list.apiUrl+'?workSeqNo='+workDetailObj.workSeqNo+'&name=' + workDetailObj.name}}" -->
+                        <i-grid-item border_bottom='{{list.borderBottom}}' width="{{list.width}}">
+                          <i-grid-icon scale="short">
+                            <image class="image_frame" src="{{list.visable=='true'?list.cover:list.cover_disable}}" />
+                          </i-grid-icon>
+                          <i-grid-label>
+                          {{list.name}}
+                          <view class="amount {{list.amount==null?'white':''}}"> ({{list.amount?list.amount:0}})</view>
+                          </i-grid-label>
+                        </i-grid-item>
+                      </view>
+                    </block>
+                    </view>
+                  </i-row>
+                </block>
+              </i-grid>
+            </view>
+          </view>
+        </block>
+        <block wx:if="{{copyrightServices[0].rows.length>0}}">
+          <view class='dividing-line' />
+          <view class='flex-item panel'>
+            <view class='head'>
+              <view class='title'>版权服务</view>
+            </view>
+            <view class='body'>
+              <i-grid>
+                <block wx:for="{{copyrightServices[0].rows}}" wx:for-item="row" wx:key="index">
+                  <i-row>
+                    <view>
+                      <block wx:for="{{row.cols}}" wx:for-item="list" wx:key="title">
+                    
+                      <view  hover-class="navigator-hover" bindtap='echartClick' data-list="{{list}}">
+                        <i-grid-item border_bottom='{{list.borderBottom}}' width="{{list.width}}">
+                          <i-grid-icon scale="short">
+                            <image class="image_frame" src="{{list.cover}}" />
+                          </i-grid-icon>
+                          <!-- <i-grid-label>
+                          {{list.name}}
+                          </i-grid-label> -->
+                          <i-grid-label height="140rpx;">
+                            <view class='lineText'>{{list.name}}</view>
+                            <view class="amountText" wx:if="{{list.title}}"> {{list.title}}</view>
+                          </i-grid-label>
+                        </i-grid-item>
+                      </view>
+                    </block>
+                    </view>
+                  </i-row>
+                </block>
+              </i-grid>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+            <view class="weui-footer">
+    <view class="weui-footer__text">Copyright © 2004-2019 banquanbaike.com</view>
+    <view class="weui-footer__text">北京畅元国讯科技有限公司 版权所有</view>
+</view> 
+</view>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actionsData}}" show-cancel bind:cancel="closeActions" bind:click="handleActions">
+    <view slot="header" style="padding: 16px">{{actionsTitle}}
+    </view>
+</i-action-sheet>
+<view class='loading' wx:if="{{workObj==null || workDetailObj==null||navigates==null}}" style="position: fixed; top:{{fixedTop}}px !important;left:0;height: {{workHeight}}px">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>
+<i-message id="message" height="{{fixedTop}}" />
+
+

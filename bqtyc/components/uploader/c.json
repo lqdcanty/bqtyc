@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "上传图片",
+  "usingComponents": {
+    "i-message": "../../dist/message/index",
+    "i-toast": "../../dist/toast/index",
+    "i-panel": "../../dist/panel/index",
+    "i-input": "../../dist/input/index",
+    "i-card": "../../dist/card/index",
+    "i-card-x": "../../dist/card-x/index",
+    "navigation": "../navbar/index"
+  }
+}

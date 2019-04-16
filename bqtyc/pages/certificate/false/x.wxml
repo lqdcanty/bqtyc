@@ -1,0 +1,18 @@
+<!--pages/imauditor/false/x.wxml-->
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="实名认证申请"
+>
+</navigation>
+<view>
+  <image src='http://fdfs.banquanjia.com.cn/group2/M02/02/A8/CgoKDFw1WE2ARHPCAAAQFhoPdK8184.png'></image>
+  <view class='word-t'>实名认证申请提交失败</view>
+  <view class='word-b'>您的申请提交失败，可能网络出现问题，请检查网络再重新提交。</view>
+  <navigator url='../x' hover-class="none">
+    <view class='yesBtn'>重新申请</view>
+  </navigator>
+  <navigator url='../../index/x' hover-class="none">
+    <view class='noBtn'>返回</view>
+  </navigator>
+</view>

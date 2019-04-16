@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "navigation": "../../../components/navbar/index"
+  },
+  "navigationBarTitleText": "审核人申请"
+}

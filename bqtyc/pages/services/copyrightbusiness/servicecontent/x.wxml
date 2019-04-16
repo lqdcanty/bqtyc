@@ -1,0 +1,24 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{bname}}"
+></navigation>
+<scroll-view scroll-y>
+  <view class='allpingImage'>
+    <image mode="widthFix" src="{{bimg}}" lazy-load='true'></image>
+  </view>
+</scroll-view>
+<view class='btnBox'>
+  
+  <button class='sendshare' open-type="share" size='mini'>
+    <i-icon class='' type="send" size="40" color="#179B16" />
+  </button>
+  <view class='rightBtn'>
+    
+    <button type="primary" open-type="contact" class="btn-bottom-left">版权顾问</button>
+    <button bindtap="onPaste" type="default" class="btn-bottom-right">申请办理</button>
+  </view>
+</view>
+<view class='loading' wx:if="{{bimg==null}}" style="position: fixed; top:64px;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

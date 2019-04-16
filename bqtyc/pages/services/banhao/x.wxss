@@ -1,0 +1,8 @@
+.intro {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  font-size: 14px;
+  padding-top: 48%;
+  padding-bottom: 48%;
+}

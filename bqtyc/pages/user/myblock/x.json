@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "版权区块浏览器",
+  "usingComponents": {
+    "navigation": "../../../components/navbar/index"
+  }
+}

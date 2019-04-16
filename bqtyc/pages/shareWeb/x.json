@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "default",
+  "usingComponents": {
+    "navigation": "../../components/navbar/index"
+  }
+}

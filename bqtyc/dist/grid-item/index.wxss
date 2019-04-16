@@ -1,0 +1,20 @@
+.i-grid-item{
+    position:relative;
+    float:left;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width:33.33333333%;
+    box-sizing:border-box;
+    border-right:1rpx solid #e9eaec;
+    border-bottom:1rpx solid #e9eaec;
+}
+.short {
+    padding-top:0px;
+    padding-bottom: 5px;
+} 
+.long {
+    padding-top: 20px;
+    padding-bottom: 20px;
+} 

@@ -1,0 +1,50 @@
+
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{bname}}" backUrl="{{backUrl}}"
+>
+</navigation>
+
+
+<view class='errorWrap-interl loading' wx:if="{{nullStatus}}">
+  <view>
+  <image style='width:120px;height:120px;' src='http://fdfs.banquanjia.com.cn/group2/M02/11/07/CgoKC1xIDxOAaIoMAAAMC9oZkE8586.png'/>
+  </view>
+  <view class="errorWrap-interl-t">服务器竟然出错了</view>
+  <view class="errorWrap-interl-subt">试试看刷新页面~</view>
+  <view class="errorWrap-interl-btn" bindtap='doOnload'>刷新</view>
+</view>
+<view class='container' style='background:#fff'>
+  <view class='dividing-line' style='height:15px;background:#fff'/>
+  <view class='textBox'>
+    <view class='title'>{{btitle}}</view>
+  </view>
+  <view class="flex-item mt5" >
+    <form bindsubmit="homeClick" report-submit='true'>
+        <view class="textarea-wrp">
+          <textarea disabled="{{typeWxchart?false:true}}" bindinput="applyContentInput" value='{{param.applyContent}}' placeholder="{{introduce}}" class='textareaBox'   />
+        </view>
+        <i-input disabled="{{typeWxchart?false:true}}" style="border-bottom:1px solid red" value="{{  param.contactName }}" bind:change="contactNameInput" type="text" title="联系人" placeholder="请输入联系人" maxlength="20" />
+      
+      <i-input disabled="{{typeWxchart?false:true}}" value="{{ param.contactMobile }}" type="number"  bind:change="contactMobileInput"  title="手机号码" placeholder="请输入联系手机号码" maxlength="11" />
+      <view wx:if="{{typeWxchart}}">
+        <button class='buttomSubmit' formType="submit" size="default" type='primary'>立即申请</button> 
+        <button class='buttomSubmit' open-type="contact" size="small" type="default" wx:if="{{!(bcode=='gamecoderegister'||bcode=='software')}}">版权顾问</button> 
+      
+        <view class='ruanzhu' wx:if="{{bcode=='software'}}">
+          <button class='buttomSubmit' style='width:50%!important' bindtap="softwareClick" size="small" type="default">软著办理查询</button> 
+          <button class='buttomSubmit' open-type="contact" style='width:50%!important' size="small" type="default">版权顾问</button> 
+        </view>
+        <view class='ruanzhu' wx:if="{{bcode=='gamecoderegister'}}">
+          <button class='buttomSubmit' style='width:50%!important' bindtap="gamecoderegisterClick" size="small" type="default">游戏版号查询</button> 
+          <button class='buttomSubmit' open-type="contact" style='width:50%!important' size="small" type="default">版权顾问</button> 
+        </view>
+      </view>
+    </form>
+  </view>
+</view>
+<block wx:if="{{!authIsShow}}">
+    <authorize  sysType='bqbk' sysTitle="{{sysTitle}}" sysLogo="{{sysLogo}}" bind:authorizeEvent="onauthorizeEvent"></authorize> 
+  </block>
+<i-message id="message" />

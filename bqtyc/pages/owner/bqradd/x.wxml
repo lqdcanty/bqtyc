@@ -1,0 +1,136 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="新建版权人"
+></navigation>
+<view class='container'>
+  <form bindsubmit="formSubmit">
+    <i-panel title="基本信息">
+      <view style="padding: 15px;">
+        <view class='line flex'>
+          <view class='flexLeft'>版权人名称*</view>
+          <view class='flexRight'>
+            <input class='inputCss' name="name" placeholder='请输入版权人名称'></input>
+          </view>
+        </view>
+        <view class='line flex'>
+          <view class='flexLeft'>版权人简称</view>
+          <view class='flexRight'>
+            <input class='inputCss' name="aliasName" placeholder='请输入版权人简称'></input>
+          </view>
+        </view>
+        <view class='line flex'>
+          <view class='flexLeft'>英文名</view>
+          <view class='flexRight'>
+            <input class='inputCss' name="englishName" placeholder='请输入英文名'></input>
+          </view>
+        </view>
+        <view class='line flex'>
+          <view class='flexLeft'>副标题</view>
+          <view class='flexRight'>
+            <input class='inputCss' name="subTitle" placeholder='请输入副标题'></input>
+          </view>
+        </view>
+        <view class='line flex'>
+          <view class='flexLeft'>版权人类型</view>
+          <view class='flexRight'>
+            <input style='display:none' name="obligeeType" value='{{obligeeType}}'></input>
+            <picker bindchange="bindObligeeTypesChange" value="{{obligeeType}}" range="{{obligeeTypes}}">
+              <view class="weui-select">{{obligeeTypes[obligeeType]}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class='line flex'>
+          <view class='flexLeft'>是否对外公示*</view>
+          <view class='flexRight'>
+            <radio-group name="isHidden">
+              <label class='radioCss'><radio value="0"/>公示</label>
+              <label class='radioCss'><radio value="1"/>隐藏</label>
+            </radio-group>
+          </view>
+        </view>
+        <view class='line flex'>
+          <view class='flexLeft'>身份类型*</view>
+        </view>
+        <view>
+         <input style='display:none' value='{{characters}}' name="characters"></input>
+         <!-- <view class='line flex'>
+          <view class="tag" bindtap="deleteTagr" wx:if="{{identity}}"  wx:for="{{identity}}" wx:for-item="item" wx:key="index"><i-tag color="green" type='border'>{{item.category+'-'+item.name}}</i-tag></view>
+         </view> -->
+         <view class="tags flex" style='flex-wrap:wrap;'>
+            <input style='display:none' name="tags" value='{{tagsString}}'></input>
+            <view class="tag" bindtap="deleteTagr" wx:if="{{identity}}"  wx:for="{{identity}}" wx:for-item="item" wx:key="index" data-index="{{index}}">
+              <i-tag color="green" type='border'>{{item.category+'-'+item.name}}</i-tag>
+              <i-tag class='tag tag-right' color="green" ><i-icon type="close" size='12' /></i-tag>
+            </view>
+          </view>
+          <view class='line flex'>
+            <view class="weui-cell__hd" style="width: 300rpx">
+              <picker bindchange="bindCharacterChange" value="{{character}}" range="{{charactersArr}}">
+                <view class="weui-select">{{charactersArr[character]}}</view>
+              </picker>
+            </view>
+            <view class="weui-cell__hd" style="width: 300rpx">
+              <picker bindchange="bindSubtypeChange" value="{{subtype}}" range="{{subtypes}}">
+                <view class="weui-select">{{subtypes[subtype]}}</view>
+              </picker>
+            </view>
+            <view class='icon' bindtap='addType'>
+              <i-icon type="add" size="28" color="#5CB89A" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </i-panel>
+    <i-panel title="基本信息">
+      <view style="padding: 15px;">
+        <view class='line flex'>
+          <view class='flexLeft'>版权人介绍</view>
+          <view class='flexRight'>
+            <input class='inputCss' name="introduction" placeholder='请输入版权人介绍'></input>
+          </view>
+        </view>
+        <view class='line flex'>
+          <view class='flexLeft'>封面*</view>
+          <view class='flexRight'>
+            <input style='display:none' value='{{cover}}' name="cover"></input>
+            <image class='defaultImage' mode='aspectFit' src='{{cover?cover:"http://fdfs.banquanjia.com.cn/group2/M01/1C/47/CgoKDFx2MAOAaI4LAAARZdX0Dss599.png"}}' bindtap="chooseImage"></image>
+          </view>
+        </view>
+        <view class='line flex' wx:if="{{obligeeTypes[obligeeType]=='个人'||!obligeeTypes[obligeeType]}}">
+          <view class='flexLeft'>性别</view>
+          <view class='flexRight'>
+            <radio-group name="gender">
+              <label class='radioCss'><radio value="男"/>男</label>
+              <label class='radioCss'><radio value="女"/>女</label>
+            </radio-group>
+          </view>
+        </view>
+        <view class='line flex'>
+          <view class='flexLeft'>身份标签*</view>
+        </view>
+        <view class='line'>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" bindinput="tagInputEvent" bindconfirm="addTags" value="{{tag}}" placeholder="输入标签不超过6个字"/>
+            </view>
+            <i-icon size="26" bindtap="addTags" type="add" color="#4db798"/>
+          </view>
+          <view class="tags flex" style='flex-wrap:wrap;'>
+            <input style='display:none' name="tags" value='{{tagsString}}'></input>
+            <view class="tag" bindtap="deleteTag"  wx:if="{{tags}}"  wx:for="{{tags}}" wx:for-item="item" wx:key="index" data-index="{{index}}">
+              <i-tag color="green" type='border'>{{item}}</i-tag>
+              <i-tag class='tag tag-right' color="green" ><i-icon type="close" size='12' /></i-tag>
+            </view>
+          </view>
+        </view>
+      </view>
+      <button class='buttomSubmit' formType="submit" size="default" type='primary'>确认提交</button> 
+    </i-panel>
+  </form>
+</view>
+
+<i-message id="message" />
+<view class='loading' wx:if="{{charactersObj==nul}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

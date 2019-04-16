@@ -1,0 +1,44 @@
+.caption-wrap{
+  background-color: #f8f8f8;
+  color: #80848f;
+  font-size: 22rpx;
+  border: 0px solid red;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.caption-title{
+  font-weight: bold;
+  padding:20px 10px;
+}
+.add_copyright {
+  padding-right: 8px;
+  font-size:28rpx;
+  text-decoration: underline;
+}
+.bigtitle {
+  justify-content: center;
+  color: #1c2438;
+  font-weight: bold;
+  font-size:16px;
+}
+.copyright_info .tags {
+  margin-left:4px;
+  margin-bottom: 7px;
+  display: flex;
+  flex-direction: row;
+}
+
+.copyright .title{
+  float: left;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1c2438;
+  font-size: 28rpx;
+  border: 1rpx solid #bbbec4;
+  background-color: #dddee1;
+}

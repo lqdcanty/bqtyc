@@ -1,0 +1,22 @@
+/* components/uploader/uploader.wxss */
+/* .btn-bottom {
+  bottom: 0px;
+  width:100%;
+  position: fixed;
+  border-radius: 0px;
+} */
+
+.btn-bottom-left {
+  bottom: 0px;
+  position: fixed;
+  width:50%;
+  border-radius: 0px;
+}
+
+.btn-bottom-right {
+  bottom: 0px;
+  left: 50%;
+  position: fixed;
+  width:50%;
+  border-radius: -0px;
+}

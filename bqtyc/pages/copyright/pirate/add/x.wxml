@@ -1,0 +1,153 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="新增侵权举报词条"
+></navigation>
+<view class="container">
+  <!-- 版权详情 -->
+  <view class="content">
+    <view class='panel'>
+      <form bindsubmit="formSubmit">
+        <input class='hiddenInput' name="workSeqNo" value='{{workSeqNo}}' />
+        <view class='body'>
+          <view class='head'><view class="title">版权信息</view></view>
+          <block>
+            <view class='copyright'>
+              <view class='title'>举报站点</view>
+              <input class='hiddenInput' type='text' value='' name="role" /> 
+              <view class="name">
+                <input name="roleVlue" />
+              </view>
+            </view>
+          </block>
+          <block>
+            <view class='copyright'>
+              <view class='title'>备案编号</view> 
+              <view class="name">
+                <input name="alias"/>
+              </view>
+            </view>
+          </block>
+          <block>
+            <view class='copyright'>
+              <view class='box_left'>
+                <view class='title' >举报类型</view>
+                <view class="name" >
+                  <input name="name"/>
+                </view>
+              </view>
+            </view>
+            <view class='copyright'>
+              <view class='box_right'>
+                <view class='title' >举报站点</view>
+                <view class="name">
+                  <input name="phone"/>
+                </view>
+              </view>
+              <view class='clear'></view>
+            </view>
+          </block>
+        </view>
+        <!-- 侵权权利 -->
+        <view class='body'>
+          <view class='head'><view class="title">侵权权利</view></view>
+          <block >
+            <view class='copyright'>
+              <view class='checkbox'>
+                <view class='status' >
+                  <view  class='more white'  >
+                    <checkbox-group bindchange="checkboxChange">
+                      <label class="checkBlock" wx:for="{{checkboxChange}}" wx:for-item="item" wx:key="index">
+                        <checkbox class='block' value="{{item.name}}" checked="{{item.checked}}" />
+                        {{item.name}}
+                      </label>
+                    </checkbox-group>
+                  </view>
+                </view>
+                
+              </view>
+            </view>
+          </block>
+          <block >
+            <view class='copyright'>
+              <view class='title' >说明</view>
+              <view class="name">
+                <input name="des" />
+              </view>
+            </view>
+          </block>
+        </view>
+        <!-- 附件资料 -->
+        <view class='body'>
+          <view class='head'><view class="title">附件资料</view></view>
+          <block >
+            <view class='copyright'>
+              <view class='title' >地址</view>
+              <view class="name">
+                <input name="url" />
+                <view class='right'>
+                  <view class='status' >
+                    <view  class='more open'  style="background-color:#ccc" >
+                      <checkbox-group name="checkbox">
+                        <label><checkbox checked="true" value="1"/>公开</label>
+                      </checkbox-group>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+          <block >
+            <view class='copyright'>
+              <view class='title' >说明</view>
+              <view class="name">
+                <input name="des" />
+              </view>
+            </view>
+          </block>
+        </view>
+
+        <view class='body'>
+          <view class='head'><view class="title">版权人联系方式</view></view> 
+          <block>
+            <view class='copyright'>
+              <view class='box_left'>
+                <view class='title' >联系人</view>
+                <view class="name" >
+                  <input name="name"/>
+                </view>
+              </view>
+            </view>
+            <view class='copyright'>
+              <view class='box_right'>
+                <view class='title' >联系电话</view>
+                <view class="name">
+                  <input name="phone"/>
+                </view>
+              </view>
+              <view class='clear'></view>
+            </view>
+          </block>
+          <block >
+            <view class='copyright'>
+                <view class='title' >联系邮箱</view>
+                <view class="name">
+                  <input name="email"/>
+                </view>
+            </view>
+          </block>
+          <block >
+            <view class='copyright'>
+                <view class='buttonBox'>
+                    <button size='small' class='buttonY' type='primary' form-type="submit">新增</button>
+                </view>
+            </view>
+          </block>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+</i-action-sheet>
+<i-message id="message" />

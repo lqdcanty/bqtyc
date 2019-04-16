@@ -1,0 +1,133 @@
+.add_copyright {
+  padding-right: 8px;
+  font-size:28rpx;
+  text-decoration: underline;
+}
+.bigtitle {
+  justify-content: center;
+  color: #1c2438;
+  font-weight: bold;
+  font-size:16px;
+}
+.copyright_info .tags {
+  margin-left:4px;
+  margin-bottom: 7px;
+  display: flex;
+  flex-direction: row;
+}
+.caption-wrap .i-collapse-item {
+  border-top:none!important;
+}
+.copyright {
+  margin-top:3px;
+  margin-left:7px;
+  margin-bottom:5px;
+  display:flex;
+  flex-direction:row;
+  width:100%;
+  border:0px solid blue;
+  background: #fff!important;
+}
+.copyright .avatar {
+  float:left;
+  padding-right:5px;
+}
+.copyright .title{
+  float: left;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1c2438;
+  font-size: 28rpx;
+  border: 1rpx solid #bbbec4;
+  background-color: #dddee1;
+}
+.copyright .content{
+  margin-right: 50px;
+}
+.copyright .content .name {
+  font-size:14px;
+  color:#1c2438;
+}
+.copyright .content .desc {
+  font-size:12px;
+  word-break:break-all;
+  color:#80848f;
+}
+
+
+
+.copyright .right{
+  position:absolute;
+  right:0;
+  height:40px;
+  display:flex;
+}
+.copyright .right .status{
+  float:left;
+  display:flex;
+  text-align:center;
+  align-items:center;
+  height:100%;
+  font-size:28rpx;
+  color:#80848f;
+  padding-left:5px;
+  padding-right:5px;
+  border:0px solid red;
+}
+.copyright .right .more{
+  float:right;
+  display:flex;
+  text-align:center;
+  align-items:center;
+  height:100%;
+  padding-left:5px;
+  padding-right:5px;
+  background-color:#4db798;
+}
+.dataNoText{
+  font-size:24rpx;
+  padding-left:3px;
+  padding-right:3px;
+}
+.head{
+  padding-bottom:8px!important;
+}
+
+.panel .body{
+  padding-top: 0px;
+}
+
+.workinfo .head {
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+}
+.caption-wrap {
+  background-color:#f8f8f8;
+  color:#80848f;
+  font-size:22rpx;
+  border:0px solid red;
+  display:flex;
+  justify-content:center;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+.copyright .name .right .status {
+  float:left;
+  text-align:center;
+  height:100%;
+  font-size:28rpx;
+  color:#80848f;
+  padding-left:5px;
+  padding-right:5px;
+  background-color:#F8F8F8;
+}
+.tag{
+  max-width: 296rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

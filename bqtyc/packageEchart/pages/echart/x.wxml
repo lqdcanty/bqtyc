@@ -1,0 +1,17 @@
+<!--pages/echart/x.wxml-->
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{title}}"
+>
+</navigation>
+<view class="echartWrap" style="top:{{navTop}}px">
+    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas>
+</view>
+<view wx:if="{{spinShow}}">
+<i-grid >
+    <i-grid-item i-class="item">
+         <i-spin custom>加载中...</i-spin>
+    </i-grid-item>
+</i-grid>
+</view>

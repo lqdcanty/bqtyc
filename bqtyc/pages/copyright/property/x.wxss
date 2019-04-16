@@ -1,0 +1,82 @@
+.add_copyright {
+  padding-right: 8px;
+  font-size:28rpx;
+  text-decoration: underline;
+}
+.bigtitle {
+  justify-content: center;
+  color: #1c2438;
+  font-weight: bold;
+  font-size:16px;
+}
+.a {
+  margin-left: -2px;
+}
+
+.data-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #F8F8F8;
+  border-bottom: 1px solid #e0e0e0;
+}
+.data-item .show {
+  display: flex;
+  flex-direction: column;
+  padding-left: 7px;
+  padding-top: 7px;
+  padding-bottom:7px;
+}
+.data-item .show .tab {
+  padding-left: 16px;
+  border: 0px solid red;
+}
+.data-item .right{
+  float:right;
+}
+.data-item .right .status{
+  float:left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #F8F8F8;
+}
+.data-item .right .more{
+  float:right;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 24px;
+  padding-right: 24px;
+  background-color: #19be6b;
+}
+.caption-wrap{
+  font-size: 24rpx;
+  padding-left: 0px;
+}
+.caption-title{
+  font-weight: bold;
+  padding:20px 10px;
+}
+.collapse-item-title{
+  font-size: 12px;
+}
+.collapse-item-content{
+  font-size: 12px;
+  color: #444444;
+}
+.head{
+  padding-bottom: 8px!important;
+}
+
+.amount{
+  color: lightgray;
+  font-size: 28rpx;
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "搜索指数",
+  "usingComponents": {
+    "navigation": "../../../../components/navbar/index"
+  }
+}

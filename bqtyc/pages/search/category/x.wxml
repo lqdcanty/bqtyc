@@ -1,0 +1,104 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{title}}"
+>
+</navigation>
+<view class='search-bar' style="top:{{searchBarTop}}px;">
+  <view class='search'>
+    <input type='text' value='{{searchKeyWord}}' placeholder='请输入版权的关键词，例如 {{hotWords}}' confirm-type='search' bindinput='inputBind' bindblur="inputBlur" bindfocus="inputFocus"  bindconfirm='query'/>
+    <image class="" src='http://cbd.efida.com.cn/images/icons/search.png' bindtap='query'/>
+  </view>
+  <view class='search-tips-wrap' wx:if='{{searchKeyWord.length>0&&searchTipsList.length>0}}'>
+    <block wx:for="{{searchTipsList}}" wx:for-item="searchW" wx:key="searchwork">
+          <view bindtap='tipSearch' data-word="{{searchW.title}}">{{searchW.title}}<text>({{searchW.workType}} {{searchW.subTitle}})</text></view>
+    </block>
+  </view> 
+</view>
+<view style="margin-top:47px;padding-top:20px;border-bottom: 1px solid #e8e8e8;background-color:#fff;">
+  <i-grid border_top='0'>
+    <i-row>
+      <i-grid-item border_bottom='0' scale="short">
+        <i-grid-icon scale="short">
+          <i-icon size="28" type="editor" color="#4db798"/>
+        </i-grid-icon>
+        <i-grid-label size='28'>{{citiaoTotal}}<view class="amount">版权词条数</view></i-grid-label>
+      </i-grid-item>
+      <i-grid-item border_bottom='0' scale="short">
+        <i-grid-icon scale="short">
+          <i-icon size="28" type="document" color="#4db798"/>
+        </i-grid-icon>
+        <i-grid-label size='28'>{{workTotal}}<view class="amount">版权作品</view></i-grid-label>
+      </i-grid-item>
+      <i-grid-item border_bottom='0' scale="short">
+        <i-grid-icon scale="short">
+          <i-icon size="28" type="group" color="#4db798"/>
+        </i-grid-icon>
+        <i-grid-label size='28'>{{authorTotal}}<view class="amount">词条贡献者</view></i-grid-label>
+      </i-grid-item>
+    </i-row>
+  </i-grid>
+  <i-cell title="{{category}}版权作品" label='' value="创建词条" is-link url="../../work/edit/x">
+    <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+  </i-cell>
+</view>
+
+<view class="caption-wrap">
+  <i-collapse>
+    <i-collapse-item title="版权简介" name="name1">
+      <view slot="content">著作权由第一出品方享有。但编剧、导演、摄制/制作、配乐，以及主演、监督、联合出品方等享有署名权，并有权按照与制片者签订的合同获得报酬。</view>
+    </i-collapse-item>
+  </i-collapse>
+</view>
+
+<view>
+ <block wx:if="{{hotWorks!=null&&hotWorks.length>0}}">
+  <i-panel title="热搜榜" hide-top>
+    <i-grid>
+      <i-row>
+        <block wx:for="{{hotWorks}}" wx:for-item="col" wx:for-index="colIndex" wx:key="indx">
+          <navigator url="../../work/x?workSeqNo={{col.code}}" hover-class="navigator-hover">
+          <i-grid-item border_bottom='0' border_right='0' scale="short" margin_t='15' margin_b='5' padding_l='5' >
+            <i-grid-icon scale="short">
+              <image mode='aspectFill' src="{{col.cover[0]}}" lazy-load='true'
+                style="height:129px;"/>
+            </i-grid-icon>
+            <i-grid-label height="47px;" isIndex='true' textLeft='true'>{{col.title}}
+                <view style='position:absolute;left:0;right:0;bottom:6px;background:#fff;color:#969696;font-size:26rpx;height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 10px;text-align:left'>
+                {{col.subTitle}}
+                </view>
+            </i-grid-label>
+          </i-grid-item>
+          </navigator>
+        </block>
+      </i-row>
+    </i-grid>
+  </i-panel>
+    </block>
+    <block wx:if="{{lastWorks!=null&&lastWorks.length>0}}">
+   <i-panel title="最新收录" hide-top >
+    <i-grid>
+      <i-row>
+        <block wx:for="{{lastWorks}}" wx:for-item="col" wx:for-index="colIndex" wx:key="indx">
+        <navigator url="../../work/x?workSeqNo={{col.code}}" hover-class="navigator-hover">
+          <i-grid-item border_bottom='0' border_right='0' scale="short"  margin_t='15' margin_b='5' padding_l='5' >
+            <i-grid-icon scale="short">
+              <image mode='aspectFill' src="{{col.cover[0]}}" lazy-load='true'
+                style="height:129px;"/>
+            </i-grid-icon>
+            <i-grid-label height="47px;" isIndex='true' textLeft='true'>{{col.title}}
+                <view style='position:absolute;left:0;right:0;bottom:6px;background:#fff;color:#969696;font-size:26rpx;height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 10px;text-align:left'>
+                {{col.subTitle}}
+                </view>
+            </i-grid-label>
+          </i-grid-item>
+          </navigator>
+        </block>
+      </i-row>
+    </i-grid>
+  </i-panel>
+    </block>
+</view>
+<view class='loading' wx:if="{{hotWorks==null}}" style="top:{{searchBarTop}}px;">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

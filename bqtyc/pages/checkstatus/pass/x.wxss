@@ -1,0 +1,32 @@
+/* pages/imauditor/pass/x.wxss */
+page{text-align: center}
+image{
+  width: 186rpx;
+  height: 186rpx;
+  margin-top: 91rpx;
+  margin-bottom: 50rpx;
+}
+.word-t{
+  font-size: 40rpx;
+  color: #000000;
+  margin-bottom: 30rpx;
+  text-align: center
+}
+.word-b{
+  font-size: 28rpx;
+  color: #888888;
+  text-align: center;
+  line-height: 42rpx;
+  margin: 0 79rpx
+}
+.yesBtn{
+  width: 450rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+  font-size: 42rpx;
+  color: #FFFFFF;
+  background: #5CB89A;
+  border-radius: 100rpx;
+  margin: 118rpx auto 0
+}

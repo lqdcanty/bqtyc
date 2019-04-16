@@ -1,0 +1,24 @@
+{
+  "navigationBarTitleText": "我的版权词条分享",
+  "usingComponents": {
+    "i-tabs": "../../../dist/tabs/index",
+    "i-tab": "../../../dist/tab/index",
+    "zan-capsule": "../../../dist/capsule/index",
+    "i-action-sheet": "../../../dist/action-sheet/index",
+    "i-tag": "../../../dist/tag/index",
+    "i-collapse": "../../../dist/collapse/index",
+    "i-collapse-item": "../../../dist/collapse-item/index",
+    "i-panel": "../../../dist/panel/index",
+    "i-grid": "../../../dist/grid/index",
+    "i-grid-item": "../../../dist/grid-item/index",
+    "i-grid-icon": "../../../dist/grid-icon/index",
+    "i-grid-label": "../../../dist/grid-label/index",
+    "i-icon": "../../../dist/icon/index",
+    "i-cell-group": "../../../dist/cell-group/index",
+    "i-cell": "../../../dist/cell/index",
+    "i-button": "../../../dist/button/index",
+    "i-notice-bar": "../../../dist/notice-bar/index",
+    "i-row": "../../../dist/row/index",
+    "navigation": "../../../components/navbar/index"
+  }
+}

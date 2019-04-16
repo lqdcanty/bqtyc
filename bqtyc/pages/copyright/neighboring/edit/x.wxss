@@ -1,0 +1,13 @@
+.refer_img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:36px;
+  height:36px;
+  border-radius: 10rpx;
+  border: 1px solid #f8f8f8;
+}
+.hidden{display: none}
+.i-swipeout-item{
+  border-bottom:#dddee1 solid 0px;
+}

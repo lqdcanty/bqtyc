@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "navigation": "../../../components/navbar/index"
+  },
+  "navigationBarTitleText": "实名认证申请"
+}

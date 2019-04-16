@@ -1,0 +1,11 @@
+<!--pages/copyright/register/add/x.wxml-->
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="版权百科"
+></navigation>
+<view class="blank-bar">敬请期待</view>
+<view class="weui-footer">
+    <view class="weui-footer__text">Copyright © 2004-2019 banquanbaike.com</view>
+    <view class="weui-footer__text">北京畅元国讯科技有限公司 版权所有</view>
+</view>

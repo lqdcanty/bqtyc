@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "申领",
+  "usingComponents": {
+    "navigation": "../../../../components/navbar/index",
+    "i-icon": "../../../../dist/icon/index",
+    "i-button": "../../../../dist/button/index",
+    "i-input": "../../../../dist/input/index",
+    "authorize": "../../../../components/authorize/authorize",
+    "i-message": "../../../../dist/message/index"
+
+  }
+}

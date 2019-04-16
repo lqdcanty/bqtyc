@@ -1,0 +1,98 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="官方登记"
+></navigation>
+<view class='panel'>
+  <navigator url='../../work/x?workSeqNo={{work.workSeqNo}}' hover-class="navigator-hover">
+    <view class="workinfo">
+      <view class="head">
+        <view class="title"> <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+        <view class='nameOver'>{{work.name}}</view>
+        </view>
+        <zan-capsule color="#4db798" leftText="版权类型" rightText="{{powerType}}" />
+      </view>
+      <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+    </view>
+  </navigator>
+  <view style="border-bottom: 1px solid #e8e8e8;">
+    <i-cell-group>
+      <i-cell title="官方登记" label='' value="创建词条" is-link url="../../welcome/x?word=官方登记">
+        <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+      </i-cell>
+    </i-cell-group>
+  </view>
+  <view class="caption-wrap">
+    <i-collapse>
+      <i-collapse-item title="词条介绍" name="name1">
+          <view slot="content">包括公映许可证以及备案立项号。公映许可证俗称“龙标”，电影片头的绿底龙头标志，写有“公映许可证”以及电审字号，一直被视为电影的“准生证”。备案立项号是由国家电影局在电影拍摄前颁发的电影剧本（梗概）备案以及立项公示的编码。</view>
+      </i-collapse-item>
+    </i-collapse>
+  </view>
+
+  <view class='body' style='padding-top:0;border-top:1px solid #e8e8e8;'>
+  <!-- -->
+    <block  wx:for="{{copyright_register}}" wx:for-item="list" wx:key="index">
+    <view class="data-item">
+      <view class="show">
+        <view class="keyval">
+          <i-tag class='tag' color="green" type='border'>
+            {{list.registerItem}} <i-icon size="13" type="prompt_fill" color="#4db798"/>
+          </i-tag>
+          <!-- <navigator class='inputLink' url= "{{list.cerUrl?'../../../components/webview/c?url='+list.cerUrl:''}}">  -->
+            <i-tag  class='tag' color="green" bindtap="clickLink" data-url="{{list.cerUrl}}">{{list.registerCode}}</i-tag>
+          <!-- </navigator> -->
+          
+          <!-- <view class='inputShowSpace' style='margin-left:-2px;max-width:96px;'>{{list.registerDate}}</view> -->
+          <i-tag  class='tag' type="border">{{list.registerDate}}</i-tag>
+        </view>
+        <view class="keyval tab">
+          <i-tag class='tag' color="green">登记单位</i-tag>
+          <!-- <view class='inputShowSpace'>{{list.registerName}}</view> -->
+          <i-tag  class='tag' type="border">{{list.registerName}}</i-tag>
+        </view>
+        <view class="keyval tab">
+          <i-tag class='tag' color="green">官方机构</i-tag>
+          <!-- <view class='inputShowSpace'>{{list.officeName}}</view> -->
+          <i-tag  class='tag tag-margin' type="border">{{list.officeName}}</i-tag>
+        </view>
+      </view>
+      <view class='right'>
+        <view class='status'>
+          <i-icon size="18" wx:if="{{list.mine==false && list.status=='pass'}}" type="success" color="#4db798" />
+          <i-icon size="18" wx:if="{{list.mine==true && list.status=='pass'}}" type="success" color="#5cadff" />
+          <i-icon size="18" wx:if="{{list.mine==true && list.status=='wait_audit' && list.operation=='add'}}" type="add" color="#4db798" />
+          <i-icon size="18" wx:if="{{list.mine==true && list.status=='wait_audit' && list.operation=='update'}}" type="brush" color="#4db798"/>
+          <i-icon size="18" wx:if="{{list.mine==true  && list.status=='wait_audit' && list.operation=='delete'}}" type="delete" color="#ed3f14"/>
+        </view>
+        <view  class='more' wx:if="{{list.mine==false && list.status=='pass'}}" bindtap='openActions' data-mine="{{list.mine}}" data-status="{{list.status}}" data-operation="{{list.operation}}" data-citiaoCode="{{list.citiaoCode}}" style="background-color:#4db798;"  >
+              <i-icon size="20" type="more" color="#fff"/>
+        </view>
+          <view class='more' wx:if="{{list.mine==true && list.status=='pass' }}" bindtap='openActions' data-mine="{{list.mine}}" data-status="{{list.status}}" data-operation="{{list.operation}}" data-citiaoCode="{{list.citiaoCode}}"  style="background-color:#5cadff;">
+          <i-icon size="20" type="more" color="#fff"/>
+        </view>
+        <view class='more' wx:if="{{list.mine==true && list.status=='wait_audit' && list.operation=='add'}}" bindtap='openActions' data-mine="{{list.mine}}" data-status="{{list.status}}" data-operation="{{list.operation}}" data-citiaoCode="{{list.citiaoCode}}" style="background-color:#4db798;">
+          <i-icon size="20" type="more" color="#fff"/>
+        </view>
+        <view class='more' wx:if="{{list.mine==true && list.status=='wait_audit' && list.operation=='update'}}" bindtap='openActions' data-mine="{{list.mine}}" data-status="{{list.status}}" data-operation="{{list.operation}}" data-citiaoCode="{{list.citiaoCode}}" style="background-color:#4db798;">
+          <i-icon size="20" type="more" color="#fff"/>
+        </view>
+        <view class='more' wx:if="{{list.mine==true  && list.status=='wait_audit' && list.operation=='delete'}}" bindtap='openActions' data-mine="{{list.mine}}" data-status="{{list.status}}" data-operation="{{list.operation}}" data-citiaoCode="{{list.citiaoCode}}" style="background-color:#ed3f14;">
+          <i-icon size="20" type="more" color="#fff"/>
+        </view> 
+      </view>
+    </view>
+    </block>
+  </view>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">{{status_info}}</view>
+        <text>{{oper_tips}}</text>
+    </view>
+</i-action-sheet>
+<view class="blank-bar" wx:if="{{copyright_register.length==0}}">作品《{{workName}}》还没有任何版权词条，尝试添加版权词条完善版权信息，将获得【版权力】的奖励</view>
+
+<view class='loading' wx:if="{{work==null||copyright_register==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif' />
+</view>

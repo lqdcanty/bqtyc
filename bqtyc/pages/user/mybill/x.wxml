@@ -1,0 +1,28 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{pageTitle}}"
+></navigation>
+<view class="container" wx:if="{{mybill.length>0}}">
+  <view wx:if="{{type==1&&mybill.length>0}}">
+  <i-panel wx:for="{{mybill}}" wx:for-index="idxA" wx:for-item="itemA" title="{{itemA.date}}" hide-top>
+      <i-cell wx:for="{{itemA.scores}}" wx:for-index="idxB" wx:for-item="itemB" title="{{itemB.name}}" label="{{itemB.title}}" value="{{itemB.socre}}" is-link url="../myedit/detail/x?citiaoCode={{itemB.citiaoCode}}">
+        <i-icon type="transaction_fill" slot="icon" />
+      </i-cell>
+  </i-panel>
+  </view> 
+  <view wx:if="{{type=='1'&&mybill.length<1}}"> 
+    <view class="blank-bar" >暂无获得记录</view>
+  </view> 
+</view>
+
+<view class="blank-bar" wx:if="{{type=='2'}}">敬请期待</view>
+<block wx:if="{{type=='1'}}">
+<view class="weui-loadmore" hidden="{{flage}}">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
+</view>
+<view class="weui-loadmore weui-loadmore_line"  wx:if="{{flage}}">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{ranking_data.length==0?"暂无榜单数据":"已加载全部"}}</view>
+</view> 
+</block>

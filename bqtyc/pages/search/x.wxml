@@ -1,0 +1,58 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="搜索结果"
+>
+</navigation>
+<view class='search-bar' style="top:{{searchBarTop}}px;">
+  <view class='search'>
+    <input type='text' value='{{keyword}}' placeholder='请输入版权的关键词，例如 {{hotWords}}' confirm-type='search' bindinput='inputBind' bindblur="inputBlur" bindfocus="inputFocus"  bindconfirm='query'/>
+    <image class="" src='http://cbd.efida.com.cn/images/icons/search.png' bindtap='query'/>
+  </view>
+  <view class='search-tips-wrap' wx:if='{{keyword.length>0&&searchTipsList.length>0}}'>
+    <block wx:for="{{searchTipsList}}" wx:for-item="searchW" wx:key="searchwork">
+          <view bindtap='tipSearch' data-word="{{searchW.title}}">{{searchW.title}}<text>({{searchW.workType}} {{searchW.subTitle}})</text></view>
+    </block>
+  </view> 
+</view>
+<view class='dividing-line' style='height:39px;'/>
+<view style="border-bottom: 1px solid #e8e8e8;">
+  <i-cell title="版权作品" label='' value="创建词条" is-link url="../work/add/x">
+    <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+  </i-cell>
+</view>
+<!-- <view class='dividing-line' style='height:10px;'/> -->
+<view class='loading' wx:if="{{result==null&&!nullStatus}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>
+<view class='errorWrap-interl loading' wx:if="{{nullStatus}}">
+  <view>
+  <image style='width:120px;height:120px;' src='http://fdfs.banquanjia.com.cn/group2/M02/11/07/CgoKC1xIDxOAaIoMAAAMC9oZkE8586.png'/>
+  </view>
+  <view class="errorWrap-interl-t">服务器竟然出错了</view>
+  <view class="errorWrap-interl-subt">试试看刷新页面~</view>
+  <view class="errorWrap-interl-btn" bindtap='doOnload'>刷新</view>
+</view>
+
+ <view class="blank-bar" wx:if="{{result.length<1}}">数据正在处理中，敬请期待</view> 
+<view class="weui-panel weui-panel_access">
+    <view class="weui-panel__hd">{{category}} - {{type}}</view>
+    <view class="weui-panel__bd">
+        <block wx:for="{{result}}" wx:for-item="resultItem" wx:for-index="idx"  wx:key="title" >
+        <navigator url="../work/x?workSeqNo={{resultItem.code}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                <image mode="aspectFill" class="weui-media-box__thumb" src="{{resultItem.cover[0]?resultItem.cover:'../../img/detail/img_mr_default.png'}}" />
+            </view>
+            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                <view class="weui-media-box__title">{{resultItem.title}}</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                <view class="weui-media-box__desc">{{resultItem.subTitle}}</view>
+            </view>
+        </navigator>
+        </block>
+    </view>
+</view>
+<button class='btn-usernav' bindtap="addWork" size='mini'>
+  <i-icon type="add" size="20" color="#80848f"/>
+</button>
+

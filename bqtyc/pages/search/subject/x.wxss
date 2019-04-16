@@ -1,0 +1,85 @@
+/**index.wxss**/
+/* 搜索框提示文字样式 */ 
+.search-bar {
+  position: fixed;top: 0px;background-color: #000;width: 100%;padding-bottom:5px;z-index: 99999999;
+}
+page{
+background-color:#F8F8F8;font-family:-apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+}
+.scroll-view-item{
+  width: 160rpx;height: 143px;display:inline-block;margin-right: 5px
+}
+.moreWork{
+  text-align:center;font-size:15px;line-height:45px;border-bottom:1px solid #e9eaec;border-top:1px solid #e9eaec;
+}
+.search-tips-wrap{
+  top:40px; position: absolute
+}
+.head{
+  width: 100%;
+}
+.head .logoImg {
+width:16px;
+height:16px;
+border-radius:100%;
+}
+.noNews{text-align: center;margin: 70px 0 50px;color: #999;font-size: 28rpx}
+.head .logoImg,.head .text{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.5;
+  margin: 0 5rpx
+}
+
+.titleImage{
+  display: flex;
+  justify-content:space-between;
+  align-content: center;
+  align-items: center;
+  padding: 0 16px;
+  background: #fff;
+  position: relative;
+  bottom: -6px;
+  z-index: 1;
+  padding-top: 10px;
+}
+.titleImage .logoImg1{
+  width:36px;
+  height:36px;
+  border-radius:100%;
+}
+.middle{
+  margin-left: 10px;
+}
+.titleImage .text{
+  display:inline-block;
+  line-height:1.5;
+  margin:0 5rpx;
+  font-size: 14px;
+}
+.titleImage .textS{
+  line-height:1.5;
+  margin:0 5rpx;
+  font-size: 14px;
+}
+.titleImage .textX{
+line-height:1.2;
+  margin:0 5rpx;
+  font-size: 12px;
+  color: #999;
+}
+.titleImage .right{
+  float: right;
+}
+.left{
+  display: flex;
+}
+.swiper-css{
+  width: 100%;
+  height: 290rpx;
+  margin-top:45px;
+}
+.swiper-css image{
+  width: 100%;
+  height: 290rpx;
+}

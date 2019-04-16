@@ -1,0 +1,122 @@
+.ruanzhu {
+  display: flex;
+  flex-direction: row;
+  background-color:#ffff;
+}
+
+.step-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.ruanzhu .info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.ruanzhu .info .head {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.ruanzhu .info .head .left {
+  float: left;
+  border: 0px solid red;
+
+}
+
+.ruanzhu .info .head .right {
+  float: right;
+  border: 0px solid blue;
+}
+
+.ruanzhu .info .title {
+  display: block;
+  font-size: 36rpx;
+  white-space: nowrap;
+  color: #1c2438;
+  border: 0px solid red;
+}
+.ruanzhu .info .subtitle {
+  display: block;
+  font-size: 32rpx;
+  padding-top: 12rpx;
+  color: #737373;
+}
+
+.caption-wrap{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 24rpx;
+  background-color:#F8F8F8;
+}
+.caption-title{
+  font-weight: bold;
+  padding:20px 10px;
+}
+.caption-wrap .edit_work {
+  padding-top: 5px;
+  padding-right: 8px;
+  font-size: 12px;
+  text-decoration: underline;
+}
+.collapse-item-title{
+  font-size: 24rpx;
+  color: #737373;
+  font-weight: bold;
+}
+.collapse-item-content{
+  font-size: 12px;
+  color: #444444;
+}
+
+.amount{
+  color: lightgray;
+  font-size: 28rpx;
+}
+.copyright_info {
+  border: 0px solid red;
+  display: flex;
+  flex-direction: column;
+}
+.copyright_info .tags {
+  display: flex;
+  flex-direction: row;
+  margin-left:4px;
+  margin-bottom:4px;
+} 
+.copyright_info .remark {
+  margin-left:4px;
+  color: #a0a0a0;
+  font-size: 24rpx;
+}
+
+.tag_title {
+  background-color:#4db798;
+  margin-left:-3px;
+  padding-bottom:2px;
+  padding-right:3px;
+  margin-right:3px;
+  color:#fff;
+}
+
+.dashboard-number{
+  font-size: 32px;
+  font-weight: bold;
+  color: #1c2438;
+  font-family: 'Times New Roman', Times, serif;
+}
+.amount{
+  color: #e0e0e0;
+  font-size: 11px;
+}
+.page{
+  background: #fff;
+}

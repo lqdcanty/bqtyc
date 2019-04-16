@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "搜索版权人",
+  "usingComponents": {
+    "i-tag": "../../../dist/tag/index",
+    "i-icon": "../../../dist/icon/index",
+    "i-cell-group": "../../../dist/cell-group/index",
+    "i-cell": "../../../dist/cell/index",
+    "i-card-x": "../../../dist/card-x/index",
+    "navigation": "../../../components/navbar/index"
+  }
+}

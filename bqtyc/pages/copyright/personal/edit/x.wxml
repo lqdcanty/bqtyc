@@ -1,0 +1,132 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="编辑人身权词条"
+></navigation>
+<i-message id="message" />
+<view class="container">
+  <navigator url='../../work/x?workSeqNo={{work.workSeqNo}}' hover-class="navigator-hover">
+    <view class="workinfo">
+      <view class="head">
+        <view class="title"> <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+        <view class='nameOver'>{{work.name}}</view>
+        </view>
+        <zan-capsule color="#4db798" leftText="版权类型" rightText="{{powerType}}" />
+      </view>
+      <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+    </view>
+  </navigator>
+  <i-panel title="版权信息" hideBorder='true'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd" style="width: 96px">
+        <!--  -->
+          <picker bindchange="bindAuthortypeChange" value="{{authortype}}" range="{{authortypes}}">
+            <view class="weui-select">{{authortypes[authortype]}}</view>
+          </picker>
+        </view>
+        <view class="weui-cell__bd weui-cell__bd_in-select-before">
+            <input class="weui-input" value="{{postObj.roleVal?postObj.roleVal:''}}" bindinput="signatureInput" placeholder="请填写署名人名称" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">别名</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{postObj.roleAliasVal?postObj.roleAliasVal:''}}" bindinput="signatureAuthorInput"  placeholder="署名人作者笔名或公司简称"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">创作方式</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{postObj.createType?postObj.createType:''}}" bindinput="originalAuthorInput" placeholder="原作者创作形式，如‘翻译’,‘编撰’等"/>
+        </view>
+      </view>
+    </view>
+  </i-panel>
+  <i-panel title="权利范围">
+    <i-checkbox-group current="{{current}}" bindchange="handleTypeChange">
+        <i-checkbox wx:for="{{roleArr}}" wx:key="{{item.key}}" wx:key="index" value="{{item.value}}"  ></i-checkbox>
+    </i-checkbox-group>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindinput="rightRemarkInput" value="{{postObj.rightRemark}}" placeholder="权利备注，例如作品中角色"/>
+      </view>
+    </view>
+  </i-panel>
+  <i-panel title="参考资料">
+    <i-swipeout  i-class="i-swipeout-demo-item" actions="{{actionsDelete}}" wx:for="{{links}}" wx:for-item="link" wx:key="index" bind:change="swipoutChange" data-index="{{index}}">
+        <view slot="content">
+            <i-cell-group>
+              <i-cell  title="[{{index+1}}]{{link.typeDec}}" label="{{link.type=='image'||link.type=='file'?'':link.title}}" value="" bind:click="outLink" data-url="{{link.url}}" data-type="{{link.type}}">
+              <!-- ../../../components/webview/c?title=[" + thePage.data.work.category + "]" + thePage.data.work.name + "@" + thePage.data.work.type + "版权力" + "&type=版权词条参考资料" + "&url=" + app.urlDecode(url)  -->
+                <view class="refer_img" slot="icon" wx:if="{{link.type=='link'||link.type=='file'}}">
+                  <i-icon size='22' wx:if="{{link.type=='link'}}" type="accessory" color="#4db798"/>
+                  <i-icon size='22' wx:if="{{link.type=='file'}}" type="document" color="#4db798"/>
+                </view> 
+                <image wx:if="{{link.type=='image'}}"  mode='scaleToFill' src="{{link.url}}" lazy-load='true' class="refer_img" slot="icon"/>  
+                <i-swipeout slot="footer" i-class="i-swipeout-item">
+                  <i-switch value="open" size="large" value="{{link.public==null?false:link.public}}"  bind:change="onChange" data-obj="{{link}}" data-index="{{index}}" slot="content">
+                    <view slot="open">公开</view>
+                    <view slot="close">保密</view>
+                  </i-switch>
+                </i-swipeout>  
+              </i-cell>
+            </i-cell-group>
+        </view>
+    </i-swipeout>
+      
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{postObj.attathRemark}}" bindinput="attathRemarkInput" placeholder="描述词条引用概况，例如‘数据来自于xx网站’"/>
+        </view>
+      </view>
+      <i-button bind:click="addReferer" size="small">添加参考资料</i-button>
+  </i-panel>
+  <i-panel title="编辑者联系方式" hideBorder='true'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">联系人</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{postObj.contactName?postObj.contactName:''}}" bindinput="contactInput" placeholder="请填写联系人姓名"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">联系电话</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{postObj.contactPhone?postObj.contactPhone:''}}" bindinput="contact_phoneInput" placeholder="请填写联系人电话"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">联系邮箱</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{postObj.contactEmail?postObj.contactEmail:''}}" bindinput="contact_emailInput" placeholder="请填写联系人邮箱"/>
+        </view>
+      </view>
+    </view>
+  </i-panel>
+  <i-button bind:click="handleSave" type="primary" size="large" wx:if="{{editButton}}">保存</i-button>
+  <i-button bind:click="handleCancel" type="primary" size="large" wx:if="{{cancelButton}}">撤销新增或修改的版权词条</i-button>
+</view>
+
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onActionCancel" bind:click="handleAction">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">{{actionsTitle}}</view>
+    </view>
+</i-action-sheet>
+
+  <block wx:if="{{!authIsShow}}">
+    <authorize  sysType='bqbk' sysTitle="{{sysTitle}}" sysLogo="{{sysLogo}}" bind:authorizeEvent="onauthorizeEvent"></authorize> 
+  </block>
+<view class='loading' wx:if="{{work==null || authortypes==null||contentObj==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "navigation": "../../../components/navbar/index"
+  },
+  "navigationBarTitleText": "编辑者申请"
+}

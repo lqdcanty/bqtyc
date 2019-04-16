@@ -1,0 +1,15 @@
+<view class="i-class i-card {{ full ? 'i-card-full' : '' }}">
+<navigator url="{{turl}}">
+    <view class="i-class i-card-header">
+        <view class="i-card-header-content">
+            <image class="i-card-header-thumb" src="{{ thumb }}" mode="aspectFill" wx:if="{{ thumb }}" />
+            <view class='viewCover' wx:if="{{ !thumb || thumb==''}}" >{{name}}</view>
+        </view>
+    </view>
+     <view class="i-class i-card-body" wx:if='{{textLeft}}'>{{title}}</view>
+     <view class="i-class i-card-body" style='text-align:left' wx:if='{{!textLeft}}'>{{title}}</view>
+     <view class="i-class i-card-footer"  wx:if='{{textLeft}}'>{{subt}}</view>
+     <view class="i-class i-card-footer" style='text-align:left' wx:if='{{!textLeft}}'>{{subt}}</view>
+     </navigator>
+</view>
+

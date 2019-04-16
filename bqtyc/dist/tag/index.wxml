@@ -1,0 +1,30 @@
+<view 
+    class="i-class over i-tag {{ parse.getClass(color,type,checked,checkable,display) }} {{checkable ? '' : 'i-tag-disable'}}" 
+    bindtap="tapTag">
+    <slot></slot>
+</view>
+<wxs module="parse"> 
+module.exports = {
+    getClass : function(color,type,checked,checkable,display) {
+        var initColorList = ['blue', 'green', 'red', 'yellow', 'default', 'disabled'];
+        var theme = '';
+        var className = 'i-tag-';
+        if( initColorList.indexOf( color ) > -1 ){
+            theme = className + color;
+        }
+        if( type === 'border' ){
+            theme = className+color+'-border';
+        }
+        if( checkable && checked ){
+            theme = className+color+'-checked';
+        }else if( checkable && !checked ){
+            theme =  ( type === 'border' ? className + color +'-border' : className+'none' );
+        }
+
+        if( display == 'none' ){
+            theme = className+"display-none";
+        }
+        return theme;
+    }
+}
+</wxs>

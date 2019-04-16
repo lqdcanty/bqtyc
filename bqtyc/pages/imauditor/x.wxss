@@ -1,0 +1,70 @@
+/* pages/imauditor/x.wxss */
+.form-wrap input{
+  font-size: 30rpx;
+  padding: 24rpx 0
+}
+.top{
+  height: 344rpx;
+  background: url("http://fdfs.banquanjia.com.cn/group2/M00/02/32/CgoKC1w0YdeAV-EXAAOIvZzterA989.png");
+  background-size: 100% 100%;
+  padding-top:20rpx;
+}
+.top view:nth-child(1){
+  font-size: 60rpx;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 120rpx;
+}
+.top view:nth-child(2){
+  font-size: 30rpx;
+  color: #FFFFFF;
+  margin-top: 20rpx;
+  text-align: center;
+}
+.form-wrap view{
+  margin: 0 48rpx;
+  border-bottom: 1px solid #E0E0E0;
+  margin-top: 23rpx;
+  position: relative
+}
+.codeBtn{
+  font-size: 26rpx;
+  color: #5CB89A;
+  text-align: center;
+  border: 1px solid #5CB89A !important;
+  border-radius: 23.5rpx;
+  width: 174rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  position: absolute !important;
+  right: 0;
+  top:0;
+  z-index: 999;
+  margin:10px 0  0!important
+}
+.codeBtn-down{
+  color: #454A4F;
+  border: 1px solid #DFDFDF !important;
+}
+.form-btn{
+
+  font-size: 42rpx;
+  background: #5CB89A;
+  width: 450rpx;
+  height: 96rpx;
+  text-align: center;
+  line-height: 96rpx;
+  color: #FFFFFF;
+  border-radius: 100rpx;
+  margin:82rpx  auto 27rpx !important
+}
+.tips{
+  font-size: 24rpx;
+  color: #979797;
+  text-align: center;
+  border-bottom:  none !important
+}
+.tips text{
+  color: #5CB89A
+}

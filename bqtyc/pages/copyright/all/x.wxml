@@ -1,0 +1,66 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="全版权查询"
+>
+</navigation>
+<button class='btn-share' open-type="share" size='mini'><i-icon type="share" size="18" color="#80848f"/></button>
+<view class="container">
+  <navigator url='../../work/x?workSeqNo={{work.workSeqNo}}' hover-class="navigator-hover">
+  <view class="workinfo" style="background-color:#f8f8f8;">
+    <view class="head">
+      <view class="title"> <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+      <view class='nameOver'>{{work.name}}</view>
+      </view>
+      <zan-capsule color="#4db798" leftText="版权类型" rightText="{{powerType}}" />
+    </view>
+    <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+  </view>
+  </navigator>
+  <i-panel title="人身权" hide-top wx:if="{{queryAll.personList.length>0}}">
+    <i-cell-group >
+      <block wx:for="{{queryAll.personList}}" wx:for-item="list" wx:key="index">
+        <i-cell wx:if="{{index<3}}"  title="{{list.name}}" label="{{list.role}}" value="{{list.origin?'原著':''}}" is-link url="../blockchain/x?workSeqNo={{queryAll.workSeqNo}}&citiaoCode={{list.citiaoCode}}">
+          <i-icon type="prompt" slot="icon" />
+        </i-cell>
+      </block>
+    </i-cell-group>
+    <i-button bind:click="addReferer" size="small" data-workSeqNo='{{queryAll.workSeqNo}}'>查看更多</i-button>
+    <view class="remark" style='text-align:right;padding-right:10px;padding-bottom:10px;'><i-icon size="16" type="prompt" color="gray"/>人身权署名权信息一共有{{queryAll.personlAll}}条</view> 
+  </i-panel>
+  <i-panel title="财产权" hide-top wx:if="{{queryAll.propertyList.length>0}}">
+    <i-cell-group>
+      <block wx:for="{{queryAll.propertyList}}" wx:for-item="list" wx:key="index">
+        <i-cell wx:if="{{index<3}}" title="{{list.useCoprightName}}" label="{{list.tag}}" value="{{list.time}}" is-link url="../blockchain/x?workSeqNo={{queryAll.workSeqNo}}&citiaoCode={{list.citiaoCode}}">
+          <i-icon type="prompt" slot="icon" />
+        </i-cell>
+        <!-- <i-cell title="有妖气" label="发行权使用方" value="2018-12-01" is-link url="../x">
+          <i-icon type="prompt" slot="icon" />
+        </i-cell> -->
+        </block>
+    </i-cell-group>
+    <i-button bind:click="addReferer2" size="small" data-workSeqNo='{{queryAll.workSeqNo}}'>查看详情</i-button>
+    <view class="remark" style='text-align:right;padding-right:10px;padding-bottom:10px;'><i-icon size="16" type="prompt" color="gray"/>财产权信息一共有{{queryAll.propertyAll}}条</view> 
+  </i-panel>
+  <i-panel title="其它" hide-top wx:if="{{queryAll.otherList.length>0}}">
+    <i-cell-group>
+      <block wx:for="{{queryAll.otherList}}" wx:for-item="list" wx:key="index">
+      <i-cell wx:if="{{index<currenIndex}}" title="{{list.name}}" label="{{list.tag}}" value="{{list.time}}" is-link url="../blockchain/x?workSeqNo={{queryAll.workSeqNo}}&citiaoCode={{list.citiaoCode}}">
+        <i-icon type="prompt" slot="icon" />
+      </i-cell>
+      </block>
+    </i-cell-group>
+    <i-button bind:click="addReferer3" wx:if="{{queryAll.otherAll>currenIndex && otherAllShow}}" size="small">查看更多</i-button>
+    <view class="remark" style='text-align:right;padding-right:10px;padding-bottom:10px;'><i-icon size="16" type="prompt" color="gray"/>其它包括官方登记、侵权举报版权信息一共有{{queryAll.otherAll}}条</view> 
+  </i-panel>
+  <view class='blank-bar' wx:if="{{queryAll.personList.length==0&&queryAll.propertyList.length==0&&queryAll.otherList.length==0}}">暂无数据</view>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">{{status_info}}</view>
+        <text>{{oper_tips}}</text>
+    </view>
+</i-action-sheet>
+<view class='loading' wx:if="{{work==null||queryAll==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

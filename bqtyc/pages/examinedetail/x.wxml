@@ -1,0 +1,43 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{navTitle}}"  color="{{color}}" backUrl="{{backUrl}}"
+></navigation>
+ <!-- backUrl="{{backUrl}}" -->
+<view class='container'>
+  <view class="top">
+    <view class='flex'> <image class
+    ="rightIcon" src="http://fdfs.banquanjia.com.cn/group2/M00/1C/81/CgoKC1yRoqKAdgb7AAAEwGHGnmU957.png"></image></view>
+    <view class='title'>{{word}}</view>
+    <view class='tips' style='padding-bottom:20px;'>{{text}}</view>
+    <!-- 您的{{word}}，后台审核需要等待3～5个工作日，	审核结果会通过公众号通知您。 -->
+  </view>
+  <view class='middle'>
+    <view class='tips'>你的申请信息详情如下</view>
+    <view class="examine" wx:if="{{type!='realName'}}">
+      <view>联系人：{{dataMess.realName}}</view>
+      <view>联系邮箱：{{dataMess.email}}</view>
+      <view>联系电话：{{dataMess.phone}}</view>
+    </view>
+    <view class="examine" wx:if="{{type=='realName'}}" >
+      <view>姓名：{{dataMess.name}}</view>
+      <view>证件类型：{{dataMess.certType}}</view>
+      <view>国家省市：{{dataMess.province}}-{{dataMess.city}}-{{dataMess.country}}</view>
+      <view>证件号码：{{dataMess.certNumber}}</view>
+      <view>证件照：</view>
+      <view class="attactment">
+        <!-- <image src="{{dataMess.attactment1}}"></image>
+        <image src="{{dataMess.attactment2}}"></image> -->
+        <image src="http://fdfs.banquanjia.com.cn/group2/M00/1C/4C/CgoKDVySFAKAEU2PAAASHd_Zxe0926.png"></image>
+        <image class='mrl30' src="http://fdfs.banquanjia.com.cn/group2/M00/1C/81/CgoKC1ySFDCAM7HkAAAPq9FLwV4679.png"></image>
+      </view>
+    </view>
+  </view>
+   <block wx:if="{{!authIsShow}}">
+    <authorize  sysType='bqbk' sysTitle="{{sysTitle}}" sysLogo="{{sysLogo}}" bind:authorizeEvent="onauthorizeEvent"></authorize> 
+  </block>
+  <view class='loading' wx:if="{{dataMess==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif' />
+</view>
+
+</view>

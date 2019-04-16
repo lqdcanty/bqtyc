@@ -1,0 +1,43 @@
+.preview {
+  margin-top: 16px;
+  width: 100%;
+}
+.btn-bottom{
+  margin: 0 20px
+}
+.btn-bottom-left {
+  bottom: 0px;
+  position: fixed;
+  width:50%;
+  border-radius: 0px;
+}
+.btn-bottom-right {
+  bottom: 0px;
+  left: 50%;
+  position: fixed;
+  width:50%;
+  border-radius: -0px;
+}
+.card-footer .row{
+  display:flex;
+  flex-direction:row;
+  justify-content:left;
+  width:100%;
+  border:0px solid blue;
+}
+.card-footer .row .remark {
+  color:#a0a0a0;
+  border:0px solid red;
+  position:absolute;
+  right:0px;
+  margin-right:10px;
+}
+.remark {
+  color:gray;
+  font-size:24rpx;
+  padding-left:3px;
+  padding-right:3px;
+}
+.card-footer{
+  display: block
+}

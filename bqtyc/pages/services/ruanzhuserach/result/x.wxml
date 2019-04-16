@@ -1,0 +1,55 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="软件著作权办理查询结果"
+>
+</navigation>
+<view class='search-bar' style='top:{{statusBarHeight+titleBarHeight}}px'>
+  <view class='search'>
+    <input type='text' value='{{keyword}}' placeholder='请输入软件名称、著作权利人或软著登记号进行查询' confirm-type='search' bindinput='inputBind' bindconfirm='query'/>
+    <image class="" src='http://cbd.efida.com.cn/images/icons/search.png' bindtap='query'/>
+  </view>
+</view>
+<view class='dividing-line' style='height:29px;'/>
+<view class='errorWrap-interl loading' wx:if="{{nullStatus}}">
+  <view>
+  <image style='width:120px;height:120px;' src='http://fdfs.banquanjia.com.cn/group2/M02/11/07/CgoKC1xIDxOAaIoMAAAMC9oZkE8586.png'/>
+  </view>
+  <view class="errorWrap-interl-t">服务器竟然出错了</view>
+  <view class="errorWrap-interl-subt">试试看刷新页面~</view>
+  <view class="errorWrap-interl-btn" bindtap='doOnload'>刷新</view>
+</view>
+<!-- <view class='loading' wx:if="{{worksList==null||flage}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view> -->
+<block >
+<view class="weui-panel weui-panel_access">
+    <view class="weui-panel__bd">
+        <block wx:for="{{worksList}}" wx:for-item="list"  wx:key="index">
+        <!--  -->
+        <navigator url="../order/x?{{list.prn==null?'certificateNumber':'prn'}}={{list.prn==null?list.certificateNumber:list.prn}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+              <view class="weui-media-box__title " style='font-weight:600'>{{list.softFullname}}</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access box__desc" ><text wx:if="{{list.progressStatus=='材料审查'}}">审查</text></view>
+              <view class="weui-cell__ft weui-cell__ft_in-access box__desc"><text wx:if="{{list.progressStatus=='软著认证'}}">认证</text></view>
+              <view class="weui-cell__ft weui-cell__ft_in-access box__desc"><text wx:if="{{list.progressStatus=='软著出证'}}">出证</text></view>
+              <view class="weui-media-box__desc mrt7" wx:if="{{list.applyCode}}">软著登记号: {{list.applyCode?list.applyCode:'无'}}</view>
+               <view class="weui-media-box__desc mrt7" wx:if="{{list.applyCode==null&&list.prn==null}}">软件类型: {{list.softCategry?list.softCategry:'无'}}</view>
+              <view class="weui-media-box__desc mrt7">著作权人:{{list.powerName?list.powerName:'无'}}</view>
+          </view>
+        </navigator>
+        </block>
+    </view>
+</view>
+</block>
+    <view class="weui-loadmore" hidden="{{flage}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line"  wx:if="{{flage}}">
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line" wx:if="{{worksList.length==0}}">暂无数据</view>
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line" wx:if="{{totalPage==pageNumber}}">已加载全部</view>
+    </view> 
+<button class='btn-usernav' bindtap="addWork" size='mini'>
+  <i-icon type="add" size="20" color="#80848f"/>
+</button>

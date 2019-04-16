@@ -1,0 +1,2 @@
+<!--components/viewcover/viewcover.wxml-->
+<view class='viewCover'>{{name}}</view>

@@ -1,0 +1,14 @@
+/* pages/user/myscane/x.wxss */
+.time{
+  position: absolute;
+  right: 60rpx;
+  top: 60rpx;
+}
+.borderBottom{
+  border-bottom: 1px solid #eee;
+}
+.toip{
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+}

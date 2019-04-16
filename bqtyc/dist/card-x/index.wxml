@@ -1,0 +1,12 @@
+<view class="i-class i-card {{ full ? 'i-card-full' : '' }}">
+  <view class="i-class i-card-header" bindtap='linkClick' style="{{headStyle}}" data-url="{{url}}" data-title="{{webTitle}}" data-type="{{type}}">
+    <image class="i-card-header-thumb" src="{{ thumb }}" mode="{{ thumbMode ? 'aspectFill' : 'aspectFit' }}" style=" {{iconStyle}}" wx:if="{{ thumb }}"/>
+    <view class="i-card-header-content">
+      <view class="i-card-header-title">{{ title }}</view>
+      <view class="i-card-header-subtitle" wx:if="{{ subtitle }}">{{ subtitle }}</view>
+    </view>
+    <view class="i-card-header-extra" wx:if="{{ extra }}">{{ extra }}</view>
+  </view>
+  <view class="i-class i-card-body" wx:if="{{ !hidebody }}" bindtap='linkClick' style="{{headStyle}}" data-url="{{url}}" data-title="{{webTitle}}" data-type="{{type}}"><slot name="content"></slot></view>
+  <view class="i-class i-card-footer" wx:if="{{ !hidefooter }}"><slot name="footer"></slot></view>
+</view>

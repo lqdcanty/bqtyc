@@ -1,0 +1,33 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{navTitle}}"  color="{{color}}" backUrl="{{backUrl}}"
+></navigation>
+ <!-- backUrl="{{backUrl}}" -->
+<view class='container'>
+  <view class="top">
+    <view class='flex'> <image class
+    ="rightIcon" src="http://fdfs.banquanjia.com.cn/group2/M00/1C/81/CgoKC1yRoqKAdgb7AAAEwGHGnmU957.png"></image></view>
+    <view class='title'>{{word}}</view>
+    <view class='tips' style='padding-bottom:20px;' wx:if="{{word!='版权编辑人申请成功'&& !bqservice&&!citiaoTip}}">您的{{word}}，后台审核需要等待3～5个工作日，	审核结果会通过公众号通知您。</view>
+    <view class='tips' style='padding-bottom:20px;' wx:if="{{citiaoTip}}">您的编辑已发送给版权词条审核者。只要超过70%的审核者同意你的编辑内容，版权百科将正式收录你的词条。</view>
+    <view class='tips' style='padding-bottom:20px;' wx:if="{{word=='版权编辑人申请成功'&& !bqservice}}">您的{{word}}，欢迎您编辑词条！</view>
+    <view class='tips' style='padding-bottom:20px;' wx:if="{{bqservice}}"> 您申请办理的{{word}}已经预约成功，稍后我们客服人员会与您取得联系，请保持电话畅通。关注版权家服务公众号，第一时间获取业务办理进度。</view>
+  </view>
+
+  <view class='middle'>
+    <view class='tips'>审核结果将通过公众号发送给你。请关注【版权百科服务】微信公众号</view>
+    <view class='erweima'>
+      <image bindtap='ewmClick' src="http://fdfs.banquanjia.com.cn/group2/M01/1C/50/CgoKDFyRoquAJTeSAACi-7tRVyY623.png"></image>
+    </view>
+    <view class='tipbottom'>请点击该二维码图片，长按保存。返回微信打开扫一扫关注公众号</view>
+    <view class='official' wx:if="{{official}}">
+      <view class='tipbottomTips'>
+        <image src="http://fdfs.banquanjia.com.cn/group2/M00/1C/50/CgoKDFyTRzGAOuh_AAAA6OSGZZw337.png"></image> 
+        <view class='lineText'>或者通过以下方式关注版权百科服务号</view>
+        <image src="http://fdfs.banquanjia.com.cn/group2/M02/1C/82/CgoKC1yTRxSAIlOKAAAA5yudoZs403.png"></image>
+      </view>
+      <official-account></official-account>
+    </view>
+  </view>
+</view>

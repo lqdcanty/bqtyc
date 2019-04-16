@@ -1,0 +1,6 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="版权百科"
+></navigation>
+<view class="blank-bar">敬请期待</view>

@@ -1,0 +1,7 @@
+/* pages/dynamic/detail/x.wxss */
+page{
+    background-color: #FFFFFF;
+}
+image{
+    margin: 4px 0;
+}

@@ -1,0 +1,151 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="版权人"
+fontColor="#000"
+iconColor="#000"
+navColor='#fff'
+lineColor='rgba(0,0,0,.2);'
+color='linear-gradient(360deg,rgba(225,224,223,1) 0%,rgba(209,207,207,1) 100%);'
+></navigation>
+<view class='loading' wx:if="{{owner==nul}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>
+<view class="container" wx:if="{{owner!=nul}}">
+  <view class="mask {{mask_display_userbar}}{{mask_display_navigate}}" bindtap='hideNavigate'></view>
+  <!-- 左侧导航 -->
+  <!-- 右侧导航 -->
+<view class="tag-category" style="top:{{searchBarTop}}px;" wx:if="{{owner.realNameCode&&owner.realNameCode!=''}}">
+  <i-tag class='tag' color="green">已认证</i-tag>
+</view>
+  <view class="page" style="{{translateX}}">  
+    <view class="owner">
+      <view class="flex-item avatar">
+        <image mode='aspectFill' src="{{owner.cover}}"/>
+      </view>
+      <view class='flex-item info'>
+        <view class="categoryWrap">
+            <view></view>
+            <view style="visibility:hidden;">浏览：10万+</view>
+        </view>
+        <view class='flex-item title'>{{owner.name}}</view>
+        <view class='flex-item subtitle'>{{owner.subTitle}}</view>
+        <view class='flex-item tags top-tags'>
+          <scroll-view class="scroll-view_H" scroll-x style="height:60rpx;position:relative;top:6px;">
+           <i-tag wx:for="{{owner.tags}}" wx:key="{{index}}" class='tag tag-margin'>{{item}}</i-tag>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+    <view class="caption-wrap">
+      <i-collapse name="">
+        <i-collapse-item title="版权人简介" name="name1">
+          <view slot="content">{{owner.introduction}}</view>
+        </i-collapse-item>
+      </i-collapse>
+      <navigator url="renz/x?code={{owner.code}}" hover-class="navigator-hover">
+      <view class='edit_work' wx:if="{{canAuth}}"><i-icon type="editor" size="18" color="#80848f"/>发起认证</view>
+      <view class='edit_work' wx:if="{{!canAuth}}"><i-icon type="editor" size="18" color="#80848f"/>重新认证</view>
+      </navigator>
+    </view>
+
+    <view class='dividing-line'/>
+    <view class='section'>
+      <view class='flex-item panel'>
+        <view class='head'>
+          <view class='title' style='font-weight:bold;'>版权概览 </view>
+          <text>{{owner.name}}</text>
+        </view>
+        <view class='body copyright_info personIcon'>
+           <view class="flex-item tags" style='display:flex'>
+              <scroll-view class="scroll-view_H tagsList" scroll-x>
+              <view wx:for="{{ownerStatus}}" wx:if="{{status.isExist==1&&index<3}}" style="color:#000;background:rgba(255,216,0,1);border:1px solid rgba(255,206,0,1)" wx:for-item="status" wx:key="typeDesc" class='tagsList-item' type="border">{{status.evaluateItem}}</view>
+               <view wx:for="{{ownerStatus}}" wx:if="{{status.isExist!=1}}" style="color:#999;background:rgba(241,241,241,1);border:1px solid rgba(231,231,231,1);" wx:for-item="status" wx:key="typeDesc" class='tagsList-item' type="border">{{status.evaluateItem}}</view>
+               <view wx:for="{{ownerStatus}}" wx:if="{{status.isExist==1&&index>2}}" style="color:#FB5656;background:#fff;border:1px solid #FB5656" wx:for-item="status" wx:key="typeDesc" class='tagsList-item' type="border">{{status.evaluateItem}}</view>
+               </scroll-view>
+            </view>
+          <i-grid class="flex-item" border_top='0'>
+            <i-row>
+              <navigator url="../devote/x?work_id={{work.id}}" hover-class="navigator-hover">
+              <i-grid-item border_bottom='0' width='100%' scale="short">
+                <i-grid-label size='40' weight="bold">
+                  <view class='dashboard-number'>{{copyright.copyrightTotal}}</view>
+                  <view class="amount amount-num">版权总数</view>
+                </i-grid-label>
+              </i-grid-item>
+              </navigator>
+            </i-row>
+            <i-row>
+              <i-grid-item border_bottom='0'  border_right='0' scale="short" width="25%" class="">
+                <i-grid-icon scale="short">
+                  <!-- <i-icon size="16" type="editor" color="#4db798"/> -->
+                  <image class="image_frame" src="http://fdfs.banquanjia.com.cn/group2/M00/0A/42/CgoKDFw-pKqASfZKAAAQ-y26bZo969.png" /> 
+                </i-grid-icon>
+                <i-grid-label><view class="remark">人身权</view>{{copyright.signatureTotal}}</i-grid-label>
+              </i-grid-item>
+              <i-grid-item border_bottom='0'  border_right='0' scale="short" width="25%">
+                <i-grid-icon scale="short">
+                  <!-- <i-icon size="16" type="group" color="#4db798"/> -->
+                  <image class="image_frame"  src="http://fdfs.banquanjia.com.cn/group2/M01/0A/73/CgoKC1w-pMuAB2vyAAAUGGJcwjc650.png" />
+                </i-grid-icon>
+                <i-grid-label><view class="remark">许可使用</view>{{copyright.permitTotal}}</i-grid-label>
+              </i-grid-item>
+              <i-grid-item border_bottom='0' border_right='0'  scale="short" width="25%">
+                <i-grid-icon scale="short">
+                  <!-- <i-icon size="16" type="group" color="#4db798"/> -->
+                  <image class="image_frame" src="http://fdfs.banquanjia.com.cn/group2/M02/0A/42/CgoKDFw-pLKADhk6AAAQ-DA6ssE453.png" />
+                </i-grid-icon>
+                <i-grid-label><view class="remark">权利转让</view>{{copyright.transferTotal}}</i-grid-label>
+              </i-grid-item>
+              <i-grid-item border_bottom='0'  border_right='0' scale="short" width="25%">
+                <i-grid-icon scale="short">
+                  <!-- <i-icon size="16" type="group" color="#4db798"/> -->
+                  <image class="image_frame" src="http://fdfs.banquanjia.com.cn/group2/M00/0A/73/CgoKC1w-pM6ASEX4AAAMMgu_g1k873.png" />
+                </i-grid-icon>
+                <i-grid-label><view class="remark">权利质押</view>{{copyright.pledgeTotal}}</i-grid-label>
+              </i-grid-item>
+            </i-row>
+          </i-grid>
+        </view>
+      </view>
+    </view>
+    
+    <block wx:for="{{copyright_navigates}}" wx:for-item="navigate" wx:key="title">
+      <view class='dividing-line'/>
+      <view class='flex-item panel'>
+        <view class='head'>
+          <view class='title'>{{navigate.title}}
+          <!-- <i-icon size="16" type="{{navigate.icon}}" color="#4db798"/> -->
+          </view>
+        </view>
+        <view class='body'>
+          <i-grid>
+          <block wx:for="{{navigate.rows}}" wx:for-item="row" wx:key="indx">
+            <i-row>
+              <block wx:for="{{row.cols}}" wx:for-item="col" wx:key="title">
+                <navigator url="{{col.url}}" hover-class="navigator-hover">
+                <i-grid-item border_bottom='{{col.borderBottom}}' width="{{col.width}}">
+                  <i-grid-icon scale="long">
+                    <image wx:if="{{col.amount>0||col.amount==null}}" class="image_frame" src="{{col.iconActive}}" /> 
+                    <image wx:if="{{col.amount==0}}" class="image_frame" src="{{col.icon}}" /> 
+                  </i-grid-icon>
+                  <i-grid-label>
+                    {{col.title}}
+                    <view class="amount" wx:if="{{col.amount!==null}}">({{col.amount}})</view>
+                  </i-grid-label>
+                </i-grid-item>
+                </navigator>
+              </block>
+            </i-row>
+          </block>
+          </i-grid>
+        </view>
+      </view>
+    </block>
+
+  </view>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actionsData}}" show-cancel bind:cancel="closeActions" bind:click="handleActions">
+    <view slot="header" style="padding: 16px">{{actionsTitle}}
+    </view>
+</i-action-sheet>

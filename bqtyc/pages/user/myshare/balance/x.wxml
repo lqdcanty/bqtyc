@@ -1,0 +1,72 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="分享版权力详情"
+></navigation>
+<view class="container" wx:if="{{myshare!=nul}}">
+  <i-panel title="昨天" hide-top hide-bottom>
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">获得版权力</view>
+          <view class="weui-form-preview__value_in-hd">135.546<i-icon size="22" type="redpacket_fill" color="#4db798"/></view>
+        </view>
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">结算日期</view>
+          <view class="weui-form-preview__value">2018-12-28 22:36<i-icon size="16" type="clock" color="#4db798"/></view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">结算周期</view>
+          <view class="weui-form-preview__value">2018-12-01~2019-01-01</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">周期阅读量</view>
+          <view class="weui-form-preview__value">13.5万<i-icon size="16" type="browse" color="#4db798"/></view>
+        </view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active"
+          url='../../x'>去我的版权力</navigator>
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active"
+          url='../certification/x'>查看区块凭证</navigator>
+      </view>
+    </view>
+  </i-panel>
+  <i-panel title="一个月前" hide-top hide-bottom>
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">获得版权力</view>
+          <view class="weui-form-preview__value_in-hd">135.546<i-icon size="22" type="redpacket_fill" color="#4db798"/></view>
+        </view>
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">结算日期</view>
+          <view class="weui-form-preview__value">2018-12-28 22:36<i-icon size="16" type="clock" color="#4db798"/></view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">结算周期</view>
+          <view class="weui-form-preview__value">2018-12-01~2019-01-01</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">周期阅读量</view>
+          <view class="weui-form-preview__value">13.5万<i-icon size="16" type="browse" color="#4db798"/></view>
+        </view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active"
+          url='../../x'>去我的版权力</navigator>
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active"
+          url='../certification/x'>查看区块凭证</navigator>
+      </view>
+    </view>
+  </i-panel>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+</i-action-sheet>
+<view class='loading' wx:if="{{myshare==nul}}" style="position: fixed; top:{{searchBarTop}}px;left:0;bottom:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

@@ -1,0 +1,66 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{navTitle}}" backUrl="{{backUrl}}"
+></navigation>
+<view class="container" >
+  <view class="top-bar" style='top:64px'>
+    <navigator url='../work/x?workSeqNo={{work.workSeqNo}}' hover-class="navigator-hover">
+    <view class="work">
+      <view class="head">
+        <view class="title">
+          <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+          <view class='nameOver'>{{work.name}}</view>
+        </view>
+        <zan-capsule color="#4db798" leftText="词条类型" rightText="{{powerType}}" />
+      </view>
+      <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+    </view>
+    </navigator>
+    
+  </view>
+  <view style='margin-top:50px;'>
+      <view class='panel'>
+        <view class='head'><view class="title">版权信息</view></view>
+        <view class='body'>
+          <view class='copyright' wx:for="{{detailObj.contents}}" wx:for-item="content" wx:key="index">
+            <block>
+              <view class='title' style='width:66px!important;'>{{content.keyWord.key}}</view>
+              <view class="name" style='width:100%;'>
+                <input value='{{content.keyValue.value}}'/>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class='dividing-line'/>
+      <view class='panel'>
+        <view class='head'><view class="title">参考资料</view></view>
+        <view class='body'>
+          <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{detailObj.attachRemark?detailObj.attachRemark:'暂无描述数据'}}</view> 
+          <block wx:for="{{detailObj.attchs}}" wx:for-item="url" wx:key="index" >
+            <view bindtap='blockClick' data-fileType="{{url.fileType}}" data-url="{{url.url}}">
+              <i-cell-group>
+                <i-cell wx:if="{{url.fileType==0}}"  title="[{{index+1}}]{{url.fileName?url.fileName:'参考链接'}}" isLink label="{{url.description}}">
+                  <view class="refer_img" slot="icon"><i-icon size='22' type="accessory" color="#4db798"/></view>
+                </i-cell>
+                <i-cell wx:if="{{url.fileType==1}}" title="[{{index+1}}]{{url.fileName?url.fileName:'参考图片'}}" isLink  label="{{url.description}}">
+                  <image  mode='scaleToFill' src="{{url.url}}" lazy-load='true' class="refer_img" slot="icon"/>  
+                </i-cell>
+                <i-cell wx:if="{{url.fileType==2}}" title="[{{index+1}}]{{url.fileName?url.fileName:'参考文档'}}" is-link  label="{{url.description}}">
+                  <view class="refer_img" slot="icon"><i-icon size='22' type="document" color="#4db798"/></view>   
+                </i-cell>
+              </i-cell-group>
+            </view>
+          </block>
+          <view class="blank-bar" wx:if="{{detailObj.copyrightVo.attchs.length==0}}">作品《{{work.name}}》暂无参考资料</view>
+        </view>
+      </view>
+  </view>
+</view>
+ <block wx:if="{{!authIsShow}}">
+    <authorize  sysType='bqbk' sysTitle="{{sysTitle}}" sysLogo="{{sysLogo}}" bind:authorizeEvent="onauthorizeEvent"></authorize> 
+  </block>
+<view class='loading' wx:if="{{work==null||detailObj==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

@@ -1,0 +1,66 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="相关App"
+>
+</navigation>
+<button class='btn-share' open-type="share" size='mini'><i-icon type="share" size="18" color="#80848f"/></button>
+<view class="container" >
+  <navigator url='../../work/x?work_id={{work.work_id}}' hover-class="navigator-hover">
+  <view class="work">
+    <view class="title">
+      <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+      {{work.name}}
+    </view>
+    <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+  </view>
+  </navigator>
+  <view class="dashboard">
+    <i-grid class="flex-item" border_top='0'>
+      <i-row>
+        <navigator  hover-class="navigator-hover">
+        <i-grid-item border_bottom='0' width="50%">
+          <i-grid-label>
+            <image src="http://fdfs.banquanjia.com.cn/group2/M02/09/39/CgoKDVw9iNeAalK8AAAlmP6xYkI185.png"
+              style="border:0px solid red;width:64px;height:64px;"/>
+            <i-grid-label size='24' class="f_c">免费小说大全小说阅读器</i-grid-label>
+            <i-grid-label size='32'><zan-capsule color="#4db798" leftText="华为" rightText="广州市久邦数码" /></i-grid-label>
+          </i-grid-label>
+        </i-grid-item>
+        </navigator>
+        <navigator  hover-class="navigator-hover">
+        <i-grid-item border_bottom='0' width="50%">
+          <i-grid-label>
+            <image src="http://fdfs.banquanjia.com.cn/group2/M02/09/3D/CgoKDFw9iNeAQMsgAAAqKb3TUMI771.png" 
+              style="border:0px solid red;width:64px;height:64px;"/>
+            <i-grid-label size='24' class="f_c">看书小说电子书追书阅读免费...</i-grid-label>
+            <i-grid-label size='32'><zan-capsule color="#4db798" leftText="华为" rightText="长沙窝游网络" /></i-grid-label>
+          </i-grid-label>
+        </i-grid-item>
+        </navigator>
+      </i-row>
+      <i-row>
+        <navigator  hover-class="navigator-hover">
+        <i-grid-item border_bottom='0' width="50%">
+          <i-grid-label>
+            <image src="http://fdfs.banquanjia.com.cn/group2/M01/09/6E/CgoKC1w9iPiAU2t_AAAVZMOMPh4542.png"
+              style="border:0px solid red;width:64px;height:64px;"/>
+            <i-grid-label size='24' class="f_c">鸿雁传书</i-grid-label>
+            <i-grid-label size='32'><zan-capsule color="#4db798" leftText="应用汇" rightText="广州市久邦数码" /></i-grid-label>
+          </i-grid-label>
+        </i-grid-item>
+        </navigator>
+        <navigator  hover-class="navigator-hover">
+        <i-grid-item border_bottom='0' width="50%">
+          <i-grid-label>
+            <image src="http://fdfs.banquanjia.com.cn/group2/M00/09/6E/CgoKC1w9iPeAZD-jAAApzExJ83M295.png" 
+              style="border:0px solid red;width:64px;height:64px;"/>
+            <i-grid-label size='24' class="f_c">书旗小说</i-grid-label>
+            <i-grid-label size='32'><zan-capsule color="#4db798" leftText="豌豆荚" rightText="广州阿里巴巴文学" /></i-grid-label>
+          </i-grid-label>
+        </i-grid-item>
+        </navigator>
+      </i-row>
+    </i-grid>
+  </view>
+</view>

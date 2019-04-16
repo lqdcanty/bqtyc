@@ -1,0 +1,59 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="我的实名认证"
+>
+</navigation>
+ <form bindsubmit="formSubmit">
+<i-panel title="实名认证信息添加">
+    <i-input value="{{ name }}" maxlength='30' title="姓名" name="name" autofocus placeholder="请输入完整姓名" />
+    <view class='numType clearfix'>
+        <view class='type-t'>证件类型</view>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view class="picker">{{array[index]}}</view>
+        </picker>
+        
+    </view>
+    <view class='numType clearfix'>
+        <view class='type-t'>国家省市</view>
+        <view class='areaBtn' bindtap='translate'>
+        {{province}} {{city}} {{country}}
+        <i-icon type="enter" size="20" color="#80848f"/>
+        </view>
+    </view>
+    <i-input value="{{ certNumber }}" type="number" maxlength='21' name="certNumber" title="证件号码" placeholder="请输入证件号" />
+</i-panel>
+    <input class='hidden' value="{{token}}" name="token" />
+    <input class='hidden'  name="certType" value="{{certType}}"></input>
+    <input class='hidden' value="{{province}}" name="province"></input>   
+    <input class='hidden' value="{{city}}" name="city"></input>   
+    <input class='hidden' value="{{country}}" name="country"></input>
+    <input class='hidden' value="{{attachment1}}" name="attachment1"></input>  
+    <input class='hidden' value="{{attachment2}}" name="attachment2"></input>     \
+    <input class='hidden' value="{{realCode}}" name="realCode"></input>       
+<i-panel>
+    <view class='picWrap clearfix'>
+        <view class='type-t'>证件照</view>
+        <view>
+          <view class='pic-1'>
+            <image src="{{imgurl1}}" bindtap='chooseImage1'></image>
+            <text>身份证正面</text>
+          </view>
+          <view class='pic-2' wx:if="{{index==0}}">
+            <image src="{{imgurl2}}" bindtap='chooseImage2'></image>
+            <text>身份证反面</text>
+          </view>         
+        </view> 
+    </view>
+
+</i-panel>
+<view class='mt30'>
+  <view class="tips">
+      <view class="icon-b"><i-icon type="right" size="18" color="#5CB89A" /></view>
+      已阅读并同意<text>《相关条款》</text></view>
+   <button form-type="submit" class="saveBtn" class='btn'>提交认证</button>
+</view>
+<import src="../../components/area/model.wxml"/>
+<template is="areaData" data="{{...item}}"/>
+</form>
+<i-message id="message" height="{{messageHeight}}"/>

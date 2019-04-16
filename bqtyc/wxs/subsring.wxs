@@ -1,0 +1,25 @@
+var insteadSting={};
+insteadSting.sub = function (val) {
+  if (val.length == 0 || val == undefined) {
+    return;
+  }
+  if (val.length > 0 && val.indexOf('https') > -1) {
+    console.log(val.substring(7), "https")
+    return val.substring(8);
+  } else if (val.length > 0 && val.indexOf('http') > -1) {
+    return val.substring(9);
+  } else {
+    return val;
+  }
+}
+insteadSting.httpString = function (val) {
+  if (val.length == 0 || val == undefined) {
+    return;
+  }
+  if (val.length > 0 && val.indexOf('p.banquanbaike.com') > -1) {
+    return true;
+  } else {
+    return false;
+  }
+}
+module.exports.insteadSting = insteadSting;

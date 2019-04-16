@@ -1,0 +1,31 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="获奖情况"
+>
+</navigation>
+<button class='btn-share' open-type="share" size='mini'><i-icon type="share" size="18" color="#80848f"/></button>
+<view class="container">
+  <navigator url='../../work/x?workSeqNo={{work.workSeqNo}}' hover-class="navigator-hover">
+  <view class="workinfo" style="background-color:#f8f8f8;">
+    <view class="head">
+      <view class="title"> <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+      <view class='nameOver'>{{work.name}}</view>
+      </view>
+      <zan-capsule color="#4db798" leftText="版权类型" rightText="{{powerType}}" />
+    </view>
+    <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+  </view>
+  </navigator>
+  <view class='dividing-line' style='height:16px;'/>
+    <i-steps current="1000" direction="vertical">
+      <i-step wx:for="{{prizes}}" wx:for-item="list" wx:key="index">
+          <view slot="title">{{list.prize}}</view>
+          <view slot="content">{{list.winDate}} {{list.match}}</view>
+      </i-step>
+    </i-steps>
+  </view>
+<view class="blank-bar" wx:if="{{prizes.length==0}}">作品《{{work.name}}》暂无获奖记录</view>
+<view class='loading' wx:if="{{work==null||prizes==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

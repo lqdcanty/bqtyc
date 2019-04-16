@@ -1,0 +1,82 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="游戏版号办理查询"
+>
+</navigation>
+<view class='loading' wx:if="{{orderObj==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>
+<view class="container" wx:if="{{orderObj!=null}}" style="background:#fff!important">
+  <view class="page" >  
+    <view class="ruanzhu">
+      <view class='flex-item info'>
+        <view class="head">
+          <view class="left">
+            <i-tag class='tag' color="green" type='border'>游戏批文号</i-tag>
+            <i-tag class='tag' color="green" style='margin-left:-1px;'>{{orderObj.approvalNo}}</i-tag>
+          </view>
+          <view class="right">
+            <i-tag class='tag' color="green" type='border'>游戏类别</i-tag>
+            <i-tag class='tag' color="green" style='margin-left:-1px;'>{{orderObj.gameType?orderObj.gameType:'无'}}</i-tag>
+          </view>
+           <!-- <view class="right" wx:if="{{verticalCurrent==3}}">
+            <i-tag class='tag' color="green" type='border'>出证日</i-tag>
+            <i-tag class='tag' color="green" style='margin-left:-1px;'>{{orderObj.certificatedDateStr}}</i-tag>
+          </view> -->
+        </view>
+        <view class='flex-item title'>{{orderObj.gameName}}</view>
+        <view class='flex-item subtitle' wx:if="{{orderObj.copyrighterName}}"><i-icon type="eit" size="18" color="#80848f"/>{{orderObj.copyrighterName}}</view>
+        <!-- <view class='flex-item subtitle' wx:if="{{orderObj.urgentRemark}}"><i-icon type="clock" size="18" color="#80848f"/>服务标准：{{orderObj.urgentRemark}}工作日出证</view> -->
+        <!-- <view class='flex-item subtitle' wx:if="{{!orderObj.urgentRemark}}"><i-icon type="clock" size="18" color="#80848f"/>服务标准：无</view> -->
+        <view class='flex-item subtitle' wx:if="{{progressStatus == '游戏版号出证'}}"><i-icon type="service" size="18" color="#80848f"/>游戏版号：{{orderObj.isbnNo}}</view>
+      </view>
+    </view>
+
+    <view class='dividing-line' style='height:16px;background:#fff;'/>
+    <i-steps current="{{verticalCurrent}}" direction="vertical">
+      <i-step>
+          <view slot="title">材料审查</view>
+          <view slot="content" class='step-details'>
+            <view ><i-icon type="prompt" size="18" color="#80848f"/>收到游戏版号相关材料{{text0}}资料初审</view>
+            <view wx:if="{{text0=='未通过'}}"><i-icon type="warning" size="18" color="red"/>材料初审不合格需要更正重新邮寄</view>
+          </view>
+      </i-step>
+      <i-step>
+          <view slot="title">{{progress1}}</view>
+          <view slot="content" class='step-details'>
+            <view><i-icon type="prompt" size="18" color="#80848f"/>向北京市新闻出版局递交材料{{text1}}资料审查</view>
+            <view wx:if="{{text1=='未通过'}}"><i-icon type="warning" size="18" color="red"/>材料被北京市新闻出版局驳回需要更正</view>
+            <view wx:if="{{text1=='已通过'}}" style="color:#4db798"><i-icon type="warning" size="18" color="#4db798"/>下达市局批文</view>
+          </view>
+      </i-step>
+      <i-step>
+          <view slot="title">{{progress2}}</view>
+          <view slot="content" class='step-details'>
+            <view><i-icon type="prompt" size="18" color="#80848f"/>向国家新闻出版署递交材料{{text2}}资料审核</view>
+            <view wx:if="{{text2=='未通过'}}"><i-icon type="warning" size="18" color="red"/>材料被国家新闻出版署驳回需要更正</view>
+          </view>
+      </i-step>
+      <i-step >
+          <view slot="title">游戏版号颁发</view>
+          <view slot="content" class='step-details'>
+            <view><i-icon type="prompt" size="18" color="#80848f"/>国家新闻出版署颁发游戏版号</view>
+            <!-- <view wx:if="{{photoUrl}}" bindtap='showPhoto'><i-icon type="warning" size="18" color="#4db798"/>在线查看证书</view> -->
+          </view>
+      </i-step>
+      <i-step status="finish" wx:if="{{abc}}">
+          
+      </i-step>
+    </i-steps>
+    <view class='ruanzhu'>
+      <i-button bindclick="bhClick" style='width:50%!important' type="success" size="small">游戏出版服务</i-button>
+      <i-button bindclick="homeClick" style='width:50%!important' type="success" size="small">返回首页</i-button>
+    </view>
+    <i-button bindclick="handleClick">了解更多版权信息请查看版权词条</i-button>
+
+  </view>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actionsData}}" show-cancel bind:cancel="closeActions" bind:click="handleActions">
+    <view slot="header" style="padding: 16px">{{actionsTitle}}
+    </view>
+</i-action-sheet>

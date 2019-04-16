@@ -1,0 +1,45 @@
+/* pages/owner/bqradd/x.wxss */
+.flex{
+  display: flex;
+}
+.line{
+  border-bottom: 1px solid #f8f8f8;
+  line-height: 80rpx;
+}
+.flexLeft{
+  width: 260rpx;
+  font-size: 28rpx;
+}
+.flexRight{
+  width: 100%;
+}
+.flexRight .inputCss{
+  line-height: 80rpx;
+  height: 80rpx;
+}
+.tag{
+  margin: 0 5px 5px;
+}
+.buttomSubmit{
+  margin: 20px 20rpx;
+  background: #5CB89A;
+}
+.defaultImage{
+  width: 126rpx;
+  height: 180rpx;
+  margin-top: 20px;
+}
+.radioCss{
+  margin: 0 20rpx;
+  font-size: 28rpx;
+}
+.icon{
+  width: 74rpx;
+  text-align: center;
+}
+.weui-select{
+  color:#999; 
+}
+.tag-right{
+  margin-left:-1px; 
+}

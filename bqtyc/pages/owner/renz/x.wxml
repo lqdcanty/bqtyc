@@ -1,0 +1,62 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="版权人认证"
+>
+</navigation>
+<view class="container">
+ <form bindsubmit="formSubmit">
+  <i-panel title="认证信息">
+    <i-input value="{{obName}}" title="版权人名称：" name="name"  placeholder="" disabled='{{!nameEdit}}'/>
+    <i-input value="{{aliasName}}"  title="版权人简称：" name="aliasName" placeholder="{{aliasName?aliasName:''}}"  disabled="{{editStatus=='wait_audit'}}"/>
+    <view class='form-item' wx:if="{{editStatus!='wait_audit'}}">
+      <view class='form-item-left'>版权人类型：</view>
+      <view class="form-item-right">
+        <picker bindchange="bindCategoryChange" value="{{category}}" range="{{categories}}">
+          <view class="weui-select form-item-right" style='font-size:14px'>{{categories[category]}}</view>
+        </picker>
+      </view>
+    </view>
+     <i-input value="{{categories[category]}}" title="版权人类型："   placeholder="" disabled='true' wx:if="{{editStatus=='wait_audit'}}"/>
+    <input class="hidden" value="{{obligeeType}}" name="obligeeType"></input> 
+    <i-input value="{{address}}" bindinput='addressInputChange' type="number" title="企业地址：" disabled="{{editStatus=='wait_audit'}}" placeholder="" wx:if="{{obligeeType==1}}"/>
+  </i-panel>
+  <i-panel title="证件信息">
+    <i-input value="{{obligee.certNo?obligee.certNo:''}}" disabled="{{editStatus=='wait_audit'}}" title="证件号码：" name="certNo" placeholder="" />
+    <view class='form-item'>
+      <view class='form-item-left'>添加证件材料：</view>
+      <block wx:if="{{editStatus!='wait_audit'}}">
+        <view class='pic-1' wx:if="{{obligeeType==2}}">
+          <image src="{{imgurl1}}" bindtap='chooseImage1'></image>
+        </view>
+        <view class='pic-2' wx:if="{{obligeeType==2}}">
+          <image src="{{imgurl2}}" bindtap='chooseImage2'></image>
+        </view>
+        <view class='pic-1' wx:if="{{obligeeType==1}}">
+          <image src="{{imgurl1}}" bindtap='chooseImage1'></image>
+        </view>
+      </block>
+      <block wx:if="{{editStatus=='wait_audit'}}">
+        <view class='pic-1'>
+          <image src="{{obligee.certAttachUrl1}}" ></image>
+        </view>
+        <view class='pic-2' wx:if="{{obligeeType==2}}">
+          <image src="{{obligee.certAttachUrl2}}" ></image>
+        </view>
+      </block>
+      <input class="hidden" value="{{imgurl1}}" name="certAttachUrl1"></input> 
+      <input class="hidden" value="{{imgurl2}}" name="certAttachUrl2"></input> 
+    </view>
+  </i-panel>
+  <i-panel title="联系人信息">
+      <i-input value="{{obligee.contactName?obligee.contactName:''}}" disabled="{{editStatus=='wait_audit'}}" title="联系人：" name="contactName" placeholder="" />
+      <i-input value="{{obligee.contactPhone?obligee.contactPhone:''}}" disabled="{{editStatus=='wait_audit'}}" title="联系人电话：" name="contactPhone" placeholder="" />
+      <i-input value="{{obligee.contactAddress?obligee.contactAddress:''}}" disabled="{{editStatus=='wait_audit'}}" title="联系地址：" name="contactAddress" placeholder="" />
+      <i-input value="{{obligee.contactEmail?obligee.contactEmail:''}}" disabled="{{editStatus=='wait_audit'}}" title="联系邮箱：" name="contactEmail" placeholder="" />
+  </i-panel>
+    <button form-type="submit" class="saveBtn" style="margin-top:20px" wx:if="{{editStatus=='wait_submit'}}">提交认证</button>
+    <button  class="saveBtn" style="margin-top:20px;background-color:#999 !important;" wx:if="{{editStatus=='wait_audit'}}">待审核</button>
+    <button  class="saveBtn" style="margin-top:20px;background-color:#999 !important;" wx:if="{{editStatus=='pass'}}">已认证</button>
+    <button  class="saveBtn" style="margin-top:20px;background-color:#999 !important;" wx:if="{{editStatus=='reject'}}">已驳回</button>
+  </form>
+</view>

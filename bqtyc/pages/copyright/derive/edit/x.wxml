@@ -1,0 +1,106 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="新增衍生版权词条"
+>
+</navigation>
+<view class="container" >
+  <view class="workinfo" style="background-color:#f8f8f8;">
+    <view class="head">
+      <view class="title"> <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />{{work.title}}</view>
+      <zan-capsule color="#4db798" leftText="版权" rightText="著作权" />
+    </view>
+    <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.subtitle}}</view> 
+  </view>
+  <i-panel title="版权信息" hideBorder='true'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd" style="width: 50%">
+          <picker bindchange="bindModeChange" value="{{category}}" range="{{categories}}">
+            <view class="weui-select">{{categories[category]}}</view>
+          </picker>
+        </view>
+        <view class="weui-cell__hd" style="width: 50%">
+          <picker bindchange="bindRegionChange" value="{{type}}" range="{{types}}">
+            <view class="weui-select">{{types[type]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">作品名称</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{add.alias}}" placeholder="版权作品衍生产生的作品名称"/>
+        </view>
+      </view>
+    </view>
+  </i-panel>
+  <i-panel title="参考资料">
+      <i-cell-group>
+        <i-cell title="[1]参考链接" label="《观山海》【价格 目录 书评 正版】_中国图书网" value="">
+          <view class="refer_img" slot="icon"><i-icon size='22' type="accessory" color="#4db798"/></view>
+          <i-swipeout actions="{{refer_actions}}" slot="footer" i-class="i-swipeout-item">
+            <i-switch value="open" size="large" bind:change="onChange" slot="content">
+              <view slot="open">公开</view>
+              <view slot="close">保密</view>
+            </i-switch>
+          </i-swipeout>
+        </i-cell>
+        <i-cell title="[2]参考图片" label="无备注说明" value="">
+          <image mode='aspectFit' src="https://img3.doubanio.com/f/rohirrim/17ef3d2bea82f1e738b8e8a54b36f1cf1d29b7a9/website/static/pics/bookschina.jpg" lazy-load='true' class="refer_img" slot="icon"/>
+          <i-swipeout actions="{{refer_actions}}" slot="footer" i-class="i-swipeout-item">
+            <i-switch value="open" size="large" bind:change="onChange" slot="content">
+              <view slot="open">公开</view>
+              <view slot="close">保密</view>
+            </i-switch>
+          </i-swipeout>
+        </i-cell>
+        <i-cell title="[3]参考文件" label="委托开发合同" value="">
+          <view class="refer_img" slot="icon"><i-icon size='22' type="document" color="#4db798"/></view>  
+          <i-swipeout actions="{{refer_actions}}" slot="footer" i-class="i-swipeout-item">
+            <i-switch value="open" size="large" bind:change="onChange" slot="content">
+              <view slot="open">公开</view>
+              <view slot="close">保密</view>
+            </i-switch>
+          </i-swipeout>  
+        </i-cell>
+      </i-cell-group>
+      <i-input value="" placeholder="描述词条引用概况，例如‘数据来自于xx网站’" />
+      <i-button bind:click="addReferer" size="small">添加参考资料</i-button>
+  </i-panel>
+  <i-panel title="编辑者联系方式" hideBorder='true'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">联系人</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{add.contact}}" placeholder="请填写联系人姓名"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">联系电话</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{add.contact_phone}}" placeholder="请填写联系人电话"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">联系邮箱</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{add.contact_email}}" placeholder="请填写联系人邮箱"/>
+        </view>
+      </view>
+    </view>
+  </i-panel>
+  <i-button bind:click="handleSave" type="primary" size="large">保存</i-button>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onActionCancel" bind:click="handleAction">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">{{actionsTitle}}</view>
+    </view>
+</i-action-sheet>

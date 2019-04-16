@@ -1,0 +1,17 @@
+{
+  "navigationBarTitleText": "用户评价",
+  "usingComponents": {
+    "zan-capsule": "../../../../../dist/capsule/index",
+    "i-tag": "../../../../dist/tag/index",
+    "i-grid": "../../../../dist/grid/index",
+    "i-page": "../../../../dist/page/index",
+    "i-panel": "../../../../dist/panel/index",
+    "i-grid-item": "../../../../dist/grid-item/index",
+    "i-grid-icon": "../../../../dist/grid-icon/index",
+    "i-grid-label": "../../../../dist/grid-label/index",
+    "i-icon": "../../../../dist/icon/index",
+    "i-rate": "../../../../dist/rate/index",
+    "navigation": "../../../../components/navbar/index",
+    "i-row": "../../../../dist/row/index"
+  }
+}

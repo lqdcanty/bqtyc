@@ -1,0 +1,23 @@
+
+
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{bname}}"
+>
+</navigation>
+<!-- <view class='loading' wx:if="{{orderObj==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view> -->
+<view class='container'>
+  <view class='flex'> <i-icon class='incoBIg' type="success" size="60" color='#4db798' /></view>
+  <view class='title'>您申请办理的{{bname}}已经预约成功，稍后我们客服人员会与您取得联系，请保持电话畅通。</view>
+  <view class='tips' style='padding-bottom:20px;'>关注版权家服务公众号，第一时间获取业务办理进度。</view>
+
+  <official-account></official-account>
+  <!-- <button bindtap='abck'>点击跳转</button> -->
+
+</view>
+
+
+

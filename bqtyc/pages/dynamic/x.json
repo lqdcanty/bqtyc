@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "版权动态",
+  "usingComponents": {
+    "i-card": "../../dist/card/index",
+    "navigation": "../../components/navbar/index"
+  }
+}

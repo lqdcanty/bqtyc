@@ -1,0 +1,15 @@
+<!--pages/imauditor/pass/x.wxml-->
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="词条编辑申请"
+>
+</navigation>
+<view>
+  <image src='http://fdfs.banquanjia.com.cn/group2/M02/02/A8/CgoKDFw1WCSARHqtAABvLMqbXrY084.png'></image>
+  <view class='word-t'>词条编辑申请提交成功</view>
+  <view class='word-b'>您编辑的词条提交，后台审核需要等待3～5个工作日，审核成功后会及时通知您。</view>
+  <navigator url='../../x?workSeqNo={{workSeqNo}}' hover-class="none">
+    <view class='yesBtn'>确定</view>
+  </navigator>
+</view>

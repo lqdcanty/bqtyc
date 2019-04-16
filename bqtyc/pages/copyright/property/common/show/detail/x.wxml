@@ -1,0 +1,69 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{right_category}}"
+></navigation>
+<button class='share' open-type="share" size='mini'><i-icon type="share" size="18" color="#80848f"/></button>
+ <view class="container">
+  <navigator url='../../../../../work/x?workSeqNo={{work.workSeqNo}}' hover-class="navigator-hover">
+    <view class="workinfo">
+      <view class="head">
+        <view class="title"> <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+        <view class='nameOver'>{{work.name}}</view>
+        </view>
+        <zan-capsule color="#4db798" leftText="版权类型" rightText="{{powerType}}" />
+      </view>
+      <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+    </view>
+  </navigator>
+  <view style="border-bottom: 1px solid #e8e8e8;">
+    <i-cell-group>
+      <i-cell title="{{scopeWord}}" label='{{ctClass}}' value="创建词条" is-link bind:click="pledge_p">
+        <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+      </i-cell>
+    </i-cell-group>
+  </view>
+  <view class="caption-wrap">
+    <i-collapse>
+      <i-collapse-item title="词条介绍" name="name1">
+          <view slot="content">{{scope_desciption}}</view>
+      </i-collapse-item>
+    </i-collapse>
+  </view>
+
+    <view class='body'>
+      <block wx:for="{{chains}}" wx:for-item="data" wx:key="name">
+      <view class="data-item" wx:if="{{data.display}}">
+        <view class="content" bindtap="collapse" data-index="{{data.indx}}"   data-citiaoCode="data.propertyViewVo.citiaoCode" style="padding-left:{{data.padding}}px;">
+          <i-icon type="{{data.icon}}" size="14"/>        
+          {{data.propertyViewVo.name}}
+        </view>
+        <view class="right" wx:if="{{data.propertyViewVo.citiaoCode!=null}}">
+          <view class='status'>
+            <block class="tag_type" wx:if="{{data.propertyViewVo.tag!=null}}">{{data.propertyViewVo.tag}}</block>
+            <i-icon size="18" wx:if="{{!data.propertyViewVo.mine&data.propertyViewVo.status=='pass'}}" type="success" color="#4db798"/>
+            <i-icon size="18" wx:if="{{data.propertyViewVo.mine&data.propertyViewVo.status=='pass'}}" type="success" color="#5cadff"/>
+            <i-icon size="18" wx:if="{{data.propertyViewVo.mine&data.propertyViewVo.status=='wait_audit'&data.propertyViewVo.operation=='add'}}" type="add" color="#4db798"/>
+            <i-icon size="18" wx:if="{{data.propertyViewVo.mine&data.propertyViewVo.status=='wait_audit'&data.propertyViewVo.operation=='update'}}" type="brush" color="#4db798"/>
+            <i-icon size="18" wx:if="{{data.propertyViewVo.mine&data.propertyViewVo.status=='wait_audit'&data.propertyViewVo.operation=='delete'}}" type="delete" color="#ed3f14"/>
+          </view>
+          <view class='more' bindtap='openActions' data-editEnable="{{data.propertyViewVo.editEnable}}" data-mine="{{data.propertyViewVo.mine}}" data-status="{{data.propertyViewVo.status}}" data-operation="{{data.propertyViewVo.operation}}" data-citiaoCode="{{data.propertyViewVo.citiaoCode}}" style="background-color:{{data.status_color}};">
+            <i-icon size="20" type="more" color="#fff"/>
+          </view>
+        </view>
+      </view>
+      </block>
+    </view>
+  </view>
+<!-- </view> -->
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">{{status_info}}</view>
+        <text>{{oper_tips}}</text>
+    </view>
+</i-action-sheet>
+<view class="blank-bar" wx:if="{{chains.length==0}}">作品《{{work.name}}》还没有任何版权词条，尝试添加版权词条完善版权信息，将获得【版权力】的奖励</view>
+
+<view class='loading' wx:if="{{work==null||chains==null}}" style="position: fixed; top:{{navHeight}}px;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif' />
+</view>

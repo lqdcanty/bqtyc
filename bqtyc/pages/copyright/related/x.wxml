@@ -1,0 +1,82 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="使用版权"
+></navigation>
+<navigator url='../../work/x?work={{work.workSeqNo}}' hover-class="navigator-hover">
+    <view class="workinfo">
+      <view class="head">
+        <view class="title"> <zan-capsule color="#4db798" leftText="{{work.type}}" rightText="{{work.category}}" />
+        <view class='nameOver'>{{work.name}}</view>
+        </view>
+        <zan-capsule color="#4db798" leftText="版权类型" rightText="{{powerType}}" />
+      </view>
+      <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+    </view>
+  </navigator>
+  <view style="border-bottom: 1px solid #e8e8e8;">
+    <i-cell-group>
+      <i-cell title="使用版权" label='创作中使用的第三方版权' value="创建词条" is-link url="../../welcome/x?word=使用版权">
+        <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+      </i-cell>
+    </i-cell-group>
+  </view>
+  <view class="caption-wrap" >
+    <i-collapse>
+      <i-collapse-item title="词条介绍" name="name1">
+          <view slot="content">当前版权作品创作中使用第三方版权的情况。</view>
+      </i-collapse-item>
+    </i-collapse>
+  </view>
+<block wx:for="{{copyright_derive}}" wx:for-item="data" wx:key="workSeqNo">
+<view class='dividing-line'/>
+<view class='flex-item panel'>
+  <view class='head'>
+    <view class="left">
+      <i-tag class='tag' color="green" type='border'>{{data.type}}</i-tag>                                                                                 {{data.name}}
+    </view>
+    <!--  -->
+    <block wx:if="{{data.title}}">
+      <navigator url="../../work/x?workSeqNo={{data.workSeqNo}}" hover-class="navigator-hover">
+      <view class="right"><i-icon size="16" type="enter" color="#4db798"/></view>
+      </navigator>
+    </block>
+  </view>
+  <view class='body copyright_info'>
+    <view class="flex-item remark"><i-icon size="16" type="prompt" color="gray"/>{{data.title}}</view>
+    <view class="flex-item tags">
+      <block wx:for="{{data.tags}}" wx:for-item="origin" wx:key="index">
+      <!--  -->
+      <view class="keyval" >
+      <i-tag class='tag' color="green">{{origin.keyWord.key}}</i-tag>
+      <i-tag class='tag tag-right' wx:for="{{origin.keyValue.value}}" wx:for-item="tag" wx:key="index" color="green" type='border'>{{tag}}</i-tag>
+      </view>
+      </block>
+    </view>
+    <view class='copyright' wx:if="{{data.information.length>0}}" wx:for="{{data.information}}" wx:for-item="info" wx:key="index">
+      <view class='title'>{{info.key}}</view>
+      <view class="name">
+        <input value='{{info.name}}'/>
+        <view class='right'>
+          <view class='status'>
+            <i-icon size="16" type="success" color="#19be6b"/>
+          </view>
+          <view class='more' bindtap='openActions' data-citiaoCode="{{info.citiaoCode}}" style="background-color:#19be6b">
+            <i-icon size="16" type="more" color="#fff"/>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</block>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">{{status_info}}</view>
+        <text>{{oper_tips}}</text>
+    </view>
+</i-action-sheet>
+<view class="blank-bar" wx:if="{{copyright_derive.length==0}}">作品《{{work.name}}》还没有任何版权词条，尝试添加版权词条完善版权信息，将获得【版权力】的奖励</view>
+<view class='loading' wx:if="{{work==null||copyright_derive==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif' />
+</view>

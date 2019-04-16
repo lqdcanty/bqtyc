@@ -1,0 +1,84 @@
+
+.amount{
+  color: #e0e0e0;
+  font-size: 12px;
+}
+.dashboard{
+  background-color: #fff;
+}
+.dashboard-level {
+  position: fixed;
+  top: 10px;
+  left: 7px;
+}
+
+.dashboard-number{
+  padding-top: 32px;
+  font-size: 64px;
+  font-weight: bold;
+  color: #1c2438;
+  font-family: 'Times New Roman', Times, serif;
+  border: 0px solid red;
+}
+.dashboard-number .icon{
+  position: absolute;
+  right: 25%;
+  top: 0;
+}
+.weui-form-preview{
+    margin-bottom: 25px;
+    background-color: #fff;
+}
+
+.weui-form-preview__value{
+  font-size:14px;
+  color:#1c2438;
+}
+
+.worktitle{
+  color:#1c2438;
+  border: 0px solid rebeccapurple;
+  font-size:14px;
+  font-weight: bold;
+  text-align: left;
+  width: 88%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  text-align-last: left;
+}
+.weui-form-preview__hd{
+  border: 0px solid rebeccapurple;
+  position:relative;
+  padding:0px 15px;
+  padding-left: 5px;
+  text-align:right;
+  line-height:2.5em
+}
+
+.work_img{
+  width:36px;
+  height:36px;
+  border-radius: 10rpx;
+  border: 1px solid #f8f8f8;
+}
+
+.work {
+  background-color: #fff;
+  padding-top: 4px;
+}
+.work .head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.work .head .title {
+  color: #fff;
+  font-size: 28rpx;
+}
+.work .remark {
+  color: #80848f;
+  font-size: 24rpx;
+  padding-left:3px;
+  padding-right:3px;
+}

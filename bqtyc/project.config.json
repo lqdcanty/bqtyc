@@ -1,0 +1,66 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.1",
+	"appid": "wx7d1808b88bcec345",
+	"projectname": "%E7%89%88%E6%9D%83%E5%A4%A9%E7%9C%BC%E6%9F%A5123",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
+			"list": [
+				{
+					"id": 0,
+					"name": "跟新模式",
+					"pathName": "pages/copyright/complete/x",
+					"query": "workSeqNo=201902111059114h0179&token=87337BCE79018A75C80FA22348F40B62&status=pass",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "测试场景值",
+					"pathName": "pages/copyright/personal/edit/x",
+					"query": "workSeqNo=155145936541518076&citiaoCode=20190326100720b10120&status=wait_audit&isMine=true",
+					"scene": 1001
+				},
+				{
+					"id": 2,
+					"name": "我的编辑词条",
+					"pathName": "pages/examinedetail/x",
+					"query": "status=wait_audit&type=realName",
+					"scene": null
+				}
+			]
+		}
+	}
+}

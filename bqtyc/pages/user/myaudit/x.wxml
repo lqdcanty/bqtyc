@@ -1,0 +1,244 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="我的词条审核"
+></navigation>
+<view style='height:10px'></view>
+<view class="container" wx:if="{{myedit!=nul}}">
+  <view class="dashboard">
+    <i-grid class="flex-item" border_top='0'>
+      <i-row>
+        <i-grid-item border_bottom='0' scale="short">
+          <i-grid-icon scale="short">
+            <i-icon size="20" type="time_fill" color="#4db798"/>
+          </i-grid-icon>
+          <i-grid-label>{{myedit.count_audit}}</i-grid-label>
+        </i-grid-item>
+        <i-grid-item border_bottom='0' scale="short">
+          <i-grid-icon scale="short">
+            <i-icon size="20" type="like_fill" color="#4db798"/>
+          </i-grid-icon>
+          <i-grid-label>{{myedit.count_success}}</i-grid-label>
+        </i-grid-item>
+        <i-grid-item border_bottom='0' scale="short">
+          <i-grid-icon scale="short">
+            <i-icon size="20" type="transaction_fill" color="#4db798"/>
+          </i-grid-icon>
+          <i-grid-label>{{myedit.count_reject}}</i-grid-label>
+        </i-grid-item>
+      </i-row>
+    </i-grid>
+  </view>
+  <i-tabs current="{{ tabIndx }}" color="#4db798" bindchange="handleChange">
+      <i-tab key="tab1" title="待审核"></i-tab>
+      <i-tab key="tab2" title="已收录"></i-tab>
+      <i-tab key="tab3" title="被拒绝"></i-tab>
+  </i-tabs>
+  <block wx:if='{{tabIndx=="tab1"}}' >
+  <view wx:if='{{citiaoWait != null}}' wx:for="{{citiaoWait}}" wx:for-item="wait" wx:key="indx">
+    <view class='dividing-line' style='height:8px;'/>
+    <view class="weui-form-preview" >
+      <view class="weui-form-preview__hd">
+        <navigator url="../../work/x?workSeqNo={{wait.workSeqNo}}"><!--hover-class="navigator-hover"-->
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label worktitle">
+            <zan-capsule color="#4db798" leftText="{{wait.category}}" rightText="{{wait.type}}" />{{wait.name}}
+          </view>
+          <view class="weui-form-preview__value_in-hd"><i-icon size="14" type="enter" color="#4db798"/></view>
+        </view>
+        </navigator>
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">编辑者</view>
+          <view class="weui-form-preview__value">{{wait.editor}}<image mode='aspectFill' src="{{wait.editImage}}" lazy-load='true' class="user_img"/></view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">操作类型</view>
+          <view class="weui-form-preview__value">{{wait.operateType}}<i-icon size="16" type="add" color="#4db798"/></view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">操作日期</view>
+          <view class="weui-form-preview__value">{{wait.operateTime}}<i-icon size="16" type="clock" color="#4db798"/></view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">版权力价值</view>
+          <view class="weui-form-preview__value">{{wait.score}}<i-icon size="16" type="transaction_fill" color="#4db798"/></view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">分配方案</view>
+          <view class="weui-form-preview__value">{{wait.plan}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">词条类型</view>
+          <view class="weui-form-preview__value">{{wait.bigType}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">版权类型</view>
+          <view class="weui-form-preview__value">{{wait.smallType}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">词条内容</view>
+          <view class="weui-form-preview__value">{{wait.content}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">审核结果</view>
+          <view class="weui-form-preview__value">{{wait.auditStatus}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">审核者</view>
+          <view class="weui-form-preview__value">
+            <view wx:if="{{wait.auditor == null || wait.auditor.length == 0}}">暂无数据</view>
+            <view wx:if="{{wait.auditor != null || wait.auditor.length > 0}}" class="weui-form-preview__value" wx:for="{{wait.auditor}}" wx:for-item="auditor" wx:key="indx" style='float:left;'>
+              <image mode='aspectFill' src="{{auditor}}" lazy-load='true' class="user_img"/>
+            </view>
+          </view>
+        </view>
+        <view class="weui-form-preview__item" wx:if="{{wait.operateType == '删除'}}">
+          <view class="weui-form-preview__label">删除原因</view>
+          <view class="weui-form-preview__value">
+            <view wx:if="{{wait.delReason == null || wait.delReason == ''}}">暂无数据</view>
+            <view wx:if="{{wait.delReason != null && wait.delReason != ''}}" class="weui-form-preview__value">
+                {{wait.delReason}}
+            </view>
+          </view>
+        </view>
+        <!-- <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">引用资料</view>
+          <view class="weui-form-preview__value">
+            <view wx:if="{{wait.attachs == null || wait.attachs.length == 0}}">暂无数据</view>
+            <view wx:if="{{wait.attachs != null && wait.attachs.length > 0}}" wx:for="{{wait.attachs}}" wx:for-item="attach" wx:key="indx">
+              <view bindtap='clickUrl' data-url='{{attach.url}}'>{{attach.description}}</view> 
+            </view>
+          </view>
+        </view> -->
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">截至日期</view>
+          <view class="weui-form-preview__value">{{wait.endTime}}<i-icon size="16" type="clock" color="#4db798"/></view>
+        </view>
+      </view>
+      <!-- <view class="weui-form-preview__ft" wx:if="{{wait.ownerStatus == '0'}}">
+          <view class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="openActions">
+                查看编辑内容
+          </view>
+      </view> -->
+      <view class="weui-form-preview__ft" wx:if="{{wait.ownerStatus == '0'}}">
+          <view class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">
+            <navigator url='./detail/x?status=0&citiaoCode={{wait.citiaoCode}}&tabIndx=tab1' hover-class="navigator-hover">
+               立即审核
+            </navigator>
+          </view>
+      </view>
+      <view class="weui-form-preview__ft" wx:if="{{wait.ownerStatus == '1'}}">
+          <view class="weui-form-preview__btn weui-form-preview__btn_primary" style="color:#000000;background-color:#D8D8D8">
+              已投票通过
+            <!-- <navigator url='./detail/x?status=1&citiaoCode={{wait.citiaoCode}}&tabIndx=tab1' hover-class="navigator-hover">
+            </navigator>    -->
+          </view>
+      </view>
+      <view class="weui-form-preview__ft" wx:if="{{wait.ownerStatus == '2'}}">
+          <view class="weui-form-preview__btn weui-form-preview__btn_primary" style="color:#000000;background-color:#D8D8D8">
+              已投票拒绝
+            <!-- <navigator url='./detail/x?status=1&citiaoCode={{wait.citiaoCode}}&tabIndx=tab1' hover-class="navigator-hover">
+            </navigator>     -->
+          </view>
+      </view>
+      <view class="weui-form-preview__ft" wx:if="{{wait.ownerStatus == '3'}}">
+          <view class="weui-form-preview__btn weui-form-preview__btn_primary" style="color:#000000;background-color:#D8D8D8">
+              审核中
+            <!-- <navigator url='./detail/x?status=1&citiaoCode={{wait.citiaoCode}}&tabIndx=tab1' hover-class="navigator-hover">
+            </navigator>     -->
+          </view>
+      </view>
+    </view>
+    <i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" data-citiao="{{wait.citiaoCode}}" data-bigType="{{wait.bigType}}" data-smallType="{{wait.smallType}}" data-workSeqNo="{{wait.workSeqNo}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+    </i-action-sheet>
+  </view>
+  <view wx:if='{{citiaoWait==null || citiaoWait.length==0}}'>
+    <view class="blank-bar">暂无数据</view>
+  </view>
+  </block>
+  <block wx:if='{{tabIndx=="tab2"}}'>
+    <view wx:if='{{tabIndx=="tab2"}}' wx:for="{{citiaoPass}}" wx:for-item="pass" wx:key="indx">
+      <i-panel title="{{pass.date}}" hide-top>
+          <view wx:for="{{pass.citiaos}}" wx:for-item="passCitiao" wx:key="indx">
+            <i-cell title="{{passCitiao.name}}" label="{{passCitiao.bigClass}}{{passCitiao.smallClass}}  {{passCitiao.time}}" value="{{passCitiao.score}}力" is-link url="../myedit/detail/x?citiaoCode={{passCitiao.citiaoCode}}">
+              <image mode='aspectFill' src="{{passCitiao.image?passCitiao.image:'../../../img/detail/img_mr_default.png'}}" lazy-load='true' class="work_img" slot="icon"/>
+            </i-cell>
+          </view>
+      </i-panel> 
+    </view>
+    <view wx:if='{{citiaoPass==null || citiaoPass.length==0}}'>
+      <view class="blank-bar">暂无数据</view>
+    </view>
+  </block>
+  <block wx:if='{{tabIndx=="tab3"}}' >
+  <view wx:if='{{citiaoReject != null}}' wx:for="{{citiaoReject}}" wx:for-item="reject" wx:key="indx">
+    <view class='dividing-line' style='height:8px;'/>
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+        <navigator url="../../work/x?workSeqNo={{reject.workSeqNo}}" hover-class="navigator-hover">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label worktitle">
+            <zan-capsule color="#f759ab" leftText="{{reject.category}}" rightText="{{reject.type}}" />{{reject.name}}
+          </view>
+          <view class="weui-form-preview__value_in-hd"><i-icon size="14" type="enter" color="#f759ab"/></view>
+        </view>
+        </navigator>
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">操作类型</view>
+          <view class="weui-form-preview__value">{{reject.operateType}}<i-icon size="16" type="add" color="#f759ab"/></view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">操作日期</view>
+          <view class="weui-form-preview__value">{{reject.operateTime}}<i-icon size="16" type="clock" color="#f759ab"/></view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">版权力价值</view>
+          <view class="weui-form-preview__value">{{reject.score}}<i-icon size="16" type="transaction_fill" color="#4db798"/></view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">词条类型</view>
+          <view class="weui-form-preview__value">{{reject.bigType}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">版权类型</view>
+          <view class="weui-form-preview__value">{{reject.smallType}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">词条内容</view>
+          <view class="weui-form-preview__value">{{reject.content}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">审核结果</view>
+          <view class="weui-form-preview__value">{{reject.auditStatus}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">截至日期</view>
+          <view class="weui-form-preview__value">{{reject.endTime}}<i-icon size="16" type="clock" color="#4db798"/></view>
+        </view>
+        <view class="weui-form-preview__item" wx:if='{{reject.rejectReason!=null && reject.rejectReason!=""}}'>
+          <view class="weui-form-preview__label">拒绝原因</view>
+          <view class="weui-form-preview__value">{{reject.rejectReason}}</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <!-- <view class="weui-form-preview__btn weui-form-preview__btn_warn" hover-class="weui-form-preview__btn_active"
+          bindtap="openActions" style='color:#f759ab'>查看</view> -->
+          <view class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">
+            <navigator url='./detail/x?status=1&citiaoCode={{reject.citiaoCode}}&tabIndx=tab3' hover-class="navigator-hover">
+                查看编辑内容
+            </navigator>
+          </view>
+      </view>
+    </view>
+    <i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" data-citiao="{{reject.citiaoCode}}" data-bigType="{{reject.bigType}}"        data-workSeqNo="{{reject.workSeqNo}}" data-smallType="{{reject.smallType}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+    </i-action-sheet>
+  </view>
+  <view wx:if='{{citiaoReject==null || citiaoReject.length==0}}'>
+    <view class="blank-bar">暂无数据</view>
+  </view>
+  </block>
+</view>

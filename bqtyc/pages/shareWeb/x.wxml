@@ -1,0 +1,3 @@
+<!--pages/shareWeb/x.wxml-->
+
+<web-view src="{{url}}"></web-view>  

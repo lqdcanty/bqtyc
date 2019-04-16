@@ -1,0 +1,26 @@
+/* pages/welcome/x.wxss */
+.blank-barin{
+  font-size: 20px;
+  line-height: 30px;
+  margin-top: 40px;
+  color: #333;
+  text-align: center;
+}
+.weui-footer{
+  position: absolute;
+  bottom:-90px;
+  width: 100%;
+  left: 0
+}
+page{
+  background: #f8f8f8
+}
+.containner image{
+  width: 215px;
+  height: 33px;
+  display: block;
+  margin: 0 auto;
+}
+.containner{
+  padding-top: 180px;
+}

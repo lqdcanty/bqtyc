@@ -1,0 +1,8 @@
+/* pages/copyright/property/common/show/x.wxss */
+.head{
+  padding-bottom:8px!important;
+}
+.amount{
+  color: lightgray;
+  font-size: 28rpx;
+}

@@ -1,0 +1,19 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="版权词条审核"
+></navigation>
+ <view class="container">
+  <i-panel title="驳回原因" hideBorder='true'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+              <textarea class="weui-textarea" bindinput='introBindtap' maxlength="128" placeholder="请填写驳回原因" style="height: 64px"></textarea>
+              <view class="weui-textarea-counter">{{introLen}}/128</view>
+          </view>
+      </view>
+    </view>
+  </i-panel>
+  <i-button bind:click="aduitReject" type="primary" size="large">确定</i-button>
+</view>
+

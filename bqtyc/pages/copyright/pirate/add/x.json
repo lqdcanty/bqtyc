@@ -1,0 +1,22 @@
+{
+  "navigationBarTitleText": "新增侵权举报词条",
+  "usingComponents": {
+    "i-action-sheet": "../../../../dist/action-sheet/index",
+    "zan-capsule": "../../../../dist/capsule/index",
+    "i-grid": "../../../../dist/grid/index",
+    "i-page": "../../../../dist/page/index",
+    "i-panel": "../../../../dist/panel/index",
+    "i-grid-item": "../../../../dist/grid-item/index",
+    "i-grid-icon": "../../../../dist/grid-icon/index",
+    "i-grid-label": "../../../../dist/grid-label/index",
+    "i-icon": "../../../../dist/icon/index",
+    "i-row": "../../../../dist/row/index",
+    "i-index": "../../../../dist/index/index",
+    "i-index-item": "../../../../dist/index-item/index",
+    "i-radio": "../../../../dist/radio/index",
+    "i-button":"../../../../dist/button/index",
+    "i-message": "../../../../dist/message/index",
+    "i-input": "../../../../dist/input/index",
+    "navigation": "../../../../components/navbar/index"
+  }
+}

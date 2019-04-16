@@ -1,0 +1,46 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="分享版权力详情"
+></navigation>
+<view class="container" wx:if="{{myshare!=nul}}">
+  <view class="weui-form-preview">
+    <view class="weui-form-preview__hd">
+      <navigator url="../../work/x" hover-class="navigator-hover">
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label worktitle">
+          <zan-capsule color="#4db798" leftText="文字" rightText="文化" />神雕侠侣
+        </view>
+        <view class="weui-form-preview__value_in-hd"><i-icon size="14" type="enter" color="#4db798"/></view>
+      </view>
+      </navigator>
+    </view>
+    <view class="weui-form-preview__bd">
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">分享者</view>
+        <view class="weui-form-preview__value">静谧也哉<image mode='aspectFill' src="http://wx.qlogo.cn/mmhead/ajNVdqHZLLCBO5nGSF4TCF2iboicbkzM63icia1ZnopdEMCUF6gx6yecibw/64/0" lazy-load='true' class="user_img"/></view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">首次分享日期</view>
+        <view class="weui-form-preview__value">2018-12-28 22:36<i-icon size="16" type="clock" color="#4db798"/></view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">转发次数</view>
+        <view class="weui-form-preview__value">13<i-icon size="16" type="time" color="#4db798"/></view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">版权力价值</view>
+        <view class="weui-form-preview__value">每用户打开获得0.0001阅读版权力<i-icon size="16" type="transaction_fill" color="#4db798"/></view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">累计阅读量</view>
+        <view class="weui-form-preview__value">13.5万<i-icon size="16" type="browse" color="#4db798"/></view>
+      </view>
+    </view>
+  </view>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+</i-action-sheet>
+<view class='loading' wx:if="{{myshare==nul}}" style="position: fixed; top:{{searchBarTop}}px;left:0;bottom:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

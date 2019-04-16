@@ -1,0 +1,78 @@
+.work {
+  background-color: #fff;
+  padding-top: 4px;
+}
+.work .head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.work .head .title {
+  color:#1c2438;
+  font-size: 28rpx;
+}
+.work .remark {
+  color: #80848f;
+  font-size: 24rpx;
+  padding-left:3px;
+  padding-right:3px;
+}
+.caption-wrap{
+  background-color: #f8f8f8;
+  color: #80848f;
+  font-size: 22rpx;
+  border: 0px solid red;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.add_copyright {
+  padding-right: 8px;
+  font-size:28rpx;
+  text-decoration: underline;
+}
+.bigtitle {
+  justify-content: center;
+  color: #1c2438;
+  font-weight: bold;
+  font-size:16px;
+}
+.copyright_info .tags {
+  margin-left:4px;
+  margin-bottom: 7px;
+   display: flex;
+  flex-wrap:  wrap;
+}
+.right-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+.right-bar .oper {
+  display: flex;
+  flex-direction: row;
+  border: 0px solid red;
+  justify-content: right;
+}
+
+.right-bar .oper .status{
+  float:left;
+  text-align: center;
+  height: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.right-bar .oper .more{
+  float:right;
+  text-align: center;
+  height: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #19be6b;
+}
+
+.right-bar .goto {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+

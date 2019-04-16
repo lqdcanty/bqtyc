@@ -1,0 +1,25 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="游戏出版"
+>
+</navigation>
+<button class='btn-share' open-type="share" size='mini'><i-icon type="share" size="18" color="#80848f"/></button>
+<view class="container" style="margin-top:20px;">
+    <i-steps>
+        <i-step status="process">
+            <view slot="title">在线填写申请</view>
+            <view slot="content"></view>
+        </i-step>
+        <i-step status="process">
+            <view slot="title">邮寄软著材料</view>
+            <view slot="content"></view>
+        </i-step>
+        <i-step status="process">
+            <view slot="title">软著出证</view>
+            <view slot="content"></view>
+        </i-step>
+    </i-steps>
+    <view class='intro'>这里介绍我们软著办理的优势与特点吸引用户点击立刻办理</view>
+</view>
+<button bindtap="toDo" type="primary" class="btn-bottom">立刻办理</button>

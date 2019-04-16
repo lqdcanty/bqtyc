@@ -1,0 +1,24 @@
+/**index.wxss**/
+/* 搜索框提示文字样式 */ 
+.search-bar {
+  position: fixed;top: 0px;background-color: #000;width: 100%;padding-bottom:5px;z-index: 99999999;
+}
+page{
+  background: #f8f8f8
+}
+.tags {
+  margin: 6px 6px;flex-direction: row;
+}
+.tags view,.tags navigator{
+  display: inline-block;
+  margin-right: 5px
+}
+.card-footer {
+  border-bottom:0 !important;
+}
+.owner-tags{
+  display: flex;flex-direction: row;padding:5px 0;border-bottom:1px #e0e0e0 solid;
+}
+.search-tips-wrap{
+  top:40px; position: absolute
+}

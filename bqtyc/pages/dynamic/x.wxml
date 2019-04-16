@@ -1,0 +1,17 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="版权动态"
+>
+</navigation>
+ <view class='body'>
+      <block wx:for="{{dynamics}}" wx:for-item="item" wx:key="name">
+          <navigator url="../dynamic/detail/x?keyword={{item.dynamicCode}}" hover-class="navigator-hover">
+          <i-card title="{{item.name}}" extra="" thumb="{{item.image}}">
+              <view slot="content">{{item.content}}</view>
+              <!-- <view slot="footer">尾部内容</view> -->
+          </i-card>
+          </navigator>
+      </block>
+  </view>
+

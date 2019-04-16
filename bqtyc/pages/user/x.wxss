@@ -1,0 +1,45 @@
+page{
+  background-color:#F8F8F8;
+}
+.amount{
+  color: #e0e0e0;
+  font-size: 12px;
+}
+.dashboard{
+  background-color: #fff;
+}
+.dashboard-level {
+  position: absolute;
+  top: 10px;
+  left: 7px;
+}
+
+.dashboard-number{
+  padding-top: 32px;
+  font-size: 44px;
+  font-weight: bold;
+  color: #1c2438;
+  font-family: 'Times New Roman', Times, serif;
+  border: 0px solid red;
+}
+.dashboard-number .icon{
+  position: absolute;
+  right: 25%;
+  top: 0;
+}
+
+.lg-ceel .i-cell-text{
+  line-height: 80rpx
+}
+.amount{
+  color:#e0e0e0;
+font-size:12px;
+margin-bottom: 10px
+}
+.border-line{
+
+  border-bottom:1px solid #e9eaec;
+}
+.container{
+  position: relative
+}

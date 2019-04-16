@@ -1,0 +1,129 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="站点跟踪"
+>
+</navigation>
+<view class="container" style="background-color:#fff;">
+     <navigator url='' hover-class="navigator-hover">
+      <view class="work">
+        <view class="title">
+          <zan-capsule color="#4db798" leftText="{{workDetailObj.category}}" rightText="{{workDetailObj.type}}" />
+         {{workDetailObj.name}}
+        </view>
+        <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{workDetailObj.workTitle}}</view> 
+      </view>
+      </navigator>
+
+      <view class='clearfix' wx:if="{{workDetailObj.category == '影视'}}">
+
+      <block wx:for="{{sitelogo}}" wx:for-item="item" wx:key="index" >         
+          <view>
+            <i-grid-item class="i_center" border_bottom='1' width="33.3%">  
+              <view bindtap='clickLink' data-url="{{item.linkUrl}}" data-method="{{item.method}}">
+                <view>
+                  <image class="icon_i" src="{{item.logo}}" />
+                </view>  
+                <view class="logoname">{{item.cname}}</view>        
+                <view bindtap="tapTag" wx:if="{{item.isShow}}" class="no_s i-tag-yellow-border i-tag-disable">有上架</view>
+                <view bindtap="tapTag" wx:if="{{!item.isShow}}" class="no_s i-tag-disabled-border i-tag-disable">未知</view>
+              </view>
+            </i-grid-item>
+            </view>       
+        </block>
+
+        <!-- <block wx:for="{{movielogo}}" wx:for-item="item" wx:key="index" >         
+            <view>
+              <i-grid-item class="i_center" border_bottom='1' width="33.3%">  
+                <navigator url="../../../components/webview/c?url={{item.link}}" >           
+                <view bindtap='clickLink' data-url="{{item.link}}">
+                  <view>
+                    <image class="icon_i" src="{{item.url}}" />
+                  </view>  
+                  <view class="logoname">{{item.name}}</view>        
+                  <view bindtap="tapTag"class="no_s i-tag-disabled-border i-tag-disable">未知</view>
+                  <view bindtap="tapTag"class="no_s i-tag-green-border i-tag-disable">有授权</view>
+                  <view bindtap="tapTag"class="no_s i-tag-red i-tag-disable">有举报</view>
+                  <view bindtap="tapTag"class="no_s  i-tag-blue-border i-tag-disable">是连接</view>
+                  <view bindtap="tapTag"class="no_s i-tag-yellow-border i-tag-disable">有上架</view>
+                </navigator>
+                </view>
+              </i-grid-item>
+              </view>       
+        </block> -->
+
+       </view>
+
+        <view class='clearfix' wx:if="{{workDetailObj.category == '动漫'}}">
+        <block wx:for="{{Comiclogo}}" wx:for-item="item" wx:key="index">   
+            <view>
+              <i-grid-item class="i_center" border_bottom='1' width="33.3%">  
+              <!-- <navigator url="../../../components/webview/c?url={{item.link}}" >  -->
+                <view bindtap='clickLink_d' data-url="{{item.link}}">              
+                  <view>
+                    <image class="icon_i" src="{{item.url}}" />
+                  </view> 
+                  <view class="logoname">{{item.name}}</view>          
+                  <view bindtap="tapTag"class="no_s i-tag-disabled-border i-tag-disable">未知</view>
+              <!-- </navigator> -->
+               </view>
+              </i-grid-item>
+              </view>
+        </block>
+       </view>
+
+        <view class='clearfix' wx:if="{{workDetailObj.category == '音乐' }}">
+        <block wx:for="{{musiclogo}}" wx:for-item="item" wx:key="index">   
+            <view>
+              <i-grid-item class="i_center" border_bottom='1' width="33.3%"> 
+               <!-- <navigator url="../../../components/webview/c?url={{item.link}}" >                   -->
+               <view bindtap='clickLink_m' data-url="{{item.link}}"> 
+                  <view>
+                    <image class="icon_i" src="{{item.url}}" />
+                  </view>
+                  <view class="logoname">{{item.name}}</view>             
+                  <view bindtap="tapTag"class="no_s i-tag-disabled-border i-tag-disable">未知</view>
+              <!-- </navigator> -->
+              </view>
+              </i-grid-item>
+              </view>
+        </block>
+       </view>
+
+      <view class='clearfix' wx:if="{{workDetailObj.category == '图书'}}">
+        <block wx:for="{{letterlogo}}" wx:for-item="item" wx:key="index">   
+            <view>
+              <i-grid-item class="i_center" border_bottom='1' width="33.3%">
+              <view bindtap='clickLink_w' data-url="{{item.link}}"> 
+               <!-- <navigator url="../../../components/webview/c?url={{item.link}}" >                 -->
+                  <view>
+                    <image class="icon_i" src="{{item.url}}" />
+                  </view>
+                  <view class="logoname">{{item.name}}</view>             
+                  <view bindtap="tapTag"class="no_s i-tag-disabled-border i-tag-disable">未知</view>
+                  <!-- </navigator> -->
+                    </view>
+              </i-grid-item>
+              </view>
+        </block>
+       </view>
+
+      <view class='clearfix' wx:if="{{workDetailObj.category == '艺术' && workDetailObj.type!='音乐'&& workDetailObj.type!='影视'}}">
+        <block wx:for="{{letterlogo}}" wx:for-item="item" wx:key="index">   
+            <view>
+              <i-grid-item class="i_center" border_bottom='1' width="33.3%">  
+              <view bindtap='clickLink_y' data-url="{{item.link}}"> 
+               <!-- <navigator url="../../../components/webview/c?url={{item.link}}" >                  -->
+                  <view>
+                    <image class="icon_i" src="{{item.url}}" />
+                  </view>
+                  <view class="logoname">{{item.name}}</view>             
+                  <view bindtap="tapTag"class="no_s i-tag-disabled-border i-tag-disable">未知</view>
+                  <!-- </navigator> -->
+                   </view> 
+              </i-grid-item>
+              </view>
+        </block>
+      </view>    
+</view>
+

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "i-message": "../../dist/message/index",
+    "i-toast": "../../dist/toast/index",
+    "i-icon": "../../dist/icon/index",
+    "navigation": "../navbar/index"
+  },
+  "navigationBarTitleText": "版权浏览器",
+  "navigationStyle": "default"
+}

@@ -1,0 +1,85 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="院线票房"
+>
+</navigation>
+<button class='share button-hover' open-type="share" size='mini'><i-icon type="share" size="18" color="#80848f"/></button>
+<view class="container" wx:if="{{monitor!=null}}">
+  <navigator url='../../work/x?workSeqNo={{work_id}}' hover-class="navigator-hover">
+  <view class="work">
+    <view class="title">
+      <zan-capsule color="#4db798" leftText="影视" rightText="电影" />
+      {{movieInfo.name}}
+    </view>
+    <view class="remark" wx:if="{{movieSubtitle&&movieSubtitle!='null'}}"><i-icon size="16" type="prompt" color="gray"/>{{movieSubtitle}}</view> 
+  </view>
+  </navigator>
+  <view class="dashboard">
+    <view class="status">
+      <zan-capsule color="{{movieInfo.status==''?'green':'lightgray'}}" leftText="状态"
+      rightText="{{movieInfo.status?'上映中':'已下映'}}" />
+      <zan-capsule color="#4db798" leftText="上映" rightText="{{movieInfo.releaseTime}}" />
+    </view>
+    <i-grid class="flex-item" border_top='0'>
+      <i-row>
+        <navigator url="" hover-class="navigator-hover">
+        <i-grid-item border_bottom='0' width='100%'>
+          <i-grid-label size='48' weight="bold">{{movieInfo.totalBoxOffice}}<view class="amount">累计票房</view></i-grid-label>
+        </i-grid-item>
+        </navigator>
+      </i-row>
+      <i-row>
+        <i-grid-item border_bottom='0' width='50%' scale="short">
+          <i-grid-icon scale="short">
+            <i-icon size="16" type="coupons_fill" color="{{monitor.todayValueColor}}"/>
+          </i-grid-icon>
+          <i-grid-label>未知<view class="remark">今日票房</view></i-grid-label>
+        </i-grid-item>
+        <i-grid-item border_bottom='0' width='50%' scale="short">
+          <i-grid-icon scale="short">
+            <i-icon size="16" type="group_fill" color="{{monitor.todayValueColor}}"/>
+          </i-grid-icon>
+          <i-grid-label>{{peopleNum!=null?peopleNum:'未知'}}<view class="remark">观影人数</view></i-grid-label>
+        </i-grid-item>
+      </i-row>
+    </i-grid>
+    <view class="databy"><i-icon size="12" type="flag" color="#a0a0a0"/>数据来自于中国电影数据网</view>
+  </view>
+  <view class='dividing-line'/>
+  <view class='panel'>
+    <view class='head'><view class="title">票房数据</view></view>
+    <view class='body'>
+      <view class="dashboard-notexist" wx:if="{{monitor==null}}">暂无数据图表</view>
+      <view class='echart_container'>
+       <ec-canvas id="mychart-dom-area" canvas-id="mychart-area" ec="{{ ec }}"></ec-canvas>
+      </view>
+     
+      <!-- <canvas class='canvas' wx:if="{{monitor!=null}}" canvas-id="lineCanvas"></canvas> -->
+    </view>
+  </view> 
+  <view class='dividing-line'/>
+  <view class='panel'>
+    <view class='head'><view class="title">每日数据</view></view>
+    <view class='body'>
+      <view class="dashboard-notexist" wx:if="{{monitor==null}}">暂无数据图表</view>
+      <view class='tody_data_table'>
+        <view class='tody_data_table_head'>
+            <view style='width:25%'>日期</view>
+            <view style='width:25%'>票房</view>
+            <view style='width:25%'>票房占比</view>
+            <view style='width:25%'>排片占比</view>
+        </view>
+        <view  wx:for="{{details}}" wx:key="{{index}}" wx:for-item="infoIterm" class='tody_data_table_head table_data_font'>
+            <view style='width:25%'>{{infoIterm.date}}</view>
+            <view style='width:25%'>{{infoIterm.boxoffice}}</view>
+            <view style='width:25%'>{{infoIterm.boxofficeRate}}</view>
+            <view style='width:25%'>{{infoIterm.ticketSeatRate}}</view>
+        </view>
+      </view>
+    </view>
+  </view> 
+</view>
+<view class='loading' wx:if="{{monitor==nul}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

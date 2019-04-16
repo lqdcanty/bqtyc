@@ -1,0 +1,51 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="搜索版权人"
+>
+</navigation>
+<view class='container containerHeight'>
+  <view class='search-bar' style="top:{{searchBarTop}}px;">
+    <view class='search'>
+      <input type='text' placeholder="请输入公司名、人名，例如 {{hotWords}}" confirm-type='search' bindinput='inputBind' bindblur="inputBlur" bindfocus="inputFocus"  bindconfirm='query' value="{{keyword}}"/>
+      <image class="" src='http://cbd.efida.com.cn/images/icons/search.png' bindtap='query'/>
+    </view>
+    <view class='search-tips-wrap' wx:if='{{keyword.length>0&&searchTipsList.length>0}}'>
+      <block wx:for="{{searchTipsList}}" wx:for-item="searchW" wx:key="searchwork">
+            <view bindtap='tipSearch' data-word="{{searchW.title}}">{{searchW.title}}<text>({{searchW.tags}}  {{searchW.subTitle}})</text></view>
+      </block>
+    </view> 
+  </view>
+  <view style="margin-top:45px;border-bottom: 1px solid #e8e8e8;">
+    <i-cell title="版权人" label='' value="创建版权人" is-link url="../../owner/bqradd/x">
+      <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+    </i-cell>
+  </view>
+  <view class="tags">
+    <block wx:for="{{result}}" wx:key="*this">
+    <navigator url="../../owner/x?code={{item.obligeeCode}}" hover-class="navigator-hover">
+    <view style="margin-right:3px;"><i-tag color="green" type='border'>{{item.name}}</i-tag></view>
+    </navigator>
+    </block>
+  </view>
+  <block wx:for="{{ownerList.items}}" wx:for-item="owner" wx:key="name" wx:if='{{ownerList&&ownerList.items.length>0}}'>
+    <navigator url="../../owner/x?code={{owner.code}}" hover-class="navigator-hover">
+    <i-card-x full title="{{owner.title}}" subtitle='{{owner.subTitle}}' thumb="{{owner.cover[0]}}" 
+      headStyle="padding-bottom:0px;margin-bottom:0px;border-bottom: 0px;">
+      <view slot="content" wx:if="news.thumbs!=null" class="card-thumbs">
+      </view>
+      <view slot="footer" class="owner-tags">
+        <view class='card-footer'  style="{{result.lastItem?'border-bottom:0px;':''}}">
+        <block wx:for="{{owner.tags}}" wx:key="*this">
+        <view style="margin-right:3px;"><i-tag color="green" type='border'>{{item}}</i-tag></view>
+        </block>
+        </view>
+      </view>
+    </i-card-x>
+    </navigator>
+  </block>
+</view>
+<view class='loading' wx:if="{{!logined}}" style="top:{{searchBarTop}}px">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>
+

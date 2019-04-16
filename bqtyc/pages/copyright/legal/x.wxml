@@ -1,0 +1,177 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="法律诉讼"
+>
+</navigation>
+<view class="container">
+  <navigator url='../work/x?workSeqNo={{work.workSeqNo}}' hover-class="navigator-hover">
+    <view class="work">
+      <view class="head">
+        <view class="title">
+          <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+          <view class='nameOver'>{{work.name}}</view>
+        </view>
+        <zan-capsule color="#4db798" leftText="版权类型" rightText="{{powerType}}" />
+      </view>
+      <view class="remark">
+        <i-icon size="16" type="prompt" color="gray" />{{work.workTitle}}</view>
+    </view>
+  </navigator>
+  <!--   -->
+  <view wx:if="{{lawObj!=null}}">
+    <view class="dashboard">
+      <i-grid class="flex-item" border_top='0'>
+        <i-row>
+          <i-grid-item border_bottom='0'>
+            <i-grid-icon>
+              <i-icon size="20" type="time_fill" color="#4db798" />
+            </i-grid-icon>
+            <i-grid-label>{{lawObj.ktggList.length}}</i-grid-label>
+          </i-grid-item>
+          <i-grid-item border_bottom='0'>
+            <i-grid-icon>
+              <i-icon size="20" type="like_fill" color="#4db798" />
+            </i-grid-icon>
+            <i-grid-label>{{lawObj.pjggList.length}}</i-grid-label>
+          </i-grid-item>
+          <i-grid-item border_bottom='0'>
+            <i-grid-icon>
+              <i-icon size="20" type="transaction_fill" color="#4db798" />
+            </i-grid-icon>
+            <i-grid-label>{{lawObj.zxwsList.length}}</i-grid-label>
+          </i-grid-item>
+        </i-row>
+      </i-grid>
+    </view>
+    <i-tabs current="{{ tabIndx }}" color="#4db798" bindchange="handleChange">
+      <i-tab key="tab1" title="开庭公告"></i-tab>
+      <!-- count="2" -->
+      <i-tab key="tab2" title="判决公告"></i-tab>
+      <i-tab key="tab3" title="执行文书" dot></i-tab>
+    </i-tabs>
+  </view>
+  <block wx:if='{{tabIndx=="tab1"}}'>
+    <view class='dividing-line' style='height:8px;' />
+    <view class="weui-form-preview" wx:for="{{lawObj.ktggList}}" wx:for-item="list" wx:key="index">
+      <view class="weui-form-preview__hd">
+        
+          <view class="weui-form-preview__item">
+            <navigator url="../all/x?workSeqNo={{work.workSeqNo}}" hover-class="navigator-hover">
+              <view class="weui-form-preview__label worktitle">
+                <view class="weui-form-preview__label worktitle">
+                  <zan-capsule color="#ed3f14" leftText="涉案人" rightText="{{list.key}}" />{{list.person}}
+                </view>
+              </view>
+            </navigator>
+            <view class="weui-form-preview__value_in-hd">
+              <i-icon size="14" type="enter" color="#4db798" />
+            </view>
+          </view>
+        
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">案由</view>
+          <view class="weui-form-preview__value">{{list.reason}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">公告人</view>
+          <view class="weui-form-preview__value">{{list.announcer}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">原告/上诉人</view>
+          <view class="weui-form-preview__value">{{list.personYg}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">被告/被诉人</view>
+          <view class="weui-form-preview__value">{{list.personBg}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">开庭日期</view>
+          <view class="weui-form-preview__value">{{list.date}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="blank-bar" wx:if="{{lawObj.ktggList.length==0}}">开庭公告暂无数据</view>
+  </block>
+  <block wx:if='{{tabIndx=="tab2"}}'>
+    <view class='dividing-line' style='height:8px;' />
+    <view class="weui-form-preview" wx:for="{{lawObj.pjggList}}" wx:for-item="list" wx:key="index">
+      <view class="weui-form-preview__hd">
+        <navigator url="../../work/x?workSeqNo={{work.workSeqNo}}" hover-class="navigator-hover">
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label worktitle">
+              <zan-capsule color="#ed3f14" leftText="涉案人" rightText="{{list.key}}" />{{list.person}}</view>
+            <view class="weui-form-preview__value_in-hd">
+              <i-icon size="14" type="enter" color="#4db798" />
+            </view>
+          </view>
+        </navigator>
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">公告人</view>
+          <view class="weui-form-preview__value">{{list.announcer}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">公告内容</view>
+          <view class="weui-form-preview__value">{{list.content}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">案由</view>
+          <view class="weui-form-preview__value">{{list.reason}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">原告/上诉人</view>
+          <view class="weui-form-preview__value">{{list.personYg}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">被告/被诉人</view>
+          <view class="weui-form-preview__value">{{list.personBg}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">发布日期</view>
+          <view class="weui-form-preview__value">{{list.date}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="blank-bar" wx:if="{{lawObj.pjggList.length==0}}">判决公告暂无数据</view>
+  </block>
+  <block wx:if='{{tabIndx=="tab3"}}'>
+    <view class='dividing-line' style='height:8px;' />
+    <view class="weui-form-preview" wx:for="{{lawObj.zxwsList}}" wx:for-item="list" wx:key="index">
+      <view class="weui-form-preview__hd">
+        <navigator url="../../work/x?workSeqNo={{work.workSeqNo}}" hover-class="navigator-hover">
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label worktitle">
+              <zan-capsule color="#4db798" leftText="公告" rightText="对象" />{{list.person}}</view>
+            <view class="weui-form-preview__value_in-hd">
+              <i-icon size="14" type="enter" color="#4db798" />
+            </view>
+          </view>
+        </navigator>
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">公告内容</view>
+          <view class="weui-form-preview__value">{{list.content}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">公告人</view>
+          <view class="weui-form-preview__value">{{list.announcer}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">公告日期</view>
+          <view class="weui-form-preview__value">{{list.date}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="blank-bar" wx:if="{{lawObj.zxwsList.length==0}}">执行文书暂无数据</view>
+  </block>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+</i-action-sheet>
+<view class='loading' wx:if="{{work==null||lawObj==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif' />
+</view>

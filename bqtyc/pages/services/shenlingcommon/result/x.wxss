@@ -1,0 +1,36 @@
+/* pages/services/shenlingcommon/result/x.wxss */
+.container{
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+.flex{
+  display: flex;
+  padding-top: 80rpx;
+}
+.flex .incoBIg{
+  display: block;
+  margin: 0 auto;
+}
+.title{
+  color: #4db798;
+  font-size: 14px;
+  text-align: center;
+  padding: 0 10%;
+  margin-top: 30px;
+}
+.tips{
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
+}
+.erweima{
+  display: flex;
+  padding-top: 40rpx;
+}
+.erweima image{
+  width: 150px!important;
+  height: 150px!important;
+  margin:0 auto;
+  display: block;
+}

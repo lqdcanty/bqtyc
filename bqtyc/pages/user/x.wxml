@@ -1,0 +1,61 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="我的版权力"
+></navigation>
+<view class="container" wx:if="{{devote!=nul}}" >
+  <view class="dashboard">
+    <view class="dashboard-level">
+      <zan-capsule color="#4db798" leftText="等级" rightText="{{devote.level?devote.level:''}}" />
+    </view>
+    <i-grid class="flex-item" border_top='0'>
+      <i-row>
+        <i-grid-item border_bottom='0' width='100%' scale="short">
+          <i-grid-label size='64'>
+          <view class="dashboard-number">
+            {{devote.amount_total?devote.amount_total:''}}
+            <i-tag class='icon' color="blue">力</i-tag>
+          </view>
+          <view class="amount" style="margin-top:-10px;">可兑换版权力</view></i-grid-label>
+          <i-button bind:click="exchange" type="disabled" shape="circle" size="small">暂不支持兑换功能</i-button>
+        </i-grid-item>
+      </i-row>
+      <i-row>
+        <i-grid-item border_bottom='0' scale="short">
+          <i-grid-icon scale="short">
+            <i-icon size="20" type="time_fill" color="#4db798"/>
+          </i-grid-icon>
+          <i-grid-label>{{devote.recently?devote.recently:''}}<view class="amount">近期获得</view></i-grid-label>
+        </i-grid-item>
+        <i-grid-item border_bottom='0' scale="short">
+          <i-grid-icon scale="short">
+            <i-icon size="20" type="like_fill" color="#4db798"/>
+          </i-grid-icon>
+          <i-grid-label>{{devote.amount_total?devote.amount_total:''}}<view class="amount">累计所得</view></i-grid-label>
+        </i-grid-item>
+        <i-grid-item border_bottom='0' scale="short">
+          <i-grid-icon scale="short">
+            <i-icon size="20" type="transaction_fill" color="#4db798"/>
+          </i-grid-icon>
+          <i-grid-label>{{devote.amount_exchanged?devote.amount_exchanged:''}}<view class="amount">已经兑换</view></i-grid-label>
+        </i-grid-item>
+      </i-row>
+    </i-grid>
+    <view class='border-line'></view>
+  </view>
+  <i-panel title="">
+    <i-cell-group>
+      <i-cell i-class="lg-ceel" title="关于版权力与兑换" is-link url="aboutdevote/x"></i-cell>
+      <i-cell i-class="lg-ceel" title="我获得的版权力" is-link url="mybill/x?type=1" value="{{devote.amount_total?devote.amount_total:''}}"></i-cell>
+      <i-cell i-class="lg-ceel" title="我的兑换记录" is-link url="mybill/x?type=2" value="{{devote.amount_exchanged?devote.amount_exchanged:''}}"></i-cell>
+    </i-cell-group>
+  </i-panel>
+  <i-panel title="">
+    <i-cell-group>
+      <i-cell i-class="lg-ceel"                                                                                                     title="浏览我的区块" is-link url="myblock/x"></i-cell>
+    </i-cell-group>
+  </i-panel>
+</view>
+<view class='loading' wx:if="{{devote==nul}}" style="position: fixed; top:{{searchBarTop}}px;left:0;bottom:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

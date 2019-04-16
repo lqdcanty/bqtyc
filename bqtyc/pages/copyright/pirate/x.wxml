@@ -1,0 +1,114 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="侵权举报"
+></navigation>
+<view class='panel'>
+  <!-- <view class='head'>
+    <view class="title">
+      <view class="bigtitle"><i-icon size="16" type="eit"/>侵权举报</view>
+        <view class="caption-wrap">
+          <i-collapse>
+            <i-collapse-item title="关于侵权举报介绍" name="name1">
+                <view slot="content">举报有关文字、影视、音乐、游戏、软件等版权作品以及互联网网站、网络销售平台、移动智能终端应用软件商店等领域涉及侵权盗版的违法行为。版权百科将自动将你的举报信息向国家新闻出版广电总局提交并跟踪。</view>
+            </i-collapse-item>
+          </i-collapse>
+        </view>
+      </view>
+    <view class="right">
+        <button bindtap="addCopyright" size='mini' type="warn">
+          <i-icon type="add" size="14"/>发起举报
+        </button>
+    </view>
+  </view> -->
+  <navigator url='../../work/x?workSeqNo={{work.workSeqNo}}' hover-class="navigator-hover">
+    <view class="workinfo">
+      <view class="head">
+        <view class="title"> <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+        <view class='nameOver'>{{work.name}}</view>
+        </view>
+        <zan-capsule color="#4db798" leftText="版权类型" rightText="{{work.type}}" />
+      </view>
+      <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+    </view>
+  </navigator>
+  <view style="border-bottom: 1px solid #e8e8e8;">
+    <i-cell-group>
+      <i-cell title="侵权举报" label='举报侵权行为' value="发起举报" is-link url="edit/x">
+      <!-- ../../welcome/x?word=创建侵权举报 -->
+        <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+      </i-cell>
+    </i-cell-group>
+  </view>
+  <view class="caption-wrap">
+    <i-collapse>
+      <i-collapse-item title="词条介绍" name="name1">
+          <view slot="content">举报有关文字、影视、音乐、游戏、软件等版权作品以及互联网网站、网络销售平台、移动智能终端应用软件商店等领域涉及侵权盗版的违法行为。版权百科将自动将你的举报信息向国家新闻出版广电总局提交并跟踪。</view>
+      </i-collapse-item>
+    </i-collapse>
+  </view>
+
+  <view class='body' style='padding-top:0;border-top:1px solid #e8e8e8;'>
+    <block wx:for="{{copyright_pirate}}" wx:for-item="list" wx:key="index">
+    <view class="data-item">
+      <view class="show">
+        <view class="keyval flex-item tags">
+          <i-tag class='tag' color="yellow" type='border'>
+            举报对象<i-icon size="13" type="warning_fill" color="#f90"/>
+          </i-tag>
+          <i-tag class='tag tag-right widthTS' color="yellow">{{list.subject}}</i-tag>
+          <i-tag class='tag' style='margin-left:-2px;' color="yellow" type='border'>{{list.accustationDate}}</i-tag>
+          <!-- <i-tag class='tag' type='border'>{{list.accustationDate}}</i-tag> -->
+          <!-- <view class='inputShowSpace' style='margin-left:-2px;max-width:96px;'>{{list.accustationDate}}</view> -->
+        </view>
+        <view class="keyval tab">
+          <i-tag class='tag' color="yellow">举报站点</i-tag>
+          <i-tag class='tag' color="yellow" type='border'>{{list.siteAddress}}</i-tag>
+          <!-- <view class='inputShowSpace'>{{list.siteAddress}}</view> -->
+        </view>
+        <view class="keyval tab" wx:if="{{list.icpCode}}">
+          <i-tag class='tag' color="yellow">站点ICP</i-tag>
+          <i-tag  class='tag' type='border'>{{list.icpCode}}</i-tag>
+          <!-- <view class='inputShowSpace'>{{list.icpCode}}</view> -->
+        </view>
+      </view>
+      <view class='right'>
+        <view class='status'>
+          <i-icon size="18" wx:if="{{list.mine==false && list.status=='pass'}}" type="success" color="#4db798" />
+          <i-icon size="18" wx:if="{{list.mine==true && list.status=='pass'}}" type="success" color="#5cadff" />
+          <i-icon size="18" wx:if="{{list.mine==true && list.status=='wait_audit' && list.operation=='add'}}" type="add" color="#4db798" />
+          <i-icon size="18" wx:if="{{list.mine==true && list.status=='wait_audit' && list.operation=='update'}}" type="brush" color="#4db798"/>
+          <i-icon size="18" wx:if="{{list.mine==true  && list.status=='wait_audit' && list.operation=='delete'}}" type="delete" color="#ed3f14"/>
+        </view>
+
+        <view  class='more' wx:if="{{list.mine==false && list.status=='pass'}}" bindtap='openActions' data-mine="{{list.mine}}" data-status="{{list.status}}" data-operation="{{list.operation}}" data-citiaoCode="{{list.citiaoCode}}" style="background-color:#4db798;"  >
+              <i-icon size="20" type="more" color="#fff"/>
+        </view>
+          <view class='more' wx:if="{{list.mine==true && list.status=='pass' }}" bindtap='openActions' data-mine="{{list.mine}}" data-status="{{list.status}}" data-operation="{{list.operation}}" data-citiaoCode="{{list.citiaoCode}}"  style="background-color:#5cadff;">
+          <i-icon size="20" type="more" color="#fff"/>
+        </view>
+        <view class='more' wx:if="{{list.mine==true && list.status=='wait_audit' && list.operation=='add'}}" bindtap='openActions' data-mine="{{list.mine}}" data-status="{{list.status}}" data-operation="{{list.operation}}" data-citiaoCode="{{list.citiaoCode}}" style="background-color:#4db798;">
+          <i-icon size="20" type="more" color="#fff"/>
+        </view>
+        <view class='more' wx:if="{{list.mine==true && list.status=='wait_audit' && list.operation=='update'}}" bindtap='openActions' data-mine="{{list.mine}}" data-status="{{list.status}}" data-operation="{{list.operation}}" data-citiaoCode="{{list.citiaoCode}}" style="background-color:#4db798;">
+          <i-icon size="20" type="more" color="#fff"/>
+        </view>
+        <view class='more' wx:if="{{list.mine==true  && list.status=='wait_audit' && list.operation=='delete'}}" bindtap='openActions' data-mine="{{list.mine}}" data-status="{{list.status}}" data-operation="{{list.operation}}" data-citiaoCode="{{list.citiaoCode}}" style="background-color:#ed3f14;">
+          <i-icon size="20" type="more" color="#fff"/>
+        </view> 
+      </view>
+    </view>
+    </block>
+  </view>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">{{status_info}}</view>
+        <text>{{oper_tips}}</text>
+    </view>
+</i-action-sheet>
+<view class="blank-bar" wx:if="{{copyright_pirate.length==0}}">作品《{{workName}}》还没有任何版权词条，尝试添加版权词条完善版权信息，将获得【版权力】的奖励</view>
+
+<view class='loading' wx:if="{{work==null||copyright_pirate==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif' />
+</view>

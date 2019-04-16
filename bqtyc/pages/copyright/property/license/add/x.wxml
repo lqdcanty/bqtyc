@@ -1,0 +1,242 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{pageTitle}}"
+></navigation>
+<view class="container">
+  <view class="workinfo" style="background-color:#f8f8f8;">
+    <view class="head">
+      <view class="title"> <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />{{work.name}}</view>
+      <zan-capsule color="#4db798" leftText="版权" rightText="著作权" />
+    </view>
+    <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+  </view>
+  <form bindsubmit="formSubmit">
+    <input class='hidden' value="{{workId}}" name="workSeqNo"></input>
+  <input class='hidden' value="{{token}}" name="token"></input>
+  <input class='hidden' value="" name="appearAcountryDesc"></input>
+  <input class='hidden' value="" name=" fromAlias "></input>
+  <input class='hidden' value="" name="toAlias"></input>
+  <input class='hidden' value="{{citiaoCode}}" name="citiaoCode"></input>
+  <input class='hidden' value="{{citiaoCode}}" name="refCitiaoCode"></input>
+  <input class='hidden' value="{{citiao.citiaoClass}}" name="citiaoClass"></input>
+  <input class='hidden' value="{{citiao.citiaoType}}" name="citiaoType"></input>
+  <input class='hidden' value="{{citiao.tableType}}" name="tableType"></input>
+  <i-panel title="版权信息" hideBorder='true'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd" style="width: 50%">
+          <picker bindchange="bindModeChange" value="{{mode}}" range="{{modes}}">
+            <view class="weui-select">{{modes[mode]}}</view>
+          </picker>
+        </view>
+        <input class='hidden' value="{{modes[mode]}}" name="authType"></input>
+        <view class="weui-cell__hd" style="width: 50%">
+          <picker bindchange="bindRegionChange" value="{{region}}" range="{{regions}}">
+            <view class="weui-select">{{regions[region]}}</view>
+          </picker>
+        </view>
+        <input class='hidden' value="{{regions[region]}}" name="appearCountry"></input>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">许可方</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{citiao.permitRight.fromName}}" name="fromName" placeholder="许可方姓名或公司名称"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">使用方</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{citiao.permitRight.toName}}" name="toName" placeholder="被许可方姓名或公司名称"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">开始日期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="date" value="{{startTime}}"  end="{{endTime}}" bindchange="bindDateChange">
+              <view class="weui-input">{{startTime}}</view>
+          </picker> 
+        </view>
+        <input class='hidden' value="{{startTime}}" name="startTime"></input>
+        <view class="weui-cell__bd" style="width: 96px">
+          <i-switch value="{{startTimeOpen}}" size="large" bind:change="onChangeTime">
+            <view slot="open">公开</view>
+            <view slot="close">保密</view>
+          </i-switch>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">结束日期</view>
+        </view>
+        <input class='hidden' value="{{endTime}}" name="endTime"></input>
+        <view class="weui-cell__bd">
+          <picker mode="date" value="{{endTime}}" start="{{startTime}}"  bindchange="bindDateChange1">
+              <view class="weui-input">{{endTime}}</view>
+          </picker>
+        </view>
+        <view class="weui-cell__bd" style="width: 96px;">
+          <i-switch value="{{endTimeOpen}}" size="large" bind:change="onChangeTime2">
+            <view slot="open">公开</view>
+            <view slot="close">保密</view>
+          </i-switch>
+        </view>
+      </view>
+    </view>
+  </i-panel>
+  <i-panel title="版权收支">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">支出</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{citiao.permitRight.amountInfo.amountDesc}}" name='amountDesc' placeholder="使用方购买许可方授权情况说明"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <picker bindchange="bindCurrencyChange" value="{{currency}}" range="{{currencies}}">
+            <view class="weui-select">{{currencies[currency]}}</view>
+          </picker>
+        </view>
+         <input class='hidden' value="{{currencies[currency]}}" name="moneyType"></input>
+        <view class="weui-cell__bd">
+          <input class="weui-input" name='amount' value="{{citiao.permitRight.amountInfo.amount}}" placeholder="金额数字"/>
+        </view>
+        <view class="weui-cell__hd" style="width: 64px">
+          <picker bindchange="bindUnitChange" value="{{unit}}" range="{{units}}">
+            <view class="weui-select">{{units[unit]}}</view>
+          </picker>
+        </view>
+        <input class='hidden' value="{{units[unit]}}" name="amountUnit"></input>
+        <view class="weui-cell__bd" style="width: 96px;">
+          <i-switch value="{{amountUnitOpen}}" size="large" bind:change="onChangeAmountPublic1">
+            <view slot="open">公开</view>
+            <view slot="close">保密</view>
+          </i-switch>
+        </view>
+        <input class='hidden' value="{{amountPublic}}" name="amountPublic"></input>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">收入</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{citiao.permitRight.incomeAmountInfo.amountDesc}}" name="amountDesc2" placeholder="使用方通过版权获取的收入情况说明"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <picker bindchange="bindCurrencyChange2" value="{{currency2}}" range="{{currencies}}">
+            <view class="weui-select">{{currencies[currency2]}}</view>
+          </picker>
+        </view>
+        <input class='hidden' value="{{currencies[currency2]}}" name="moneyType2"></input>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{citiao.permitRight.incomeAmountInfo.amount}}" name="amount2" placeholder="金额数字"/>
+        </view>
+        <view class="weui-cell__hd" style="width: 64px">
+          <picker bindchange="bindUnitChange2" value="{{unit2}}" range="{{units}}">
+            <view class="weui-select">{{units[unit2]}}</view>
+          </picker>
+        </view>
+        <input class='hidden' value="{{units[unit2]}}" name="amountUnit2"></input>
+        <view class="weui-cell__bd" style="width: 96px;">
+          <i-switch value="{{amountUnitOpen2}}" size="large" bind:change="onChangeAmountPublic2">
+            <view slot="open">公开</view>
+            <view slot="close">保密</view>
+          </i-switch>
+        </view>
+        <input class='hidden' value="{{amountPublic2}}" name="amountPublic2"></input>
+      </view>
+    </view>
+  </i-panel>
+    <i-panel title="权力范围">
+    <i-checkbox-group current="{{current}}" bindchange="rightScopeChange">
+        <i-checkbox position="right" wx:for="{{rightScope}}"  wx:key="{{item.type}}"  data-index="{{item.type}}" value="{{item.value}}"/>
+    </i-checkbox-group>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="rightRemark" value="{{citiao.permitRight.rightRemark}}" placeholder="许可备注，说明许可使用的情况"/>
+      </view>
+    </view>
+  </i-panel>
+   <i-panel title="参考资料">
+      <i-swipeout  i-class="i-swipeout-demo-item" actions="{{actionsDelete}}" wx:for="{{links}}"  wx:key="index" bind:change="swipoutChange" data-index="{{index}}">
+        <view slot="content">
+          <i-cell-group>
+            <i-cell  title="[{{index+1}}]{{item.typeDec}}" label="{{item.type==1||item.type==2?'':item.title}}" value="" bind:click="outLink" data-url="{{item.url}}" data-type="{{item.type}}">
+              <block wx:if="{{item.type==0}}">
+                <view class="refer_img" slot="icon">
+                  <i-icon size='22' type="accessory" color="#4db798"/>
+                </view>
+              </block>
+              <block  wx:if="{{item.type==1}}">
+                <image mode='aspectFit' src="{{item.url}}" lazy-load='true' class="refer_img" slot="icon"/>
+              </block>
+              <block  wx:if="{{item.type==2}}">
+              <view class="refer_img" slot="icon"><i-icon size='22' type="document" color="#4db798"/></view>  
+              </block>          
+              <i-switch value="{{item.isPublic}}" size="large" bind:change="linksPublicChange" slot="footer" data-index="{{index}}">
+                <view slot="open">公开</view>
+                <view slot="close">保密</view>
+              </i-switch>
+            </i-cell>
+          </i-cell-group>
+      </view>
+    </i-swipeout>
+      <i-input value="{{citiao.attathRemark?citiao.attathRemark:''}}" maxlength='100' placeholder="描述词条引用概况，例如‘数据来自于xx网站’" name="attathRemark"/>
+      <i-button bind:click="addReferer" size="small">添加参考资料</i-button>
+  </i-panel>
+  <i-panel title="编辑者联系方式" hideBorder='true'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">联系人</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{postObj.contactName}}" name="contactName" placeholder="请填写联系人姓名"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">联系电话</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{postObj.contactPhone}}" name="contactPhone" placeholder="请填写联系人电话"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd" style="width: 96px">
+          <view class="weui-label">联系邮箱</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{postObj.contactEmail}}" name="contactEmail" placeholder="请填写联系人邮箱"/>
+        </view>
+      </view>
+    </view>
+  </i-panel>
+    <button form-type="submit" class='saveBtn'  wx:if="{{status!='wait_audit' && !rejectStatus}}">保存</button>
+    <i-button bind:click="cancelSave" type="primary" size="large" wx:if="{{status=='wait_audit' && operation=='update'}}">撤销编辑版权词条</i-button>
+    <i-button bind:click="cancelSave" type="primary" size="large" wx:if="{{status=='wait_audit' && operation=='add'}}">撤销新增版权词条</i-button>
+    <i-button bind:click="cancelSave" type="primary" size="large" wx:if="{{status=='reject' && operation=='update' && rejectStatus}}">撤销编辑版权词条</i-button>
+    <i-button bind:click="cancelSave" type="primary" size="large" wx:if="{{status=='reject' && operation=='add' && rejectStatus}}">撤销新增版权词条</i-button>
+
+  </form>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onActionCancel" bind:click="handleAction">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">{{actionsTitle}}</view>
+    </view>
+</i-action-sheet>
+<i-message id="message" height="{{messageHeight}}"/>
+<block wx:if="{{!authIsShow}}">
+  <authorize  sysType='bqbk' sysTitle="{{sysTitle}}" sysLogo="{{sysLogo}}" bind:authorizeEvent="onauthorizeEvent"></authorize> 
+</block>

@@ -1,0 +1,79 @@
+
+  <navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{titleStr}}"
+></navigation>
+  <navigator url='../../../../work/x?workSeqNo={{personalObj.workSeqNo}}' hover-class="navigator-hover">
+    <view class="workinfo">
+      <view class="head">
+        <view class="title"> <zan-capsule color="#4db798" leftText="{{personalObj.type}}" rightText="{{personalObj.category}}" />
+        <view class='nameOver'>{{personalObj.name}}</view>
+        </view>
+        <zan-capsule color="#4db798" leftText="版权类型" rightText="{{powerType}}" />
+      </view>
+      <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{personalObj.workTitle}}</view> 
+    </view>
+  </navigator>
+  <view style="border-bottom: 1px solid #e8e8e8;">
+    <i-cell-group>
+      <i-cell title="财产权" label='{{commonObj.title}}' value="创建词条" bind:click="pledge_p" data-key="权利质押" >
+      <!-- is-link url="../../pledge/edit/x?word=权利质押" -->
+        <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+      </i-cell>
+
+
+    </i-cell-group>
+  </view>
+  <view class="caption-wrap">
+    <i-collapse>
+      <i-collapse-item title="词条介绍" name="name1">
+          <view slot="content">{{commonObj.longDesc}}</view>
+      </i-collapse-item>
+    </i-collapse>
+  </view>
+
+<view class='dividing-line'/>
+<view class='flex-item panel'>
+  <view class='head'>
+    <view class="title">财产权类型</view>
+  </view>
+  <view class='body copyright_info'>
+    <i-grid>
+    <block >
+      <i-row>
+        <block wx:for="{{prepertyObj}}" wx:for-item="list" wx:key="citiaoClass">
+          <navigator wx:if="{{list.name=='全版权'&& titleStr!='许可使用'}}" url="{{list.url}}?scope={{list.scope}}&workSeqNo={{workSeqNo}}&citiaoClass={{citiaoClass}}" hover-class="navigator-hover">
+            <i-grid-item border_bottom='{{list.border_bottom}}' width="{{list.width}}">
+              <i-grid-icon scale="short">
+                <image wx:if="{{list.amount>0}}" class="image_frame" src="{{list.iconActive}}" /> 
+                <image wx:if="{{list.amount==0}}" class="image_frame" src="{{list.icon}}" />
+              </i-grid-icon>
+              <i-grid-label size='26'>
+                {{list.name}}
+                <view class="amount">({{list.amount}})</view>
+              </i-grid-label>
+            </i-grid-item>
+          </navigator>
+          <navigator wx:if="{{list.name!='全版权'}}" url="{{list.url}}?scope={{list.scope}}&workSeqNo={{workSeqNo}}&citiaoClass={{citiaoClass}}" hover-class="navigator-hover">
+            <i-grid-item border_bottom='{{list.border_bottom}}' width="{{list.width}}">
+              <i-grid-icon scale="short">
+                <image wx:if="{{list.amount>0}}" class="image_frame" src="{{list.iconActive}}" /> 
+                <image wx:if="{{list.amount==0}}" class="image_frame" src="{{list.icon}}" />
+              </i-grid-icon>
+              <i-grid-label  size='26'>
+                {{list.name}}
+                <view class="amount">({{list.amount}})</view>
+              </i-grid-label>
+            </i-grid-item>
+          </navigator>
+        </block>
+      </i-row>
+    </block>
+    </i-grid>
+  </view>
+</view>
+
+<view class='loading' wx:if="{{personalObj==null && loading}}" style="position: fixed; top:{{navHeight}}px;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif' />
+</view>

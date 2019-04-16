@@ -1,0 +1,91 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="衍生版权"
+>
+</navigation>
+<button class='btn-share' open-type="share" size='mini'><i-icon type="share" size="18" color="#80848f"/></button>
+<view class="container">
+  <navigator url='../../work/x?workSeqNo={{work.workSeqNo}}' hover-class="navigator-hover">
+  <view class="work">
+    <view class="head">
+      <view class="title"> <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+        <view class='nameOver'>{{work.name}}</view>
+      </view>
+      <zan-capsule color="#4db798" leftText="版权类型" rightText="著作权" />
+    </view>
+    <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+  </view>
+  </navigator>
+  <view style="border-bottom: 1px solid #e8e8e8;">
+    <i-cell-group>
+      <i-cell title="衍生版权" label='' value="创建词条" is-link url="./add/x">
+        <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+      </i-cell>
+    </i-cell-group>
+  </view>
+  <view class="caption-wrap">
+    <i-collapse>
+      <i-collapse-item title="词条介绍" name="name1">
+          <view slot="content">当前版权作品创作过程产生的衍生品，例如音乐、策划文字材料、美术作品等。</view>
+      </i-collapse-item>
+    </i-collapse>
+  </view>
+  <block wx:for="{{copyright_derive}}" wx:for-item="data" wx:key="work_id">
+  <view class='flex-item panel' style='padding-top:4px;'>
+    <view class='head'>
+      <view class="left">
+        <i-tag class='tag' color="green" type='border'>{{data.category}}</i-tag>
+        <i-tag class='tag tag-right' color="green">{{data.type}}</i-tag>
+        {{data.name}}
+      </view>
+      <view class="right right-bar">
+        <view class="oper">
+          <view class='status'>
+            <!-- <i-icon size="16" type="{{data.status_icon}}" color="{{data.status_color}}"/> -->
+            <i-icon size="16" wx:if="{{list.mine==false && list.status=='pass'}}" type="success" color="#4db798"/>
+            <i-icon size="16" wx:if="{{list.mine==true && list.status=='pass' }}" type="success" color="#5cadff"/>
+            <i-icon size="16" wx:if="{{list.mine==true && list.status=='wait_audit' && list.operation=='add'}}" type="add" color="#4db798"/>
+            <i-icon size="16" wx:if="{{list.mine==true && list.status=='wait_audit' && list.operation=='update'}}" type="brush" color="#4db798"/>
+            <i-icon size="16" wx:if="{{list.mine==true  && list.status=='wait_audit' && list.operation=='delete'}}" type="delete" color="#ed3f14"/>
+          </view>
+          <view class='more' bindtap='openActions'
+            data-index="{{index}}"
+            data-status_info="{{data.status_info}}" style="background-color:{{data.status_color}};">
+            <i-icon size="16" type="more" color="#fff"/>
+          </view>
+        </view>
+        <navigator url="../../work/x?workSeqNo={{data.workSeqNo}}" hover-class="navigator-hover">
+          <view class="goto">
+            <i-icon size="16" type="enter" color="#4db798"/>
+          </view>
+        </navigator>
+      </view>
+    </view>
+    <view class='body copyright_info'>
+      <view class="flex-item remark"><i-icon size="16" type="prompt" color="gray"/>{{data.title}}</view>
+      <view class="tags" wx:if="{{data.information.length>0}}">
+        <block class="blockLine" wx:for="{{data.information}}" wx:for-item="origin" wx:key="title">
+          <view class="keyval" wx:if="{{origin.key}}">
+            <i-tag class='tag' color="green">{{origin.key}}</i-tag>
+            <i-tag class='tag tag-right' color="green" type='border'>{{origin.name}}</i-tag>
+          </view>
+        </block>
+      </view>
+      <view class="flex-item oper">
+      </view>
+    </view>
+
+  </view>
+  </block>
+</view>
+<view class="blank-bar" wx:if="{{copyright_derive.length==0}}">作品《{{work.name}}》还没有任何版权词条，尝试添加版权词条完善版权信息，将获得【版权力】的奖励</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">{{status_info}}</view>
+        <text>{{oper_tips}}</text>
+    </view>
+</i-action-sheet>
+<view class='loading' wx:if="{{work==null||copyright_derive==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

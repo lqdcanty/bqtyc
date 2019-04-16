@@ -1,0 +1,126 @@
+
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="财产权"
+></navigation>
+  <navigator url='../../work/x?workSeqNo={{personalObj.workSeqNo}}' hover-class="navigator-hover">
+    <view class="workinfo">
+      <view class="head">
+        <view class="title"> <zan-capsule color="#4db798" leftText="{{personalObj.category}}" rightText="{{personalObj.type}}" />
+         <view class='nameOver'>{{personalObj.name}}</view>
+        </view>
+        <zan-capsule color="#4db798" leftText="版权类型" rightText="{{powerType}}" />
+      </view>
+      <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{personalObj.workTitle}}</view> 
+    </view>
+  </navigator>
+  <view style="border-bottom: 1px solid #e8e8e8;">
+    <i-cell-group>
+      <i-cell title="财产权" label='包含权利范围以及许可使用等形态' value="创建词条" is-link bind:click="selectStaticAdd">
+        <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+      </i-cell>
+    </i-cell-group>
+  </view>
+  <view class="caption-wrap">
+    <i-collapse>
+      <i-collapse-item title="词条介绍" name="name1">
+          <view slot="content">著作财产权又称“著作权的经济权利”。对作品的使用、收益、处分权。使用作品权是著作财产权中的核心部分。包括如下方面：以物质形式使原作品再现的复制权。诸如视觉复制、听觉复制、视听综合复制、触觉复制及其他任何可视人直接或通过机械装置所感知的复制。主要包括：印刷、复写、影印、录像、录音、灌制唱片、电影电视考贝、盲文图书复制、立体艺术作品的手工或机械复制等。向公众传播作品权。诸如发行，出版，展览，朗诵、演奏、上映等公演，实施（通过制作或建造使建筑及其他造形美术设计图成为实物并公之于众）、广播及以其他形式传播作品等。演绎作品权。诸如通过改编、翻译、注释、整理、编辑等方式演绎作品。收益、处分权是著作财产权中必不可少的部分，著作权人可以许可他人以上述方式使用作品，并由此获得报酬。</view>
+      </i-collapse-item>
+    </i-collapse>
+  </view>
+
+  
+<!-- 加载图片 -->
+<!-- <view class='loading'  style="position: fixed; top:0;left:0;height:{{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif' />
+</view>  -->
+<!-- 财产权形态 -->
+<view class='dividing-line'/>
+<view class='panel'>
+  <view class='head'>
+    <view class='title' style='font-weight:bold;'>财产权形态</view>
+  </view>
+  <view class='body' style='border: 0px solid red;'>
+    <i-grid class="flex-item" border_top='0'>
+        <i-row>
+          <navigator url="common/show/x?workSeqNo={{workSeqNo}}&citiaoClass=2" hover-class="navigator-hover">
+          <i-grid-item border_bottom='0' scale="short">
+            <i-grid-icon scale="short">
+              <image wx:if="{{amountObj.category['2']>0}}" class="image_frame" src="http://fdfs.banquanjia.com.cn/group2/M01/0A/73/CgoKC1w-pMuAB2vyAAAUGGJcwjc650.png" /> 
+              <image wx:if="{{amountObj.category['2']==0}}" class="image_frame" src="http://fdfs.banquanjia.com.cn/group2/M02/0A/73/CgoKC1w-pMqAWoyEAAAT4aevqvk193.png" />
+            </i-grid-icon>
+            <i-grid-label>许可使用<view class="amount">({{amountObj.category['2']}})</view></i-grid-label>
+          </i-grid-item>
+          </navigator>
+          <navigator url="common/show/x?workSeqNo={{workSeqNo}}&citiaoClass=3" hover-class="navigator-hover">
+          <i-grid-item border_bottom='0' scale="short">
+            <i-grid-icon scale="short">
+              <image wx:if="{{amountObj.category['3']>0}}" class="image_frame" src="http://fdfs.banquanjia.com.cn/group2/M02/0A/42/CgoKDFw-pLKADhk6AAAQ-DA6ssE453.png" /> 
+              <image wx:if="{{amountObj.category['3']==0}}" class="image_frame" src="http://fdfs.banquanjia.com.cn/group2/M01/0A/42/CgoKDFw-pLKAbWTZAAAQ_j7zTkk347.png" />
+            </i-grid-icon>
+            <i-grid-label>权利转让<view class="amount">({{amountObj.category['3']}})</view></i-grid-label>
+          </i-grid-item>
+          </navigator>
+          <navigator url="common/show/x?workSeqNo={{workSeqNo}}&citiaoClass=4" hover-class="navigator-hover">
+          <i-grid-item border_bottom='0' scale="short">
+            <i-grid-icon scale="short">
+              <image wx:if="{{amountObj.category['4']>0}}" class="image_frame" src="http://fdfs.banquanjia.com.cn/group2/M00/0A/73/CgoKC1w-pM6ASEX4AAAMMgu_g1k873.png" /> 
+              <image wx:if="{{amountObj.category['4']==0}}" class="image_frame" src="http://fdfs.banquanjia.com.cn/group2/M01/0A/73/CgoKC1w-pM6AZSofAAAMOGqkYa4637.png" />
+            </i-grid-icon>
+            <i-grid-label>权利质押<view class="amount">({{amountObj.category['4']}})</view></i-grid-label>
+          </i-grid-item>
+          </navigator>
+        </i-row>
+    </i-grid>
+  </view>
+</view>
+<!-- 财产权分类 -->
+<view class='dividing-line'/>
+<view class='flex-item panel'>
+  <view class='head'>
+    <view class="title" style='font-weight:bold;'>财产权分类</view>
+  </view>
+  <view class='body copyright_info'>
+    <i-grid>
+    <!-- 开始 -->
+    <block >
+      <i-row>
+        <view wx:for="{{prepertyObj}}" wx:for-item="list" wx:key="index">
+          <view bindtap="selectStatic" data-scope="{{list.scope}}" >
+            <i-grid-item border_bottom='{{list.border_bottom}}' width="{{list.width}}" >
+              <i-grid-icon scale="short">
+                <image class="image_frame" wx:if="{{list.amount>0}}" src="{{list.iconActive}}" /> 
+                <image class="image_frame" wx:if="{{list.amount==0}}" src="{{list.icon}}" /> 
+              </i-grid-icon>
+              <i-grid-label size='26'>
+                {{list.name}}
+                <view class="amount">({{list.amount}})</view>
+              </i-grid-label>
+            </i-grid-item>
+          </view>
+        </view>
+      </i-row>
+    </block>
+    <!-- 结束 -->
+    </i-grid>
+  </view>
+</view>
+
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+    <view slot="header" style="padding: 16px">
+        <view style="color: gray;">财产权形态选择</view>
+        <view style="color: #444;font-size: 16px">{{status_info}}</view>
+        <text>{{oper_tips}}</text>
+    </view>
+</i-action-sheet>
+<i-action-sheet visible="{{addactionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancelAdd" bind:click="handleActionAdd">
+    <view slot="header" style="padding: 16px">
+        <view style="color: gray;">选择需要添加的财产权形态</view>
+        <view style="color: #444;font-size: 16px">{{status_info}}</view>
+        <text>{{oper_tips}}</text>
+    </view>
+</i-action-sheet>
+<view class='loading' wx:if="{{personalObj==null||prepertyObj==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif' />
+</view>

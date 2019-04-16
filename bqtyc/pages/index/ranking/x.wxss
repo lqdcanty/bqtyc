@@ -1,0 +1,16 @@
+page{
+  background: #f8f8f8
+}
+.container{
+  margin-top: 20rpx;
+}
+.weui-loadmore__tips,.weui-loadmore__tips_in-line{
+  background: #f8f8f8
+}
+.weui-footer{
+  padding-top:10px;
+  padding-bottom:10px;
+}
+.i-card-header-extra{
+  width:20%;
+}

@@ -1,0 +1,9 @@
+.tags{
+  display: flex;
+  flex-direction: row;
+  padding: 10px 10px;
+}
+
+.tags .tag {
+  margin-right: 3px;
+}

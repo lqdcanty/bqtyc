@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "软著办理查询",
+  "usingComponents": {
+    "navigation": "../../../../components/navbar/index",
+    "i-icon": "/dist/icon/index"
+  },
+  "window": {
+    "enablePullDownRefresh": false
+  }
+}

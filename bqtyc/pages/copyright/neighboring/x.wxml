@@ -1,0 +1,175 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="邻接权"
+>
+</navigation>
+<button class='btn-share' open-type="share" size='mini'><i-icon type="share" size="18" color="#80848f"/></button>
+<view class="container">
+  <navigator url='../../work/x?workSeqNo={{workObj.workSeqNo}}' hover-class="navigator-hover">
+  <view class="workinfo">
+    <view class="head">
+      <view class="title"><zan-capsule color="#4db798" leftText="{{workObj.category}}" rightText="{{workObj.type}}" />{{workObj.name}}</view>
+      <zan-capsule color="#4db798" leftText="版权类型" rightText="{{powerType}}" />
+    </view>
+    <view class="remark" wx:if='{{workObj.subtitle!=""}}'><i-icon size="16" type="prompt" color="gray"/>{{workObj.workTitle}}</view> 
+  </view>
+  </navigator>
+  <view style="background-color: #fff;">
+  <i-grid class="flex-item" border_top='0'>
+    <i-row>
+      <i-grid-item border_bottom='0' width='100%'>
+        <i-grid-label size='32'>
+          <block  wx:for="{{personalData}}" wx:for-item="data" wx:key="*this" wx:if="{{index==0}}">
+          <view bindtap='gotoOwner'>
+            <i-tag class='tag' color="green"><i-icon size="16" type="mine_fill" margin="margin-top:-3px;"/></i-tag>
+            <i-tag class='tag tag-right' color="green" type='border'>{{data.roleVal}}</i-tag>
+            <i-tag class='tag tag-right' color="green" wx:if="{{personalData.length>1}}">
+              {{personalData.length}}
+            </i-tag>
+          </view>
+          </block>
+          <view wx:if="{{personalData.length==0}}">
+          <i-tag class='tag' color="green" type="border"><i-icon type="add" size="12" color="#4db798"/>请设置领接权词条</i-tag>
+          </view>
+          <view class="amount" wx:if="{{personalData.length>0}}">({{personalData[0].roleName}})</view>
+        </i-grid-label>
+      </i-grid-item>
+    </i-row>
+  </i-grid>
+  </view>
+  <view style="border-bottom: 1px solid #e8e8e8;">
+    <i-cell-group>
+      <i-cell title="权利人与署名信息" label='作品的权利人与相关创作者署名信息' value="创建词条" is-link url="edit/x?workSeqNo={{workSeqNo}}">
+        <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+      </i-cell>
+      <i-cell title="使用版权" label='与著作权有关的权力事项' value="创建词条" is-link url="../../welcome/x">
+        <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+      </i-cell>
+    </i-cell-group>
+  </view>
+  <view class="caption-wrap">
+    <i-collapse>
+      <i-collapse-item title="词条介绍" name="name1">
+          <view slot="content">著作权之人身权，又称著作精神权利，指作者对其作品所享有的各种与人身相联系或者密不可分而又无直接财产内容的权利，是作者通过创作表现个人风格的作品而依法享有获得名誉、声望和维护作品完整性的权利。该权利由作者终身享有，不可转让、剥夺和限制。作者死后，一般由其继承人或者法定机构予以保护。著作人身权包括：
+1.发表权，即决定作品是否公布于众的权利；
+2.署名权，即表明作者身份，在作品上署名的权利；
+3.修改权，即修改或者授权他人修改作品的权利；
+4.保护作品完整权，即保护作品不受歪曲、篡改的权利。</view>
+      </i-collapse-item>
+    </i-collapse>
+  </view>
+
+  <i-tabs current="{{neighboring_detail}}" bindchange="handleChange" backgroundColor="#f8f8f8" color="#4db798" bottomBorder='0'>
+      <i-tab key="authorship" title="署名信息"></i-tab>
+      <i-tab key="copyrights_used" title="使用版权"></i-tab>
+  </i-tabs>
+  <view wx:if='{{neighboring_detail=="copyrights_used"}}'>
+    <block wx:for="{{copyright_related}}" wx:for-item="data" wx:key="work_id">
+    <view class='flex-item panel'>
+      <view class='head'>
+        <view class="left">
+          <i-tag class='tag' color="green" type='border'>{{data.work_type}}</i-tag>
+          {{data.content}}
+        </view>
+        <block wx:if="{{data.isWork}}">
+          <navigator url="../../work/x?id={{data.work_id}}" hover-class="navigator-hover">
+          <view class="right"><i-icon size="16" type="enter" color="#4db798"/></view>
+          </navigator>
+        </block>
+      </view>
+      <view class='body copyright_info'>
+        <view class="flex-item remark"><i-icon size="16" type="prompt" color="gray"/>{{data.remark}}</view>
+        <view class="flex-item tags">
+          <block wx:for="{{data.authorship}}" wx:for-item="origin" wx:key="title">
+          <view class="keyval" ws:if="{{origin.origin}}">
+          <i-tag class='tag' color="green">{{origin.title}}</i-tag>
+          <i-tag class='tag tag-right' color="green" type='border'>{{origin.name}}</i-tag>
+          </view>
+          </block>
+        </view>
+        <view class='copyright'>
+          <view class='title' style='width: 48px;'>许可方</view>
+          <view class="name">
+            <input value='{{data.licensor.name}}'/>
+            <view class='right'>
+              <view class='status'>
+                <i-icon size="16" type="{{data.licensor.status_icon}}" color="{{data.licensor.status_color}}"/>
+              </view>
+              <view class='more' bindtap='openActions' data-index="{{index}}" style="background-color:{{data.licensor.status_color}};">
+                <i-icon size="16" type="more" color="#fff"/>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    </block>
+     <view class="blank-bar" >作品《{{workName}}》还没有使用版权词条，尝试添加版权词条完善版权信息，将获得【版权力】的奖励</view>
+  </view>
+  <view wx:if='{{neighboring_detail=="authorship"}}'>
+  <block wx:for="{{listData}}" wx:for-item="data" wx:key="title">
+  <view class='flex-item panel' wx:if="{{data.list.length>0}}">
+    <view class='head'>
+      <view class="title">{{data.name}}</view>
+    </view>
+    <view class='body copyright_info'>
+      <block wx:if="{{data.list.length>0}}"  wx:for="{{data.list}}" wx:for-item="list" wx:key="name">
+      <view class='copyright'>
+        <view class='title'><i-icon size="16" type="mine"/></view>
+        <view class="name">
+          <input value='{{list.citiao.abutRight.roleVal}}'/>
+          <view class='right'>
+            <view class='status'>
+              <block wx:for="list.abutCopyrightVo.scopes" wx:for-item="item" wx:key="index" wx:if="{{item=='著'}}">(著)</block>
+              <i-icon size="16" wx:if="{{list.abutCopyrightVo.mine==false && list.abutCopyrightVo.status=='pass'}}" type="success" color="#4db798"/>
+              <i-icon size="16" wx:if="{{list.abutCopyrightVo.mine==true && list.abutCopyrightVo.status=='pass' }}" type="success" color="#5cadff"/>
+              <i-icon size="16" wx:if="{{list.abutCopyrightVo.mine==true && list.abutCopyrightVo.status=='wait_audit' && list.abutCopyrightVo.operation=='add'}}" type="add" color="#4db798"/>
+              <i-icon size="16" wx:if="{{list.abutCopyrightVo.mine==true && list.abutCopyrightVo.status=='wait_audit' && list.abutCopyrightVo.operation=='update'}}" type="brush" color="#4db798"/>
+              <i-icon size="16" wx:if="{{list.abutCopyrightVo.mine==true  && list.abutCopyrightVo.status=='wait_audit' && list.abutCopyrightVo.operation=='delete'}}" type="delete" color="#ed3f14"/>
+               <i-icon size="16" wx:if="{{list.abutCopyrightVo.mine==true  && list.abutCopyrightVo.status=='reject'}}" type="delete" color="#ed3f14"/>
+            </view>
+            <view  class='more' wx:if="{{!list.abutCopyrightVo.mine && list.abutCopyrightVo.status=='pass'}}" bindtap='openActions' data-mine="{{list.abutCopyrightVo.mine}}" data-status="{{list.abutCopyrightVo.status}}" data-operation="{{list.abutCopyrightVo.operation}}" data-copyrightCode="{{list.citiao.citiaoCode}}" style="background-color:#4db798;"  >
+              <i-icon size="16" type="more" color="#fff"/>
+            </view>
+             <view class='more' wx:if="{{list.abutCopyrightVo.mine && list.abutCopyrightVo.status=='pass'}}" bindtap='openActions' data-mine="{{list.abutCopyrightVo.mine}}" data-status="{{list.abutCopyrightVo.status}}" data-operation="{{list.abutCopyrightVo.operation}}" data-copyrightCode="{{list.citiao.citiaoCode}}" style="background-color:#5cadff;">
+              <i-icon size="16" type="more" color="#fff"/>
+            </view>
+            <view class='more' wx:if="{{list.abutCopyrightVo.mine && list.abutCopyrightVo.status=='wait_audit' && list.abutCopyrightVo.operation=='add'}}" bindtap='openActions' data-mine="{{list.abutCopyrightVo.mine}}" data-status="{{list.abutCopyrightVo.status}}" data-operation="{{list.abutCopyrightVo.operation}}" data-copyrightCode="{{list.citiao.citiaoCode}}" style="background-color:#4db798;">
+              <i-icon size="16" type="more" color="#fff"/>
+            </view>
+            <view class='more' wx:if="{{list.abutCopyrightVo.mine && list.abutCopyrightVo.status=='wait_audit' && list.abutCopyrightVo.operation=='update'}}" bindtap='openActions' data-mine="{{list.abutCopyrightVo.mine}}" data-status="{{list.abutCopyrightVo.status}}" data-operation="{{list.abutCopyrightVo.operation}}" data-copyrightCode="{{list.citiao.citiaoCode}}" style="background-color:#4db798;">
+              <i-icon size="16" type="more" color="#fff"/>
+            </view>
+            <view class='more' wx:if="{{list.abutCopyrightVo.mine  && list.abutCopyrightVo.status=='wait_audit' && list.abutCopyrightVo.operation=='delete'}}" bindtap='openActions' data-mine="{{list.abutCopyrightVo.mine}}" data-status="{{list.abutCopyrightVo.status}}" data-operation="{{list.abutCopyrightVo.operation}}" data-copyrightCode="{{list.citiao.citiaoCode}}" style="background-color:#4db798;">
+              <i-icon size="16" type="more" color="#fff"/>
+            </view> 
+             <view class='more' wx:if="{{list.abutCopyrightVo.mine  && list.abutCopyrightVo.status=='reject'}}" bindtap='openActions' data-mine="{{list.abutCopyrightVo.mine}}" data-status="{{list.abutCopyrightVo.status}}" data-operation="{{list.abutCopyrightVo.operation}}" data-copyrightCode="{{list.citiao.citiaoCode}}" style="background-color:#ed3f14;">
+              <i-icon size="16" type="more" color="#fff"/>
+            </view> 
+          </view>
+        </view>
+      </view>
+      </block>
+    </view>
+  </view>
+  </block> 
+  <view class="blank-bar" wx:if="{{datano}}">作品《{{workName}}》还没有署名信息词条，尝试添加版权词条完善版权信息，将获得【版权力】的奖励</view> 
+  </view>
+</view>
+<i-action-sheet visible="{{actionsOpenedAdd}}" actions="{{actionsAdd}}" show-cancel bind:cancel="onCancelAdd" bind:click="handleActionAdd">
+    <view slot="header" style="padding: 16px">音乐制作人
+    </view>
+</i-action-sheet>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">{{status_info}}</view>
+        <text>{{oper_tips}}</text>
+    </view>
+</i-action-sheet>
+
+<view class='loading' wx:if="{{!loading}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>
+
+<i-message id="message" />

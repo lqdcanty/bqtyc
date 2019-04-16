@@ -1,0 +1,17 @@
+.i-grid-icon {
+    display:block;
+    margin:0 auto;
+    text-align: center;
+    padding-bottom: 5px;
+}
+.short {
+    padding-bottom: 0px;
+} 
+.long {
+    padding-bottom: 10px;
+} 
+.i-grid-icon image{
+    border: 0px solid yellow;
+    width:100%;
+    height:100%
+}

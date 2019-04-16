@@ -1,0 +1,95 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="版权力获取明细"
+></navigation>
+<view class="container" wx:if="{{mybill!=nul}}">
+  <view class="weui-form-preview">
+    <view class="weui-form-preview__hd">
+      <navigator url="../../work/x" hover-class="navigator-hover">
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label worktitle">
+          <zan-capsule color="#4db798" leftText="文字" rightText="文化" />神雕侠侣
+        </view>
+        <view class="weui-form-preview__value_in-hd"><i-icon size="14" type="enter" color="#4db798"/></view>
+      </view>
+      </navigator>
+    </view>
+      <view class="weui-form-preview__bd">
+
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">完善者</view>
+        <view class="weui-form-preview__value">静谧也哉<image mode='aspectFill' src="http://wx.qlogo.cn/mmhead/ajNVdqHZLLCBO5nGSF4TCF2iboicbkzM63icia1ZnopdEMCUF6gx6yecibw/64/0" lazy-load='true' class="user_img"/></view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">操作类型</view>
+        <view class="weui-form-preview__value">新增<i-icon size="16" type="add" color="#4db798"/></view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">操作日期</view>
+        <view class="weui-form-preview__value">2018-12-28 22:36<i-icon size="16" type="clock" color="#4db798"/></view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">版权力价值</view>
+        <view class="weui-form-preview__value">0.1<i-icon size="16" type="transaction_fill" color="#4db798"/></view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">分配方案</view>
+        <view class="weui-form-preview__value">完善者得80%，1位审核者分享20%</view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">词条类型</view>
+        <view class="weui-form-preview__value">人身权</view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">版权类型</view>
+        <view class="weui-form-preview__value">署名权</view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">词条内容</view>
+        <view class="weui-form-preview__value">作者:金庸</view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">引用资料</view>
+        <view class="weui-form-preview__value"></view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">截至日期</view>
+        <view class="weui-form-preview__value">2018-12-29 22:36<i-icon size="16" type="clock" color="#4db798"/></view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">审核结果</view>
+        <view class="weui-form-preview__value">1人通过,0人拒绝</view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">审核者</view>
+        <view class="weui-form-preview__value">
+          <image mode='aspectFill' src="http://wx.qlogo.cn/mmhead/ajNVdqHZLLCBO5nGSF4TCF2iboicbkzM63icia1ZnopdEMCUF6gx6yecibw/64/0" lazy-load='true' class="user_img"/>
+          </view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">收录日期</view>
+        <view class="weui-form-preview__value">2018-12-29 22:36<i-icon size="16" type="clock" color="#4db798"/></view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">我获得版权力</view>
+        <view class="weui-form-preview__value">0.13333<i-icon size="16" type="redpacket_fill" color="#4db798"/></view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">我获得原因</view>
+        <view class="weui-form-preview__value">提供嵌入式版权程序服务，用户搜索访问版权作品词条，触发版权词条完善。</view>
+      </view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active"
+          url='../../x'>去我的版权力</navigator>
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active"
+          url='../certification/x'>查看区块凭证</navigator>
+      </view>
+    </view>
+</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+</i-action-sheet>
+<view class='loading' wx:if="{{mybill==nul}}" style="position: fixed; top:{{searchBarTop}}px;left:0;bottom:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif'/>
+</view>

@@ -1,0 +1,186 @@
+<!--pages/services/copyrightServices/index.wxml-->
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="软件版权服务"
+>
+</navigation>
+<wxs src="../../../wxs/subsring.wxs" module="tools" />
+<!-- <view class='dividing-line' style='height:29px;'/> -->
+<view class='errorWrap-interl loading' wx:if="{{nullStatus}}">
+  <view>
+  <image style='width:120px;height:120px;' src='http://fdfs.banquanjia.com.cn/group2/M02/11/07/CgoKC1xIDxOAaIoMAAAMC9oZkE8586.png'/>
+  </view>
+  <view class="errorWrap-interl-t">服务器竟然出错了</view>
+  <view class="errorWrap-interl-subt">试试看刷新页面~</view>
+  <view class="errorWrap-interl-btn" bindtap='doOnload'>刷新</view>
+</view>
+<view class="background-content">
+  <i-sticky scrollTop="{{scrollTop}}">
+    <i-sticky-item>
+      <view class="top-bar" slot="title">
+          <view class="work">
+              <image style="padding-left:20rpx;width:40rpx;height:40rpx;margin-top:10rpx;" bindtap='callhome' src="http://fdfs.banquanjia.com.cn/group2/M01/1C/88/CgoKC1ywUAOAP4XzAAADeYEWg5k596.png" />
+              <text class="font_rg">{{finallycode=='software'?'软著办理':'游戏版号'}}</text>
+              <text></text>
+          </view>
+          <view style="height:80rpx;background:#fff;margin-bottom:16rpx;">
+          <view class="tar-search">
+            <view>
+              <button class="zixun" open-type="contact">
+                <image class="zixun_image"src="http://fdfs.banquanjia.com.cn/group2/M02/1C/86/CgoKC1ysOL-AH3dOAAAD3x1ZaFE342.png" />
+                <text class="zixun_text">咨询</text>
+              </button>
+            </view>
+            <input class='search' placeholder-style="width:320px" type='text' value='{{keyword}}' placeholder="{{finallycode=='software'?'请输入软件、公司名称免费查能否办理软著':'请输入游戏、公司名称免费查能否办理版号'}}" confirm-type='search' bindinput='inputBind' bindconfirm='query'/>
+            <image z-index="1000" class="sousuo" src='http://fdfs.banquanjia.com.cn/group2/M02/1C/51/CgoKDVysOKOAZ00VAAAB49BUX9o882.png' bindtap='query'/>
+          </view>
+        </view>
+      </view>
+    </i-sticky-item>
+  </i-sticky>
+  <block>
+    <view class="banner_service">
+      <image class="banner_image" src="http://fdfs.banquanjia.com.cn/group2/M01/1C/55/CgoKDFysOKaAZRtfAAADTLOy5pI381.png" />
+      <view class="banner_point"></view>
+      <swiper style="width:580rpx;height:40rpx;" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" vertical="{{vertical}}">
+        <block wx:for="{{swiperMessage}}" wx:for-item="item" wx:key="index">
+          <swiper-item>
+            <!-- <view class="banner_content">网**刚刚申请了120件软件著作权登记</view> -->
+            <view class="banner_content">{{item.content}}</view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </block>
+  <block>
+    <view class="hot_activity">
+      <view class="common_title">热门活动</view>
+      <view class="hot_content">
+        <view class="hot_left" bindtap="watchThisSpace">
+          <view class="hot_red">版权家合作伙伴计划</view>
+          <view class="hot_green">成为版权服务商获得平台所有版权服务产品与解决方案支持，最优惠的服务价格。</view>
+        </view>
+        <view class="hot_right">
+          <view class="hot_r_top" bindtap="softNumber" data-number='软著办理'>
+            <view class="hot_blue">办理软著登记</view>
+            <view class="hot_blue_bottom">最高6折优惠</view>
+          </view>
+          <view class="hot_r_bottom" bindtap='gameNumber' data-game='游戏版号'>
+            <view class="hot_pink">办理游戏版号</view>
+            <view class="hot_pink_bottom">获得300元服务代 金券</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block>
+    <view class="copyright_service">
+      <view class="common_title">版权服务</view>
+      <view class="copyright_content" wx:if="{{finallycode=='software'}}">
+        <view class="copyright_common">
+          <image class="copy_common_image" src="http://fdfs.banquanjia.com.cn/group2/M02/1C/57/CgoKDFywS3yAbCq3AAA5A0oTIws272.png" />
+          <text class="copy_common_text">软著登记免费查询</text>
+        </view>
+        <view class="copyright_common">
+          <image class="copy_common_image" src="http://fdfs.banquanjia.com.cn/group2/M00/1C/51/CgoKDVysOKKAY4p9AAAIfUKOkjI941.png" />
+          <text class="copy_common_text">软著办理方案免费咨询</text>
+        </view>
+        <view class="copyright_common">
+          <image class="copy_common_image" src="http://fdfs.banquanjia.com.cn/group2/M02/1C/55/CgoKDFysOKWAVbREAAAIji6wM2E942.png" />
+          <text class="copy_common_text">软著登记资料撰写</text>
+        </view>
+        <view class="copyright_common">
+          <image class="copy_common_image" src="http://fdfs.banquanjia.com.cn/group2/M00/1C/86/CgoKC1ysOMCAR3hQAAAKfWd5GfM684.png" />
+          <text class="copy_common_text">办理过程全程跟踪</text>
+        </view>
+      </view>
+      <view class="copyright_content" wx:if="{{finallycode=='gamecoderegister'}}">
+        <view class="copyright_common" style="height:244rpx">
+          <image class="copy_common_image" src="http://fdfs.banquanjia.com.cn/group2/M00/1C/58/CgoKDFy0KtOARiqhAAAZO2llkwk500.png" />
+          <text class="copy_common_small">专人服务</text>
+          <text class="copy_common_text">关键环节100%提醒</text>
+        </view>
+        <view class="copyright_common" style="height:244rpx">
+          <image class="copy_common_image" src="http://fdfs.banquanjia.com.cn/group2/M00/1C/89/CgoKC1y0KvCAKUIvAAAh7JGs1cw880.png" />
+          <text class="copy_common_small">通过率99.8%</text>
+          <text class="copy_common_text">熟悉各类审批要点</text>
+        </view>
+        <view class="copyright_common" style="height:244rpx">
+          <image class="copy_common_image" src="http://fdfs.banquanjia.com.cn/group2/M00/1C/54/CgoKDVy0KtCAFloXAAAgTXHAFok112.png" />
+          <text class="copy_common_small">办理时间短</text>
+          <text class="copy_common_text">办理时间比同行快20%</text>
+        </view>
+        <view class="copyright_common" style="height:244rpx">
+          <image class="copy_common_image" src="http://fdfs.banquanjia.com.cn/group2/M00/1C/58/CgoKDFy0KtSARdpyAAAenTLmXh4922.png" />
+          <text class="copy_common_small">信息安全</text>
+          <text class="copy_common_text">保护客户信息免遭外泄</text>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block>
+    <view class="consulting_housekeeper">
+      <view class="common_title">咨询管家</view>
+      <view class="consulting_content">
+        <block wx:for="{{softwareList}}" wx:for-item="item" wx:key="index">
+          <view class="consulting_common">
+            <image class="consulting_common_image" src="{{item.cover}}" />
+            <text class="consulting_common_textf">{{item.name}}</text>
+            <text class="consulting_common_texts">{{item.introduce}}</text>
+            <button open-type="contact" class="consulting_button">在线咨询</button>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+  <block>
+    <view class="copyright_dynamics">
+      <view class="copy_title">
+        <view class="copy_bg"></view>
+        <view class="copy_font">版权动态</view>
+        <view class="copy_bg"></view>
+      </view>
+      <view>
+        <block wx:for="{{dynamics}}" wx:for-item="news" wx:key="index" wx:if="{{dynamics.length>0}}">
+                <i-card-x full title="{{news.title}}" subtitle='{{news.images.length>1 ?"":news.describe}}' thumb="{{news.images.length>1?'':news.cover}}" url="{{news.url}}" webTitle="版权动态" type="{{news.type?news.type:'转发'}}"
+                      headStyle="padding-bottom:0px;margin-bottom:0px;border-bottom: 0px;" hidebody='{{news.images.length>1?false:true}}'>
+                      <view slot="content" wx:if="news.images.length>1" class="card-thumbs">
+                        <block wx:for="{{news.images}}" wx:for-item="thumb" wx:key="url" wx:for-index="indexImg" wx:if="{{indexImg<3}}">
+                        <image mode='aspectFill' src="https://p.banquanbaike.com.cn/http?link={{thumb}}" lazy-load='true' class="thumb"/>
+                        </block>
+                      </view>
+                      <view slot="footer">
+                        <view class='card-footer' style="{{idx==day.dynamics.length-1?'border-bottom:0px;':''}}">
+                          <view class='head' bindtap='linkClick' data-url="{{news.authorReferer}}" data-title="{{'版权动态'}}" data-type="{{news.type?news.type:''}}">
+                            <block wx:if="{{news.avatar&&news.avatar!=''}}">
+                              <image mode='aspectFill' src="{{news.avatar}}" lazy-load='true' class="logoImg"/>
+                            </block>
+                            <block wx:if="{{news.avatar==''}}">
+                              <block wx:if="{{news.plateform=='百度'}}">
+                                <image mode='aspectFill' src="https://p.banquanbaike.com.cn/http?link=http://fdfs.banquanjia.com.cn/group2/M00/1C/7F/CgoKC1yHV02AI-jUAAAB-0OWh4k922.png" lazy-load='true' class="logoImg"/>
+                              </block>
+                              <block wx:if="{{news.plateform=='版权百科'}}">
+                                <image mode='aspectFill' src="https://p.banquanbaike.com.cn/http?link=https://mp.weixin.qq.com/wxopen/basicprofile?action=get_headimg&token=872746322&t=20190312145051" lazy-load='true' class="logoImg"/>
+                              </block>
+                            </block>
+                            <view class='text'>{{news.author!=""?news.author:'暂无来源'}}</view>
+                            <view class='text'  wx:if="{{news.dategroup=='置顶' || news.dategroup=='今天' || news.dategroup=='昨天' || news.dategroup=='前天'}}">{{news.time}}</view>
+                            <view class='text'>{{news.dategroup}}</view>
+                            <view wx:if="{{!news.yesMine}}" class='subsring'>{{tools.insteadSting.sub(news.url)}}</view>
+                          </view>
+                        </view>
+                      </view>
+                    </i-card-x>
+                </block>
+      </view>
+    </view>
+  </block>
+  <view class=""  style="font-size：12px;text-align:center;color:#999;margin-top:10px">
+    <image wx:if="{{!loadAll}}" src='http://cbd.efida.com.cn/images/icons/loading.gif'  style='width:13px;height:13px;display:inline-block;position:relative;top:2px'/>
+    <text style='font-size:12px;margin-left:8rpx'>{{loadAll?'已加载全部':'加载中'}}</text>
+  </view>
+  <block wx:if="{{dynamics.length<1 && loadAll}}">
+    <view class='noNews'>暂无动态</view>
+  </block>
+</view>

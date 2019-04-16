@@ -1,0 +1,58 @@
+/* pages/work/edit/x.wxss */
+/* .remark{
+  color: lightgray;
+  font-size: 24rpx;
+  padding-right:6px;
+  padding-left:12px;
+  padding-top: 0px;
+  padding-bottom: 6px;
+}
+.tags {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border: 0px solid blue;
+}
+.button-sp-area{
+    margin: 0 auto;
+    padding-top: 15px;
+    text-align: center;
+}
+.mini-btn{
+    margin-right: 5px;
+}
+.title-input{
+  font-size:14px;
+  color:#495060;
+  min-width:65px;
+  padding-right:10px;
+  margin-left:15px;
+  float:left;
+} */
+.tags{
+  padding: 10px 10px;
+}
+
+.tags .tag {
+  margin-right: 3px;
+  display:inline-block;
+}
+.weui-cells{
+  font-size: 14px
+}
+.remark {
+  padding-left: 15px
+}
+
+.textareawrap{
+  position:absolute;
+  z-index: 1;
+  color:rgba(255,255,255,0);
+  left: 15px;
+  right: 15px;
+  opacity: 0
+}

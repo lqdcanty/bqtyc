@@ -1,0 +1,51 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="网络收听"
+>
+</navigation>
+<button class='btn-share' open-type="share" size='mini'><i-icon type="share" size="18" color="#80848f"/></button>
+<view class="container" wx:if="{{work!=nul}}">
+     <navigator url='' hover-class="navigator-hover">
+      <view class="work">
+        <view class="title">
+          <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+         {{work.name}}
+        </view>
+        <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+      </view>
+      </navigator>
+  <view class="dashboard">
+    <i-grid class="flex-item" border_top='0'>
+      <i-row>
+        <navigator url="" hover-class="navigator-hover">
+        <i-grid-item border_bottom='0' width='100%'>
+          <i-grid-label size='48' weight="bold">-<view class="amount">收听次数</view></i-grid-label>
+        </i-grid-item>
+        </navigator>
+      </i-row>
+      <i-row>
+        <i-grid-item border_bottom='0' width='50%' scale="short">
+          <i-grid-icon scale="short">
+            <i-icon size="16" type="coupons_fill"/>
+          </i-grid-icon>
+          <i-grid-label>-<view class="remark">收听次数</view></i-grid-label>
+        </i-grid-item>
+        <i-grid-item border_bottom='0' width='50%' scale="short">
+          <i-grid-icon scale="short">
+            <i-icon size="16" type="group_fill"/>
+          </i-grid-icon>
+          <i-grid-label>-<view class="remark">收听平台</view></i-grid-label>
+        </i-grid-item>
+      </i-row>
+    </i-grid>
+    <view class="databy"><i-icon size="12" type="flag" color="#a0a0a0"/>数据来自于版权大数据平台</view>
+  </view>
+  <view class='dividing-line'/>
+  <view class='panel'>
+    <view class='head'><view class="title">平台分布</view></view>
+    <view class='body'>
+      <view class="dashboard-notexist" >暂无数据图表</view>
+    </view>
+  </view>
+</view>

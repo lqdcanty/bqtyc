@@ -1,0 +1,1 @@
+<view class="i-class i-grid" style="border-top: {{border_top}}"><slot></slot></view>

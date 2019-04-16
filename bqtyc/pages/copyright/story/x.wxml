@@ -1,0 +1,94 @@
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{navTitle}}"
+></navigation> 
+<button class='btn-share' open-type="share" size='mini'><i-icon type="share" size="18" color="#80848f"/></button>
+<view class="container">
+  <navigator url='../../work/x?workSeqNo={{work.workSeqNo}}' hover-class="navigator-hover">
+  <view class="workinfo">
+    <view class="head">
+      <view class="title"> <zan-capsule color="#4db798" leftText="{{work.category}}" rightText="{{work.type}}" />
+      <view class='nameOver'>{{work.name}}</view>
+      </view>
+      <zan-capsule color="#4db798" leftText="版权类型" rightText="{{powerType}}" />
+    </view>
+    <view class="remark"><i-icon size="16" type="prompt" color="gray"/>{{work.workTitle}}</view> 
+  </view>
+  </navigator>
+  <view style="border-bottom: 1px solid #e8e8e8;">
+    <i-cell-group>
+      <i-cell title="版权故事" label='讲述作品背后的关于版权的故事' value="创建词条" is-link url="add/x?workSeqNo={{work.workSeqNo}}">
+        <i-icon size='22' type="add" color="#4db798" slot="icon"/>
+      </i-cell>
+    </i-cell-group>
+  </view>
+  <view class="caption-wrap">
+    <i-collapse>
+      <i-collapse-item title="词条介绍" name="name1">
+          <view slot="content">版权故事由网友编撰或转载，仅代表作者个人观点，并不代表本网站证实或赞成其描述。如其他媒体、网站或个人转载使用，需保留本网站注明的"稿件来源"，并自负版权等法律责任。对于不当转载或引用本网内容而引起的民事纷争、行政处理或其他损失，本网不承担责任。如果是转载必须署名作者以及注明出处 </view>
+      </i-collapse-item>
+    </i-collapse>
+  </view>
+
+
+  <block wx:if="{{copyright_story.length>0}}" wx:for="{{copyright_story}}" wx:for-item="story" wx:key="title">
+    <view  hover-class="navigator-hover" bindtap='clickLink' data-url="{{story.url}}" data-story="{{story}}" data-title="{{story.title}}" data-type="{{story.type}}">
+      <i-card-x full title="{{story.title}}" subtitle='{{story.subTitle}}' thumb="{{story.attachType==1&&story.pic!=null?story.pic[0]:''}}" slot="content" 
+        headStyle="padding-bottom:0px;border-bottom: 0px;" hidebody='{{story.pic!=null?false:true}}'>
+        <view slot="content" wx:if="{{story.attachType==2 &&story.pic.length>0}}" class="card-thumbs">
+          <block wx:for="{{story.pic}}" wx:for-item="thumb" wx:key="index">
+          <image mode='aspectFill' style="{{story.pic.length>2?'width:33.3%;':'width:50%;'}}" src="{{thumb}}" lazy-load='true' class="thumb"/>
+          </block>
+        </view>
+      </i-card-x>
+    </view>
+        <view slot="footer" class='footerBg'>
+          <view class='card-footer' style="{{index==copyright_story.length-1?'border-bottom:0px;':''}}">
+            <view class='head'>
+              <view class="left">
+                <i-tag class='tag' color="#80848f">{{story.type}}</i-tag>
+                <zan-capsule color="#80848f" wx:if="{{story.author}}" leftText="作者" rightText="{{story.author}}" />
+                <zan-capsule color="#80848f" wx:if="{{story.sourceFrom}}" leftText="来源" rightText="{{story.sourceFrom}}" />
+              </view>
+            </view>
+            <view class="right right-bar">
+              <view class="oper">
+                <view class='status'>
+                  <i-icon size="16" wx:if="{{story.mine==false && story.status=='pass'}}" type="success" color="#4db798"/>
+                  <i-icon size="16" wx:if="{{story.mine==true && story.status=='pass' }}" type="success" color="#5cadff"/>
+                  <i-icon size="16" wx:if="{{story.mine==true && story.status=='wait_audit' && story.operation=='add'}}" type="add" color="#4db798"/>
+                  <i-icon size="16" wx:if="{{story.mine==true && story.status=='wait_audit' && story.operation=='update'}}" type="brush" color="#4db798"/>
+                  <i-icon size="16" wx:if="{{story.mine==true  && story.status=='wait_audit' && story.operation=='delete'}}" type="delete" color="#ed3f14"/>
+                </view>
+                <view  class='more' wx:if="{{story.mine==false && story.status=='pass'}}" bindtap='openActions' data-mine="{{story.mine}}" data-status="{{story.status}}" data-operation="{{story.operation}}" data-citiaoCode="{{story.citiaoCode}}" style="background-color:#4db798;"  >
+                  <i-icon size="16" type="more" color="#fff"/>
+                </view>
+                <view class='more' wx:if="{{story.mine==true && story.status=='pass'}}" bindtap='openActions' data-mine="{{story.mine}}" data-status="{{story.status}}" data-operation="{{story.operation}}" data-citiaoCode="{{story.citiaoCode}}" style="background-color:#5cadff;">
+                  <i-icon size="16" type="more" color="#fff"/>
+                </view>
+                <view class='more' wx:if="{{story.mine==true && story.status=='wait_audit' && story.operation=='add'}}" bindtap='openActions' data-mine="{{story.mine}}" data-status="{{story.status}}" data-operation="{{story.operation}}" data-citiaoCode="{{story.citiaoCode}}" style="background-color:#4db798;">
+                  <i-icon size="16" type="more" color="#fff"/>
+                </view>
+                <view class='more' wx:if="{{story.mine==true && story.status=='wait_audit' && story.operation=='update'}}" bindtap='openActions' data-mine="{{story.mine}}" data-status="{{story.status}}" data-operation="{{story.operation}}" data-citiaoCode="{{story.citiaoCode}}" style="background-color:#4db798;">
+                  <i-icon size="16" type="more" color="#fff"/>
+                </view>
+                <view class='more' wx:if="{{story.mine==true  && story.status=='wait_audit' && story.operation=='delete'}}" bindtap='openActions' data-mine="{{story.mine}}" data-status="{{story.status}}" data-operation="{{story.operation}}" data-citiaoCode="{{story.citiaoCode}}" style="background-color:#ed3f14;">
+                  <i-icon size="16" type="more" color="#fff"/>
+                </view> 
+              </view>
+            </view>
+          </view>
+        </view>
+  </block>
+</view>
+<view class="blank-bar" wx:if="{{copyright_story.length==0}}">作品《{{work.name}}》暂无版权故事</view>
+<i-action-sheet visible="{{actionsOpened}}" actions="{{actions}}" show-cancel bind:cancel="onCancel" bind:click="handleAction">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">{{status_info}}</view>
+        <text>{{oper_tips}}</text>
+    </view>
+</i-action-sheet>
+<view class='loading' wx:if="{{work==null||copyright_story==null}}" style="position: fixed; top:0;left:0;height: {{workHeight}}">
+  <image src='http://cbd.efida.com.cn/images/icons/loading.gif' />
+</view>
